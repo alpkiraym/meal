@@ -119,6 +119,40 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
 .irab a{text-decoration:none;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:6px 10px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--muted);box-shadow:var(--shadow);font-size:.9rem;cursor:pointer;text-align:center;line-height:1.3}
 .irab b{display:block;font-weight:600;color:var(--ink)}
 .irab small{display:block;font-size:.8rem;white-space:nowrap}
+.kt-giris{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:0 0 14px;text-decoration:none;color:inherit}
+.kt-giris .ik{width:40px;height:40px;border-radius:11px;background:var(--green);color:#f4c430;display:grid;place-items:center;flex:none;font-family:var(--ar);font-size:1.3rem}
+.kt-giris span{flex:1}.kt-giris small{display:block;color:var(--muted);font-size:.82rem}
+.kt-ust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}
+.kt-ust div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 6px;text-align:center}
+.kt-ust b{display:block;font-size:1.25rem;color:var(--green);line-height:1.15}
+.kt-ust span{font-size:.75rem;color:var(--muted)}
+.kt-bar{height:6px;border-radius:3px;background:var(--green-soft);margin:-4px 0 12px;overflow:hidden}.kt-bar i{display:block;height:6px;background:var(--green-2)}
+.kt-soru{padding:16px 14px}
+.kt-tip{font-size:.78rem;color:var(--muted);display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}
+.kt-tip .zor{color:#8a6a1f;font-weight:600}
+.kt-s{text-align:center;margin:6px 0 14px}
+.kt-s .arw{font-family:var(--ar);font-size:calc(var(--ar-size) * 1.25);color:#1a3a2f;direction:rtl;line-height:1.8}
+.kt-s .trw{font-size:1.25rem;font-weight:600;color:var(--ink)}
+.kt-s .ayt{font-family:var(--ar);font-size:var(--ar-size);direction:rtl;line-height:2.1;color:#1a3a2f}
+.kt-s .ayt u{text-decoration:none;border-bottom:2px dashed var(--gold);padding:0 .6em;color:var(--gold)}
+.kt-s .ipc{font-size:.88rem;color:var(--muted);margin-top:6px}
+.kt-sec{display:grid;gap:8px}
+.kt-sec button{min-height:50px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:1rem;padding:8px 12px;cursor:pointer;text-align:center}
+.kt-sec button.ar{font-family:var(--ar);font-size:1.45rem;direction:rtl;line-height:1.5}
+.kt-sec button.dg{border-color:#2f7a5f;background:#e4efe8;color:#1f5a45;font-weight:600}
+.kt-sec button.yn{border-color:#a8432f;background:#f6e1db;color:#a8432f}
+.kt-sec button:disabled{cursor:default}
+.kt-son{margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--paper);border:1px solid var(--line);font-size:.92rem}
+.kt-son .arw{font-family:var(--ar);font-size:1.4rem;color:var(--green)}
+.kt-son a{font-weight:600}
+.kt-btn{display:flex;gap:8px;margin-top:12px}
+.kt-btn button{flex:1;height:46px;border-radius:12px;border:1px solid var(--green);background:var(--green);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+.kt-btn button.ik{background:var(--card);color:var(--green)}
+.kt-kap{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.kt-kap .lb{font-size:.8rem;color:var(--muted)}
+.kt-msj{padding:10px 12px;border-radius:12px;margin:0 0 12px;font-size:.9rem}
+.kt-msj.ok{background:#e4efe8;color:#1f5a45;border:1px solid #cfe2d6}
+.kt-msj.uy{background:var(--gold-soft);color:#6b4f17;border:1px solid #e6d6ae}
 .mtoast{position:fixed;left:50%;bottom:calc(var(--gab-h,84px) + 14px);transform:translateX(-50%);z-index:60;background:#1f2a24;color:#fff;font:500 .85rem/1.35 var(--sans);padding:8px 14px;border-radius:999px;max-width:88vw;text-align:center}
 .kunye{margin:22px 0 0;text-align:center;font-size:.75rem;color:var(--muted)}
 .kunye a{color:var(--muted)}
@@ -524,6 +558,11 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
       var c=q===null?'e':(q>=75?'':(q>=50?'o':'z'));
       return '<button class="gab-kr" type="button" data-u="'+esc((o.yer&&o.yer.url)||p.url)+'"><span class="nm"><b>'+esc(p.ad)+'</b><small>'+esc(o.etiket||'')+'</small></span><span class="n">%'+b+'</span><span class="n gab-g '+c+'">'+(q===null?'—':'%'+q)+'</span><span class="gab-bar"><i style="width:'+b+'%"></i></span></button>';
     }).join('');
+    // Kur'ân Meali · kelime testi (ders listesinde değil; varsa Karnem'e ayrı satır olarak eklenir)
+    var ml=all.meal;
+    if(ml){ var_=true; var md=ml.d||0, my=ml.y||0; D+=md; Y+=my; K+=ml.kart||0;
+      var mb=Math.round((ml.bitti||0)*100), mq=md+my?Math.round(md/(md+my)*100):null, mc=mq===null?'e':(mq>=75?'':(mq>=50?'o':'z'));
+      rows+='<button class="gab-kr" type="button" data-u="'+esc((ml.yer&&ml.yer.url)||'/meal/#/test')+'"><span class="nm"><b>Kur\'ân Meali</b><small>'+esc(ml.etiket||'Kelime testi')+'</small></span><span class="n">%'+mb+'</span><span class="n gab-g '+mc+'">'+(mq===null?'—':'%'+mq)+'</span><span class="gab-bar"><i style="width:'+mb+'%"></i></span></button>'; }
     var S=D+Y, P=S?Math.round(D/S*100):null, sr=seri();
     return '<div class="gab-st"><div><b>'+S+'</b><span>soru çözüldü</span></div><div><b>'+(P===null?'—':'%'+P)+'</b><span>doğru</span></div><div><b>'+K+'</b><span>kart biliniyor</span></div></div>'
       + (sr>1 ? '<div class="gab-streak">🔥 '+sr+' gündür aralıksız çalışıyorsunuz</div>' : (sr===1 ? '<div class="gab-streak">🔥 Bugün çalıştınız. Yarın da gelirseniz seri başlar.</div>' : ''))
@@ -562,7 +601,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   }
 
   /* Adres düzeni: #/ liste · #/2 sûre okuma · #/2/255 âyet */
-  function yol(){ var m=(location.hash||'').match(/^#\/(\d+)(?:\/(\d+))?/); if(!m) return {}; var s=+m[1]; if(s<1||s>114) return {}; var a=m[2]?+m[2]:0; if(a>S[s-1][2]) a=S[s-1][2]; return {s:s,a:a}; }
+  function yol(){ if(/^#\/test/.test(location.hash||'')) return {test:1}; var m=(location.hash||'').match(/^#\/(\d+)(?:\/(\d+))?/); if(!m) return {}; var s=+m[1]; if(s<1||s>114) return {}; var a=m[2]?+m[2]:0; if(a>S[s-1][2]) a=S[s-1][2]; return {s:s,a:a}; }
   function git(h, degistir){ try{ if(degistir) history.replaceState(history.state,'',h); else history.pushState(null,'',h); }catch(e){ location.hash=h; return; } ciz(); }
   window.mlBasa = function(){ if(location.hash && location.hash!=='#/') git('#/'); else scrollTo({top:0,behavior:'smooth'}); };
   document.getElementById('brand').onclick = window.mlBasa;
@@ -598,6 +637,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     if(e && e.type && location.hash===son) return; /* aynı adres için ikinci olay */
     son=location.hash;
     var y=yol();
+    if(y.test) return test();
     if(!y.s) return liste();
     if(!y.a) return okuma(y.s);
     return ayet(y.s, y.a);
@@ -608,7 +648,9 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     document.title="Kur'ân Meali · Giray Akademi";
     var k=rd('ml_yer',null), dv='';
     if(k&&S[k.s-1]) dv='<a class="card devam" href="#/'+k.s+'/'+k.a+'"><span>Kaldığınız yer: <b>'+esc(S[k.s-1][0])+' '+k.a+'</b></span><i>Devam et ›</i></a>';
+    var kd=ktDurum(), kts=kd.bul?('Seviye '+kd.lv+' · '+ktBilinen(kd)+' kelime biliniyor'):'Seviyenizi bulun, en kolaydan zora ilerleyin';
     app.innerHTML='<h1>Kur\'ân Meali</h1><p class="h1ar">القرآن الكريم</p><p class="sub">Sûre adını ya da numarasını yazın; doğrudan âyete gitmek için <b>2:255</b> gibi yazabilirsiniz.</p>'+dv+
+      '<a class="card kt-giris" href="#/test"><span class="ik">ع</span><span><b>Kelime testi</b><small>'+kts+'</small></span><i style="font-style:normal;color:var(--green);font-weight:700">›</i></a>'+
       '<input class="ara" id="ara" type="search" inputmode="search" placeholder="Sûre ara (Yâsîn, 36, 2:255)" autocomplete="off" aria-label="Sûre ara"><div class="liste" id="lst"></div>'+kunye();
     var inp=document.getElementById('ara'), lst=document.getElementById('lst');
     function doldur(){
@@ -684,6 +726,133 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
       var nav='<div class="nav">'+(s>1?'<a href="#/'+(s-1)+'">‹ '+esc(S[s-2][0])+'</a>':'')+(s<114?'<a href="#/'+(s+1)+'">'+esc(S[s][0])+' ›</a>':'')+'</div>';
       document.getElementById('ic').innerHTML=h+nav+kunye();
     }).catch(function(){ document.getElementById('ic').innerHTML='<p class="bos">Metin yüklenemedi. İnternet bağlantınızı kontrol edip yeniden deneyin.</p>'; });
+  }
+
+  /* ================= KELİME TESTİ =================
+     Kelimeler veri/kelimeler.json (kaynak/sozluk.txt): sıklığa göre 10 seviye.
+     Kayıt ml_kt: {lv, bul, son:[son 20 cevap 1/0], ust:[serpiştirilen üst seviye cevapları], k:{anahtar:{b:kutu,d,y,t}}, n, d, y, kap} */
+  var KEL=null, KELK={};
+  function kelYukle(){ if(KEL) return Promise.resolve(KEL); return fetch('veri/kelimeler.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(L){ KEL=L; L.forEach(function(x){ KELK[x.k]=x; }); return L; }); }
+  function ktDurum(){ var d=rd('ml_kt',null); if(!d||!d.k) d={lv:1,bul:false,son:[],ust:[],k:{},n:0,d:0,y:0,kap:'hepsi'}; return d; }
+  function ktKaydet(d){ wr('ml_kt',d); try{ if(window.gaOzet) gaOzet({bitti: KEL?ktBilinen(d)/KEL.length:0, etiket:'Kelime testi · Seviye '+d.lv+' · '+ktBilinen(d)+' kelime', d:d.d, y:d.y, kart:ktBilinen(d), yer:{ad:'Kelime testi', url:'/meal/#/test'}, aktif:true}); }catch(e){} }
+  function ktBilinen(d){ var n=0; for(var k in d.k) if(d.k[k].b>=2) n++; return n; }  /* üst üste 2 doğru = biliniyor */
+  function oran(a){ if(!a.length) return null; var t=0; a.forEach(function(x){t+=x;}); return t/a.length; }
+  function karis(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function harfler(k){ return k.replace(/^(ال|و|ف|ب|ل)/,'').replace(/[اويى]/g,''); }
+  function benzerlik(a,b){ var x=harfler(a), y=harfler(b), n=0; for(var i=0;i<x.length;i++) if(y.indexOf(x[i])>=0) n++; return n/Math.max(x.length,y.length,1); }
+  var KAPSAM=[{k:'hepsi',ad:'Bütün Kur\'an'},{k:'1',ad:'Fâtiha'},{k:'c30',ad:'30. cüz'}];
+  function havuz(d){ if(d.kap==='hepsi') return KEL; if(d.kap==='c30') return KEL.filter(function(x){ return x.s.some(function(n){ return n>=78; }); }); return KEL.filter(function(x){ return x.s.indexOf(+d.kap)>=0; }); }
+
+  /* Soru seçimi: seviyedeki ve altındaki kelimeler; yanlışlar ve yeni kelimeler önce; başarı ≥%85 ise beşte bir üst seviyeden serpiştirilir */
+  function kelimeSec(d, zorla){
+    var H=havuz(d), L=d.lv, kucuk=H.length<40;
+    var ac=oran(d.son), ust=false, aday;
+    if(zorla) aday=H.filter(function(x){ return x.lv===zorla; });
+    else {
+      if(!kucuk && d.son.length>=10 && ac>=0.85 && Math.random()<0.2){ aday=H.filter(function(x){ return x.lv===L+1; }); ust=aday.length>0; }
+      if(!ust) aday=kucuk?H:H.filter(function(x){ return x.lv<=L; });
+    }
+    if(!aday.length) aday=H;
+    var puan=aday.map(function(x){ var s=d.k[x.k]; var p; if(!s) p=3+(x.lv===L?2:0); else { p=s.b===0?6:(s.b===1?4:(s.b===2?2:0.6)); if(d.n-s.t<3) p=0.05; } return [x,p]; });
+    var top=0; puan.forEach(function(q){ top+=q[1]; }); var r=Math.random()*top;
+    for(var i=0;i<puan.length;i++){ r-=puan[i][1]; if(r<=0) return {x:puan[i][0], ust:ust}; }
+    return {x:puan[0][0], ust:ust};
+  }
+  /* Soru türü seviyeye göre: 1-2 Arapça→anlam · 3-4 + anlam→Arapça · 5-6 + benzer çeldiriciler · 7+ + âyette boşluk */
+  function turSec(lv){ var t=['ar']; if(lv>=3) t.push('tr'); if(lv>=5) t.push('benzer'); if(lv>=7) t.push('ayet'); return t[Math.floor(Math.random()*t.length)]; }
+  function celdirici(x, tur){
+    var ayni={}; ayni[x.m]=1; ayni[x.k]=1;
+    var L=KEL.filter(function(y){ return y.k!==x.k && y.m!==x.m && Math.abs(y.lv-x.lv)<=2; });
+    if(tur==='benzer'||tur==='ayet') L=KEL.filter(function(y){ return y.k!==x.k && y.m!==x.m; }).sort(function(a,b){ return benzerlik(x.k,b.k)-benzerlik(x.k,a.k); }).slice(0,12);
+    var sec=[]; karis(L.slice()).forEach(function(y){ var anahtar=(tur==='ar'||tur==='benzer')?y.m:y.k; if(sec.length<3 && !ayni[anahtar]){ ayni[anahtar]=1; sec.push(y); } });
+    return sec;
+  }
+
+  var KT=null; /* {mod:'test'|'bul', soru, cevap, bulN, bulLv} */
+  function test(){
+    document.title="Kelime testi · Kur'ân Meali";
+    app.innerHTML='<p class="yuk">Yükleniyor…</p>';
+    kelYukle().then(function(){ var d=ktDurum(); if(!KT) KT={mod:d.bul?'test':'giris'}; ktCiz(); })
+      .catch(function(){ app.innerHTML='<p class="bos">Kelime listesi yüklenemedi. İnternet bağlantınızı kontrol edip yeniden deneyin.</p>'; });
+  }
+  function ktBaslik(d){
+    var ac=oran(d.son), b=ktBilinen(d), H=havuz(d);
+    return '<h1>Kelime testi</h1><p class="sub">Kur\'an\'da en sık geçen '+KEL.length+' kelime, sıklığa göre 10 seviyede. Başarınız yükseldikçe sorular zorlaşır.</p>'+
+      '<div class="kt-ust"><div><b>'+d.lv+'<small style="font-size:.7rem;color:var(--muted)">/10</small></b><span>seviye</span></div><div><b>'+b+'</b><span>kelime biliniyor</span></div><div><b>'+(ac===null?'—':'%'+Math.round(ac*100))+'</b><span>son '+d.son.length+' cevap</span></div></div>'+
+      '<div class="kt-bar"><i style="width:'+Math.round(b/KEL.length*100)+'%"></i></div>'+
+      '<div class="kt-kap"><span class="lb">Kapsam:</span>'+KAPSAM.map(function(k){ return '<button type="button" class="chip'+(d.kap===k.k?' on':'')+'" data-kap="'+k.k+'">'+k.ad+'</button>'; }).join('')+'</div>';
+  }
+  function ktCiz(msj){
+    var d=ktDurum(); KT.d=d;
+    if(KT.mod==='giris'){
+      app.innerHTML=ktBaslik(d)+'<div class="card kt-soru"><p style="margin:0 0 6px"><b>Nereden başlayalım?</b></p><p style="margin:0;color:var(--muted);font-size:.92rem">10 soruluk kısa bir turla seviyenizi bulabilirsiniz; ya da doğrudan en kolay seviyeden başlayabilirsiniz.</p><div class="kt-btn"><button type="button" id="ktBul">Seviyemi bul</button><button type="button" class="ik" id="ktBir">1. seviyeden başla</button></div></div>';
+      document.getElementById('ktBul').onclick=function(){ KT={mod:'bul',bulN:0,bulLv:5}; yeniSoru(); };
+      document.getElementById('ktBir').onclick=function(){ d.bul=true; d.lv=1; ktKaydet(d); KT={mod:'test'}; yeniSoru(); };
+      kapBagla(); return;
+    }
+    if(!KT.soru) return yeniSoru();
+    var q=KT.soru, x=q.x, h=ktBaslik(d)+(msj||'');
+    var tipAd={ar:'Anlamı nedir?',tr:'Arapçası hangisi?',benzer:'Anlamı nedir? (benzer kelimeler)',ayet:'Âyette boşluğa hangisi gelir?'}[q.tur];
+    var ust=(KT.mod==='bul')?'Seviyemi bul · '+(KT.bulN+1)+'/10':('Seviye '+x.lv+(q.ust?' · <span class="zor">üst seviyeden</span>':''));
+    h+='<div class="card kt-soru"><div class="kt-tip"><span>'+tipAd+'</span><span>'+ust+'</span></div><div class="kt-s">';
+    if(q.tur==='ar'||q.tur==='benzer') h+='<div class="arw">'+esc(x.w)+'</div>';
+    else if(q.tur==='tr') h+='<div class="trw">'+esc(x.m)+'</div>';
+    else h+='<div class="ayt">'+q.ayetHtml+'</div><div class="ipc">'+esc(S[q.s-1][0])+' '+q.a+(q.meal?' · '+esc(q.meal):'')+'</div>';
+    h+='</div><div class="kt-sec">'+q.sec.map(function(y,i){ var ar=(q.tur==='tr'||q.tur==='ayet'); var cls=ar?'ar':''; if(KT.cevap!=null){ if(y.k===x.k) cls+=' dg'; else if(i===KT.cevap) cls+=' yn'; } return '<button type="button" class="'+cls+'" data-i="'+i+'"'+(KT.cevap!=null?' disabled':'')+'>'+esc(ar?y.w:y.m)+'</button>'; }).join('')+'</div>';
+    if(KT.cevap!=null){
+      var dogru=q.sec[KT.cevap].k===x.k;
+      h+='<div class="kt-son">'+(dogru?'<b style="color:#1f5a45">Doğru!</b> ':'<b style="color:#a8432f">Yanlış.</b> ')+'<span class="arw">'+esc(x.w)+'</span> = <b>'+esc(x.m)+'</b><br><small style="color:var(--muted)">Kur\'an\'da '+x.f+' kez geçer · <a href="#/'+x.ex[0]+'/'+x.ex[1]+'">'+esc(S[x.ex[0]-1][0])+' '+x.ex[1]+'\'de gör ›</a></small> '+bldButton('k:'+x.k, 'Kelime testi', x.w+' = '+x.m)+'</div>';
+      h+='<div class="kt-btn"><button type="button" id="ktSnr">'+(KT.mod==='bul'&&KT.bulN>=9?'Sonucu gör':'Sonraki soru')+'</button></div>';
+    }
+    h+='</div>'+kunye();
+    app.innerHTML=h; kapBagla();
+    app.querySelectorAll('.kt-sec button').forEach(function(b){ b.onclick=function(){ if(KT.cevap==null) cevapla(+b.dataset.i); }; });
+    var sn=document.getElementById('ktSnr'); if(sn) sn.onclick=function(){ if(KT.mod==='bul'&&KT.bulN>=10) bulBitir(); else yeniSoru(); };
+  }
+  function kapBagla(){ app.querySelectorAll('[data-kap]').forEach(function(b){ b.onclick=function(){ var d=ktDurum(); d.kap=b.dataset.kap; ktKaydet(d); if(KT.mod!=='giris'&&KT.mod!=='bul'){ KT.soru=null; } ktCiz(); }; }); }
+  function yeniSoru(){
+    var d=ktDurum(), sec, tur;
+    if(KT.mod==='bul'){ sec={x:null,ust:false}; var L=KEL.filter(function(x){ return x.lv===KT.bulLv && !(KT.goruldu||{})[x.k]; }); sec.x=L[Math.floor(Math.random()*L.length)]||KEL[0]; KT.goruldu=KT.goruldu||{}; KT.goruldu[sec.x.k]=1; tur='ar'; }
+    else { sec=kelimeSec(d); tur=turSec(Math.max(d.lv,sec.x.lv)); if(d.kap!=='hepsi' && tur==='ayet') tur='benzer'; }
+    var x=sec.x, cel=celdirici(x, tur);
+    var q={x:x, ust:sec.ust, tur:tur, sec:karis([x].concat(cel))};
+    KT.cevap=null; KT.soru=q;
+    if(tur==='ayet'){
+      return veri(x.ex[0]).then(function(o){
+        var i=x.ex[1]-1, n=0, hedef=x.ex[2];
+        q.s=x.ex[0]; q.a=x.ex[1]; q.meal=o.d[i];
+        q.ayetHtml=o.a[i].split(' ').map(function(w){ if(isaret(w)) return esc(w); var h=(n===hedef)?'<u>…</u>':esc(w); n++; return h; }).join(' ');
+        ktCiz(); scrollTo(0,0);
+      }).catch(function(){ q.tur='tr'; ktCiz(); });
+    }
+    ktCiz(); scrollTo(0,0);
+  }
+  function cevapla(i){
+    var d=ktDurum(), q=KT.soru, x=q.x, ok=q.sec[i].k===x.k;
+    KT.cevap=i;
+    if(KT.mod==='bul'){
+      KT.bulN++; KT.bulLv=Math.max(1,Math.min(10,KT.bulLv+(ok?1:-1)));
+      KT.bulD=(KT.bulD||0)+(ok?1:0);
+    } else {
+      var s=d.k[x.k]||{b:0,d:0,y:0,t:0}; d.n++;
+      if(ok){ s.b=Math.min(5,s.b+1); s.d++; d.d++; } else { s.b=0; s.y++; d.y++; }
+      s.t=d.n; d.k[x.k]=s;
+      d.son.push(ok?1:0); if(d.son.length>20) d.son.shift();
+      var msj='';
+      if(q.ust){ d.ust.push(ok?1:0); if(d.ust.length>5) d.ust.shift(); }
+      if(d.kap==='hepsi'){
+        if(d.lv<10 && d.ust.length>=5 && oran(d.ust)>=0.8 && oran(d.son)>=0.85){ d.lv++; d.ust=[]; d.son=[]; msj='<div class="kt-msj ok">Tebrikler! <b>'+d.lv+'. seviyeye</b> geçtiniz.</div>'; }
+        else if(d.lv>1 && d.son.length>=10 && oran(d.son)<0.6){ d.lv--; d.ust=[]; d.son=[]; msj='<div class="kt-msj uy">Biraz pekiştirelim: <b>'+d.lv+'. seviyeye</b> döndünüz. Yanlış yaptığınız kelimeler daha sık gelecek.</div>'; }
+      }
+      ktKaydet(d); KT.msj=msj;
+    }
+    ktCiz(KT.msj||''); KT.msj='';
+  }
+  function bulBitir(){
+    var d=ktDurum(); d.lv=Math.max(1,Math.min(10,KT.bulLv-1)); d.bul=true; d.son=[]; d.ust=[]; ktKaydet(d);
+    var lv=d.lv, bd=KT.bulD||0; KT={mod:'test'};
+    app.innerHTML=ktBaslik(d)+'<div class="card kt-soru" style="text-align:center"><p style="margin:0;color:var(--muted)">Seviyeniz</p><p style="font-size:2.4rem;font-weight:700;color:var(--green);margin:4px 0">'+lv+'</p><p style="margin:0 0 4px">10 sorudan '+bd+' doğru. '+(lv>=7?'Çok iyi gidiyorsunuz.':lv>=4?'Güzel bir başlangıç.':'En sık kelimelerden başlıyoruz.')+'</p><div class="kt-btn"><button type="button" id="ktBas">Teste başla</button></div></div>';
+    document.getElementById('ktBas').onclick=function(){ yeniSoru(); }; kapBagla();
   }
 
   ciz();

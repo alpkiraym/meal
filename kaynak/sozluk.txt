@@ -1,0 +1,333 @@
+# Kelime testi sözlüğü · Kur'an'da en sık geçen kelimeler (sıklık sırasıyla)
+# Satır: harekesiz biçim|Türkçe anlam   (anlamlar genel karşılıktır; âyetteki anlam için âyet ekranına bakılır)
+# Harf-i cer, edat, bağlaç, zamir, ism-i mevsul, işaret ismi, soru edatı ve özel isimler alınmadı.
+# Seviye Kur'an'daki sıklığa göre otomatik verilir (en sık geçenler 1. seviye, en seyrekler 10. seviye).
+الله|Allah
+قال|dedi
+كان|idi, oldu
+قل|de (ki)
+الارض|yer, yeryüzü
+امنوا|iman ettiler
+قالوا|dediler
+كل|her, hepsi
+كانوا|idiler, oldular
+ربك|Rabbin
+يوم|gün
+شيء|şey
+كفروا|inkâr ettiler
+كنتم|idiniz
+الناس|insanlar
+السماوات|gökler
+الكتاب|kitap
+عذاب|azap
+بعد|sonra
+قوم|kavim, topluluk
+عند|yanında, katında
+قبل|önce
+خير|hayır, daha hayırlı
+يشاء|diler
+الدنيا|dünya
+ربهم|Rableri
+السماء|gök
+الحق|hak, gerçek
+عليم|hakkıyla bilen
+ربنا|Rabbimiz
+ربكم|Rabbiniz
+النار|ateş, cehennem
+انزل|indirdi
+ربي|Rabbim
+دون|başka, -den aşağı
+سبيل|yol
+يؤمنون|iman ederler
+مبين|apaçık
+خلق|yarattı
+تعملون|yapıyorsunuz
+يعلمون|bilirler
+بين|ara, arası
+المؤمنين|müminler
+اله|ilâh
+انفسهم|kendileri, nefisleri
+جهنم|cehennem
+يعلم|bilir
+الاخرة|âhiret
+القيامة|kıyamet
+غير|başka, -sız
+قلوبهم|kalpleri
+يومئذ|o gün
+الظالمين|zalimler
+العزيز|mutlak güç sahibi
+الشيطان|şeytan
+الحياة|hayat
+جنات|cennetler, bahçeler
+اصحاب|ehli, arkadaşları
+العالمين|âlemler
+الصالحات|salih ameller
+بعض|bazı, bir kısmı
+رحيم|çok merhametli
+اليم|acıklı, elem verici
+الليل|gece
+الصلاة|namaz
+الانسان|insan
+جاء|geldi
+شاء|diledi
+تعلمون|biliyorsunuz
+الجنة|cennet
+يعملون|yapıyorlar
+اهل|ehil, halk
+اعلم|daha iyi bilen
+قليلا|az
+الكافرين|kâfirler
+رسول|elçi, peygamber
+ايات|âyetler, deliller
+غفور|çok bağışlayan
+يقولون|diyorlar
+ارسلنا|gönderdik
+عظيم|büyük
+جميعا|hepsi, topluca
+امة|ümmet
+تجري|akar
+الدين|din, hesap günü
+نفس|can, nefis
+اية|âyet, delil
+مثل|misal, benzer
+كثيرا|çok
+الرحمن|Rahmân (çok merhametli)
+جعل|kıldı, yaptı
+خالدين|ebedî kalıcılar
+الانهار|ırmaklar
+يهدي|hidayet eder, doğru yola iletir
+القران|Kur'an
+كذبوا|yalanladılar
+الحكيم|hikmet sahibi
+ظلموا|zulmettiler
+امر|emir, iş
+اليوم|bugün
+يقول|der
+امن|iman etti
+يحب|sever
+هدى|hidayet, yol gösterme
+الملائكة|melekler
+انفسكم|kendiniz, nefisleriniz
+اكثرهم|çoğu
+يريد|ister
+ذكر|zikir, öğüt
+وعد|vaat
+قدير|her şeye gücü yeten
+صالحا|salih amel
+قومه|kavmi
+الموت|ölüm
+ماء|su
+يكون|olur
+شديد|şiddetli
+الساعة|kıyamet saati
+قيل|denildi
+رحمة|rahmet
+اولياء|dostlar, veliler
+الاء|nimetler
+ايديهم|elleri
+ربكما|Rabbiniz (ikiniz)
+صراط|yol
+اوتوا|verildiler
+احسن|en güzel
+اجر|ecir, mükâfat
+صادقين|doğru sözlüler
+فضل|lütuf, fazilet
+الاولين|öncekiler
+تكذبان|yalanlarsınız (ikiniz)
+سوء|kötülük
+المحسنين|iyilik yapanlar
+احد|bir, biri
+النبي|peygamber
+الاخر|son, öteki
+حين|vakit, zaman
+جزاء|karşılık
+ابن|oğul
+جعلنا|kıldık
+قالت|dedi (dişil)
+نذير|uyarıcı
+يظلمون|zulmederler
+اشد|daha şiddetli
+ابدا|ebediyen
+العلم|ilim
+الملك|mülk, hükümranlık
+الغيب|gayb, görünmeyen
+القول|söz
+بصير|hakkıyla gören
+اعمالهم|amelleri
+يؤمن|iman eder
+يدعون|yalvarırlar, çağırırlar
+عاقبة|sonuç, akıbet
+ضلال|sapıklık
+يروا|görürler
+الحمد|hamd, övgü
+سواء|eşit, bir
+الزكاة|zekât
+نفسه|kendisi
+مستقيم|dosdoğru
+جناح|günah, sakınca
+النهار|gündüz
+عباده|kulları
+انزلنا|indirdik
+ينظرون|bakarlar, beklerler
+تكون|olursun, olur
+خبير|her şeyden haberdar
+كذب|yalanladı
+تعقلون|akıl edersiniz
+المشركين|müşrikler
+النساء|kadınlar
+المرسلين|gönderilen peygamberler
+الجبال|dağlar
+عدو|düşman
+البحر|deniz
+حسنا|güzel
+تولوا|yüz çevirdiler
+الجحيم|cehennem, alevli ateş
+المصير|varılacak yer
+الحرام|haram, dokunulmaz
+اجمعين|hepsi, tamamı
+كتب|yazdı, farz kıldı
+المتقين|takva sahipleri
+قرية|kasaba, şehir
+اجل|süre, ecel
+يرجعون|dönerler
+فتنة|fitne, imtihan
+ياتي|gelir
+يعقلون|akıl ederler
+نزل|indirdi
+بشر|insan, beşer
+يشعرون|farkına varırlar
+اتينا|verdik
+ولي|dost, veli
+حرم|haram kıldı
+سميع|hakkıyla işiten
+نار|ateş
+مسمى|belirlenmiş
+اتخذوا|edindiler
+الفلك|gemi
+خلقنا|yarattık
+ينفقون|infak ederler
+اول|ilk
+يسمعون|işitirler
+تعبدون|ibadet edersiniz
+كفر|inkâr etti
+شهيدا|şahit
+اولو|sahipleri
+ايام|günler
+اموالهم|malları
+اخاف|korkarım
+تدعون|yalvarırsınız, çağırırsınız
+الشمس|güneş
+العرش|arş
+كريم|cömert, değerli
+تتقون|sakınırsınız
+ترجعون|döndürülürsünüz
+تشكرون|şükredersiniz
+الصالحين|salihler
+البر|iyilik
+الملا|ileri gelenler
+ترى|görürsün
+سلام|selam, esenlik
+المجرمين|suçlular
+نجزي|karşılık veririz
+الجن|cinler
+يشركون|ortak koşarlar
+قوة|kuvvet
+اراد|istedi
+واحد|bir, tek
+يحيي|diriltir
+ضل|saptı
+يتقون|sakınırlar
+اكبر|daha büyük
+الرسل|elçiler
+يفترون|uydururlar
+كلمة|söz, kelime
+يغفر|bağışlar
+ريب|şüphe
+اظلم|daha zalim
+اعبدوا|ibadet edin
+يضل|saptırır
+يخرج|çıkarır
+يبين|açıklar
+يفعل|yapar
+ينزل|indirir
+يحكم|hükmeder
+حسنة|iyilik
+مغفرة|bağışlanma
+كبيرا|büyük
+تجد|bulursun
+ولد|çocuk
+طائفة|grup, topluluk
+وجوههم|yüzleri
+اتبع|uydu
+الهة|ilâhlar
+القرى|kasabalar, şehirler
+تذكرون|öğüt alırsınız
+خوف|korku
+الموتى|ölüler
+سمعنا|işittik
+بينات|apaçık deliller
+كسبت|kazandı
+الالباب|akıllar
+العقاب|ceza
+الحساب|hesap
+نعمة|nimet
+متاع|geçimlik, fayda
+تتلى|okunur
+الصدور|göğüsler, kalpler
+عمل|amel, iş
+الفوز|kurtuluş, başarı
+اهلكنا|helak ettik
+رزقا|rızık
+كلوا|yiyin
+يكفر|inkâr eder
+المسجد|mescid
+يستطيعون|güç yetirirler
+فوق|üst
+افترى|uydurdu
+قلوب|kalpler
+يجعل|kılar
+المنافقين|münafıklar
+شك|şüphe
+سبع|yedi
+ادخلوا|girin
+معرضون|yüz çevirenler
+سبحانه|O münezzehtir
+مسلمون|Müslümanlar
+دابة|canlı
+بعيد|uzak
+قريب|yakın
+ازواجا|eşler, çiftler
+الظلمات|karanlıklar
+يخلق|yaratır
+الكذب|yalan
+اطيعوا|itaat edin
+السيئات|kötülükler
+مكان|yer
+الانعام|davarlar
+اوحينا|vahyettik
+اسم|isim
+يستهزئون|alay ederler
+يوحى|vahyolunur
+مرة|defa, kez
+الخلق|yaratma
+عباد|kullar
+الاولى|ilk, önceki
+ويل|vay hâline
+يحزنون|üzülürler
+ينصرون|yardım olunurlar
+الخاسرين|hüsrana uğrayanlar
+فريق|grup
+الدار|yurt
+الشياطين|şeytanlar
+مالك|sahip
+نعبد|ibadet ederiz
+نستعين|yardım dileriz
+اهدنا|bizi ilet, doğru yola eriştir
+الصراط|yol
+المستقيم|dosdoğru
+انعمت|nimet verdin
+المغضوب|gazaba uğramış
+الضالين|sapmışlar
+بسم|adıyla
+الرحيم|çok merhametli
+رب|Rab

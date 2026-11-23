@@ -49,6 +49,40 @@ for s in range(1, 115):
     sayi.append(n)
 print('114 sûre yazıldı;', sum(sayi), 'âyet')
 
+# ---- Kelime testi sözlüğü: kaynak/sozluk.txt → veri/kelimeler.json ----
+import collections
+HAR = re.compile('[\u064b-\u0652\u0670\u0640\u06d6-\u06ed]')
+def sade(w):
+    w = HAR.sub('', w)
+    for x in 'أإآٱ': w = w.replace(x, 'ا')
+    return w
+say = collections.Counter(); bicim = collections.defaultdict(collections.Counter); ilk = {}; sur = collections.defaultdict(set)
+for s_ in range(1, 115):
+    for a_, t in T['a'][s_].items():
+        if s_ not in (1, 9) and a_ == 1:
+            k = t.split(' '); t = ' '.join(k[4:])  # besmele ayrı
+        n_ = 0; uz = len([w for w in t.split(' ') if not isaret(w)])
+        for w in t.split(' '):
+            if isaret(w): continue
+            k = sade(w); say[k] += 1; bicim[k][w] += 1; sur[k].add(s_)
+            if k not in ilk or uz < ilk[k][3]: ilk[k] = [s_, a_, n_, uz]  # en kısa âyetteki örnek (âyet sorusu için)
+            n_ += 1
+# Fâtiha 1 besmelesi de sayılsın (yukarıda Fâtiha'da ayrılmadı)
+SOZ = []
+for sat in open(os.path.join(K, 'sozluk.txt'), encoding='utf-8'):
+    sat = sat.strip()
+    if not sat or sat.startswith('#'): continue
+    k, m = sat.split('|', 1)
+    assert k in say, ('sözlükte metinde olmayan kelime', k)
+    SOZ.append([k, m])
+assert len({k for k, m in SOZ}) == len(SOZ), 'sözlükte tekrar var'
+SOZ.sort(key=lambda x: -say[x[0]])  # seviye sıklığa göre: en sık geçen = 1. seviye
+N = len(SOZ); KEL = []
+for i, (k, m) in enumerate(SOZ):
+    KEL.append({'k': k, 'w': bicim[k].most_common(1)[0][0], 'm': m, 'f': say[k], 'lv': min(10, i * 10 // N + 1), 'ex': ilk[k][:3], 's': sorted(sur[k])})
+json.dump(KEL, open(os.path.join(KOK, 'veri', 'kelimeler.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+print('kelime testi:', N, 'kelime;', 'seviye başına', N // 10)
+
 # ---- index.html ----
 import base64
 ADLAR = """Fâtiha|الفاتحة
