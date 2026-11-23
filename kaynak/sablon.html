@@ -116,24 +116,9 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
 .ipucu::after{content:'';position:absolute;left:var(--ok,50%);bottom:-8px;margin-left:-8px;border:8px solid transparent;border-bottom:0;border-top-color:#c9ccd0}
 .ipucu.alt::after{bottom:auto;top:-8px;border-top:0;border-bottom:8px solid #c9ccd0}
 .irab{display:flex;gap:8px;margin-top:10px}
-.irab button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:6px 10px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--muted);box-shadow:var(--shadow);font-size:.9rem;cursor:pointer;text-align:center;line-height:1.3}
+.irab a{text-decoration:none;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:6px 10px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--muted);box-shadow:var(--shadow);font-size:.9rem;cursor:pointer;text-align:center;line-height:1.3}
 .irab b{display:block;font-weight:600;color:var(--ink)}
 .irab small{display:block;font-size:.8rem;white-space:nowrap}
-.ird{position:fixed;inset:0;z-index:69;background:rgba(20,28,22,.42);display:none}
-.irs{position:fixed;left:0;right:0;bottom:0;z-index:70;height:82vh;max-width:680px;margin:0 auto;background:#f7f3ea;border-radius:18px 18px 0 0;box-shadow:0 -8px 30px rgba(40,30,10,.2);display:none;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
-.irs.open{display:flex;animation:irUp .2s ease-out}.ird.open{display:block}
-@keyframes irUp{from{transform:translateY(30px);opacity:.4}to{transform:none;opacity:1}}
-.irs .gr{width:38px;height:5px;border-radius:3px;background:#d9cfb9;margin:8px auto 4px;flex:none}
-.irs .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 14px 8px;flex:none}
-.irs .hd b{font-family:var(--serif);color:var(--green);font-size:1.2rem}
-.irs .hd small{display:block;color:var(--muted);font:400 .8rem var(--sans)}
-.irs .x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:20px;line-height:1;cursor:pointer;flex:none}
-.irs .tb{display:flex;gap:6px;padding:0 14px 8px;align-items:center;flex:none}
-.irs .tb button{font-size:.84rem;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
-.irs .tb button.on{border-color:var(--green);background:var(--green-soft);color:var(--green);font-weight:600}
-.irs .tb a{margin-left:auto;font-size:.78rem;color:var(--muted)}
-.irs iframe{flex:1;width:calc(100% - 20px);margin:0 10px 10px;border:1px solid var(--line);border-radius:10px;background:#fff}
-html.irlock,html.irlock body{overflow:hidden}
 .mtoast{position:fixed;left:50%;bottom:calc(var(--gab-h,84px) + 14px);transform:translateX(-50%);z-index:60;background:#1f2a24;color:#fff;font:500 .85rem/1.35 var(--sans);padding:8px 14px;border-radius:999px;max-width:88vw;text-align:center}
 .kunye{margin:22px 0 0;text-align:center;font-size:.75rem;color:var(--muted)}
 .kunye a{color:var(--muted)}
@@ -219,34 +204,6 @@ html.irlock,html.irlock body{overflow:hidden}
     ip.classList.toggle('alt', alt); ip.style.setProperty('--ok', (ort-x)+'px');
     ip.style.left=(x+scrollX)+'px'; ip.style.top=(y+scrollY)+'px';
   });
-  /* İ'râb penceresi: Bâhisü'l-Kur'ânî (tafsir.app) sayfası sayfadan ayrılmadan alttan açılan pencerede */
-  var IR = {'aljadwal':'el-Cedvel', 'iraab-aldarweesh':'Derviş'};
-  var ird=document.createElement('div'); ird.className='ird';
-  var irs=document.createElement('div'); irs.className='irs'; irs.setAttribute('role','dialog'); irs.setAttribute('aria-modal','true');
-  irs.innerHTML='<div class="gr"></div><div class="hd"><b>İ\'râb<small id="irYer"></small></b><button type="button" class="x" aria-label="Kapat">×</button></div><div class="tb" id="irTb"></div><iframe id="irFr" title="İ\'râb" loading="lazy" referrerpolicy="no-referrer"></iframe>';
-  document.body.appendChild(ird); document.body.appendChild(irs);
-  var irAcik=false, irS=0, irA=0;
-  function irUrl(k){ return 'https://tafsir.app/'+k+'/'+irS+'/'+irA; }
-  function irGoster(k){
-    document.getElementById('irTb').innerHTML=Object.keys(IR).map(function(x){ return '<button type="button" data-irk="'+x+'"'+(x===k?' class="on"':'')+'>'+IR[x]+'</button>'; }).join('')+'<a href="'+irUrl(k)+'" target="_blank" rel="noopener">Bâhisü\'l-Kur\'ânî\'de aç ↗</a>';
-    document.getElementById('irFr').src=irUrl(k);
-  }
-  function irAc(k,s,a){
-    irS=s; irA=a; document.getElementById('irYer').textContent=S[s-1][0]+' '+a; irGoster(k);
-    irs.classList.add('open'); ird.classList.add('open'); document.documentElement.classList.add('irlock');
-    if(!irAcik){ irAcik=true; try{ history.pushState(Object.assign({}, history.state, {ir:1}), ''); }catch(e){} }
-  }
-  function irKapat(geri){
-    if(!irs.classList.contains('open')) return;
-    irs.classList.remove('open'); ird.classList.remove('open'); document.documentElement.classList.remove('irlock');
-    document.getElementById('irFr').src='about:blank';
-    if(irAcik){ irAcik=false; if(geri){ try{ history.back(); }catch(e){} } }
-  }
-  addEventListener('popstate', function(){ if(irAcik) irKapat(false); });
-  ird.onclick=function(){ irKapat(true); }; irs.querySelector('.x').onclick=function(){ irKapat(true); };
-  addEventListener('keydown', function(e){ if(e.key==='Escape') irKapat(true); });
-  irs.addEventListener('click', function(e){ var b=e.target.closest('[data-irk]'); if(b) irGoster(b.dataset.irk); });
-  document.addEventListener('click', function(e){ var b=e.target.closest('[data-ir]'); if(b) irAc(b.dataset.ir, +b.dataset.s, +b.dataset.a); });
   addEventListener('hashchange', ipKapat); addEventListener('resize', ipKapat);
   function bld(s,a,o){ var i=a-1; return bldButton('a:'+s+'-'+a, S[s-1][0]+' '+a, o.a[i]+' | Diyanet: '+o.d[i]); }
   function yer(s,a){ wr('ml_yer',{s:s,a:a}); }
@@ -314,7 +271,7 @@ html.irlock,html.irlock body{overflow:hidden}
       if(a===1 && s!==1 && s!==9) h+='<p class="besm">'+BESMELE+'</p>';
       h+='<div class="card arb"><div class="arm">'+arHtml(o,i)+' <span class="ayno">﴿'+arNo(a)+'﴾</span></div><div class="etk"><span>'+esc(x[0])+' · '+a+'</span>'+(o.s.indexOf(a)>=0?'<span class="sec">Secde âyeti</span>':'')+bld(s,a,o)+'</div></div>';
       MEAL.forEach(function(m){ if(secili.indexOf(m.k)>=0) h+='<div class="card ml"><h3>'+esc(m.ad)+'</h3><p>'+esc(o[m.k][i])+'</p></div>'; });
-      h+='<div class="irab"><button type="button" data-ir="aljadwal" data-s="'+s+'" data-a="'+a+'"><span><b>İ\'râb</b><small>el-Cedvel</small></span></button><button type="button" data-ir="iraab-aldarweesh" data-s="'+s+'" data-a="'+a+'"><span><b>İ\'râb</b><small>Derviş</small></span></button></div>';
+      h+='<div class="irab"><a href="https://tafsir.app/aljadwal/'+s+'/'+a+'" target="_blank" rel="noopener"><span><b>İ\'râb ↗</b><small>el-Cedvel</small></span></a><a href="https://tafsir.app/iraab-aldarweesh/'+s+'/'+a+'" target="_blank" rel="noopener"><span><b>İ\'râb ↗</b><small>Derviş</small></span></a></div>';
       h+='<details class="card cel"><summary>Celâleyn tefsiri <small>(Arapça)</small></summary><div class="celm">'+esc(o.c[i])+'</div></details>';
       var onc = a>1 || s>1, snr = a<x[2] || s<114;
       h+='<div class="nav"><button type="button" id="onc"'+(onc?'':' disabled')+'>‹ Önceki</button><a class="oku" href="#/'+s+'">Sûreyi oku</a><button type="button" id="snr"'+(snr?'':' disabled')+'>Sonraki ›</button></div>'+kunye();
