@@ -8,6 +8,9 @@ K = os.path.join(KOK, 'kaynak')
 DOSYA = {'a': 'ar.simple.txt', 'd': 'tr.diyanet.txt', 'v': 'tr.vakfi.txt', 'e': 'tr.yazir.txt', 'c': 'ar.jalalayn.txt'}
 SECDE = '۩'
 
+def isaret(w):  # yalnızca vakf/secde/hizb işaretinden oluşan parça
+    return all('\u06d6' <= c <= '\u06ed' for c in w)
+
 def oku(ad):
     v = {}
     for sat in open(os.path.join(K, ad), encoding='utf-8'):
@@ -30,6 +33,18 @@ for s in range(1, 115):
         assert ''.join(c for c in k[0] if not '\u064b' <= c <= '\u0652') == 'بسم' and len(k) > 4, s
         o['a'][0] = ' '.join(k[4:])
     o['s'] = [i + 1 for i, x in enumerate(o['a']) if SECDE in x]  # secde âyetleri
+    # Kelime anlamları (varsa): kaynak/kelime/NNN.txt · âyet|anlam|anlam|…  (vakf işaretleri kelime sayılmaz)
+    kd = os.path.join(K, 'kelime', '%03d.txt' % s)
+    if os.path.exists(kd):
+        km = [None] * n
+        for sat in open(kd, encoding='utf-8'):
+            sat = sat.rstrip('\n')
+            if not sat or sat.startswith('#'): continue
+            p = sat.split('|'); a = int(p[0]); m = p[1:]
+            say = len([w for w in o['a'][a - 1].split(' ') if not isaret(w)])
+            assert len(m) == say, ('kelime sayısı tutmuyor', s, a, len(m), say)
+            km[a - 1] = m
+        o['k'] = km
     json.dump(o, open(os.path.join(KOK, 'veri', '%03d.json' % s), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     sayi.append(n)
 print('114 sûre yazıldı;', sum(sayi), 'âyet')

@@ -109,6 +109,18 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
 .oa .ac{display:inline-flex;margin-top:4px;font-size:.8rem;color:var(--green);text-decoration:none;font-weight:600;background:none;border:0;padding:0;cursor:pointer}
 .etk .rep{background:transparent;border-color:transparent}
 .oa .alt{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}
+.kl{cursor:pointer;border-radius:6px;transition:color .12s}
+.kl:hover{color:var(--green-2)}
+.kl.on{color:#c0392b}
+.ipucu{position:absolute;z-index:45;max-width:min(260px,86vw);background:#fffdf8;color:#4a5560;border:1px solid #c9ccd0;border-radius:8px;padding:6px 12px;font:500 1rem/1.4 var(--sans);box-shadow:0 4px 14px rgba(0,0,0,.12);text-align:center;pointer-events:none}
+.ipucu::after{content:'';position:absolute;left:var(--ok,50%);bottom:-8px;margin-left:-8px;border:8px solid transparent;border-bottom:0;border-top-color:#c9ccd0}
+.ipucu.alt::after{bottom:auto;top:-8px;border-top:0;border-bottom:8px solid #c9ccd0}
+.irab{display:flex;gap:8px;margin-top:10px}
+.irab button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:6px 10px;border-radius:12px;border:1px dashed #d9cfb9;background:var(--card);color:var(--muted);font-size:.9rem;cursor:pointer;text-align:center;line-height:1.3}
+.irab b{display:block;font-weight:600;color:var(--ink)}
+.irab small{display:block;font-size:.8rem;white-space:nowrap}
+.irab .yk{flex:none;font:700 .66rem/1 var(--sans);letter-spacing:.03em;color:#6b4f17;background:#f1dfa8;border-radius:999px;padding:3px 6px}
+.mtoast{position:fixed;left:50%;bottom:calc(var(--gab-h,84px) + 14px);transform:translateX(-50%);z-index:60;background:#1f2a24;color:#fff;font:500 .85rem/1.35 var(--sans);padding:8px 14px;border-radius:999px;max-width:88vw;text-align:center}
 .kunye{margin:22px 0 0;text-align:center;font-size:.75rem;color:var(--muted)}
 .kunye a{color:var(--muted)}
 .yuk{color:var(--muted);text-align:center;padding:40px 0}
@@ -174,6 +186,27 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   addEventListener('hashchange', ciz);
 
   function kunye(){ return '<p class="kunye">Arapça metin, mealler ve Celâleyn: <a href="https://tanzil.net/trans/" target="_blank" rel="noopener">Tanzil.net</a></p>'; }
+  /* Arapça metin: anlamı olan kelimeler dokunulabilir */
+  function isaret(w){ for(var j=0;j<w.length;j++){ var c=w.charCodeAt(j); if(c<0x6d6||c>0x6ed) return false; } return true; }
+  function arHtml(o,i){
+    var m=o.k&&o.k[i]; if(!m) return esc(o.a[i]);
+    var n=0; return o.a[i].split(' ').map(function(w){ if(isaret(w)) return esc(w); var x=m[n++]; return '<span class="kl" data-m="'+esc(x)+'">'+esc(w)+'</span>'; }).join(' ');
+  }
+  var ip=null, ipK=null;
+  function ipKapat(){ if(ip){ ip.remove(); ip=null; } if(ipK){ ipK.classList.remove('on'); ipK=null; } }
+  document.addEventListener('click', function(e){
+    var k=e.target.closest('.kl');
+    if(!k || k===ipK){ ipKapat(); return; }
+    ipKapat(); ipK=k; k.classList.add('on');
+    ip=document.createElement('div'); ip.className='ipucu'; ip.textContent=k.dataset.m; document.body.appendChild(ip);
+    var r=k.getBoundingClientRect(), w=ip.offsetWidth, h=ip.offsetHeight, ort=r.left+r.width/2;
+    var x=Math.max(8, Math.min(innerWidth-w-8, ort-w/2)), y=r.top-h-10, alt=false;
+    if(y<70){ y=r.bottom+10; alt=true; }
+    ip.classList.toggle('alt', alt); ip.style.setProperty('--ok', (ort-x)+'px');
+    ip.style.left=(x+scrollX)+'px'; ip.style.top=(y+scrollY)+'px';
+  });
+  var tt; document.addEventListener('click', function(e){ if(!e.target.closest('[data-ir]')) return; var d=document.querySelector('.mtoast'); if(d) d.remove(); d=document.createElement('div'); d.className='mtoast'; d.textContent="İ'râb bölümü hazırlanıyor, yakında burada olacak."; document.body.appendChild(d); clearTimeout(tt); tt=setTimeout(function(){ d.remove(); },2600); });
+  addEventListener('hashchange', ipKapat); addEventListener('resize', ipKapat);
   function bld(s,a,o){ var i=a-1; return bldButton('a:'+s+'-'+a, S[s-1][0]+' '+a, o.a[i]+' | Diyanet: '+o.d[i]); }
   function yer(s,a){ wr('ml_yer',{s:s,a:a}); }
 
@@ -238,8 +271,9 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     veri(s).then(function(o){
       var i=a-1, h='';
       if(a===1 && s!==1 && s!==9) h+='<p class="besm">'+BESMELE+'</p>';
-      h+='<div class="card arb"><div class="arm">'+esc(o.a[i])+' <span class="ayno">﴿'+arNo(a)+'﴾</span></div><div class="etk"><span>'+esc(x[0])+' · '+a+'</span>'+(o.s.indexOf(a)>=0?'<span class="sec">Secde âyeti</span>':'')+bld(s,a,o)+'</div></div>';
+      h+='<div class="card arb"><div class="arm">'+arHtml(o,i)+' <span class="ayno">﴿'+arNo(a)+'﴾</span></div><div class="etk"><span>'+esc(x[0])+' · '+a+'</span>'+(o.s.indexOf(a)>=0?'<span class="sec">Secde âyeti</span>':'')+bld(s,a,o)+'</div></div>';
       MEAL.forEach(function(m){ if(secili.indexOf(m.k)>=0) h+='<div class="card ml"><h3>'+esc(m.ad)+'</h3><p>'+esc(o[m.k][i])+'</p></div>'; });
+      h+='<div class="irab"><button type="button" data-ir="1"><span><b>İ\'râb</b><small>el-Cedvel</small></span><span class="yk">YAKINDA</span></button><button type="button" data-ir="1"><span><b>İ\'râb</b><small>Derviş</small></span><span class="yk">YAKINDA</span></button></div>';
       h+='<details class="card cel"><summary>Celâleyn tefsiri <small>(Arapça)</small></summary><div class="celm">'+esc(o.c[i])+'</div></details>';
       var onc = a>1 || s>1, snr = a<x[2] || s<114;
       h+='<div class="nav"><button type="button" id="onc"'+(onc?'':' disabled')+'>‹ Önceki</button><a class="oku" href="#/'+s+'">Sûreyi oku</a><button type="button" id="snr"'+(snr?'':' disabled')+'>Sonraki ›</button></div>'+kunye();
@@ -260,7 +294,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     veri(s).then(function(o){
       var h=(s!==1 && s!==9)?'<p class="besm">'+BESMELE+'</p>':'';
       o.a.forEach(function(t,i){
-        h+='<div class="card oa" id="a'+(i+1)+'"><div class="arm">'+esc(t)+' <span class="ayno">﴿'+arNo(i+1)+'﴾</span></div><div class="om">';
+        h+='<div class="card oa" id="a'+(i+1)+'"><div class="arm">'+arHtml(o,i)+' <span class="ayno">﴿'+arNo(i+1)+'﴾</span></div><div class="om">';
         MEAL.forEach(function(m){ if(secili.indexOf(m.k)>=0) h+='<p><b>'+esc(m.ks)+'</b>'+esc(o[m.k][i])+'</p>'; });
         h+='<div class="alt"><a class="ac" href="#/'+s+'/'+(i+1)+'">'+(i+1)+'. âyet · Celâleyn ve ayrıntı ›</a>'+(o.s.indexOf(i+1)>=0?'<span class="etk"><span class="sec">Secde âyeti</span></span>':'')+bld(s,i+1,o)+'</div></div></div>';
       });

@@ -1,0 +1,10 @@
+# 1 · Fâtiha · kelime anlamları
+# Diyanet İşleri meali esas alınarak, kelime kelime. Satır: âyet|1. kelimenin anlamı|2. kelimenin anlamı|…
+# Vakf (durak) işaretleri kelime sayılmaz. Diyanet mealinde karşılığı olmayan kelimelerin anlamı parantez içinde.
+1|adıyla|Allah'ın|Rahman|ve Rahim olan
+2|Hamd|Allah'a mahsustur|Rabbi|Alemlerin
+3|O Rahman|ve Rahim'dir
+4|sahibidir|Gününün|Din
+5|Ancak Sana|kulluk ederiz|ve yalnız Senden|yardım dileriz
+6|Bizi eriştir|yola|doğru
+7|yoluna|kimselerin|nimete erdirdiğin|(kendilerine)|değil|gazaba uğrayanların|(kendilerine)|ya da … değil|sapıtanların
