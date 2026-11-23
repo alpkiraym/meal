@@ -1,0 +1,25 @@
+{
+  "name": "Kur'ân Meali · Giray Akademi",
+  "short_name": "Kur'ân Meali",
+  "description": "Arapça metin, üç meal ve Celâleyn tefsiri.",
+  "start_url": "/meal/",
+  "scope": "/meal/",
+  "display": "standalone",
+  "background_color": "#f7f3ea",
+  "theme_color": "#1f5a45",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "/meal/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/meal/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

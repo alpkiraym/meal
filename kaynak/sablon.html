@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kur'ân Meali · Giray Akademi</title>
+<meta name="description" content="Arapça metin, üç meal ve Celâleyn tefsiri.">
+<meta name="theme-color" content="#1f5a45">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=1">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=1">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+<link rel="manifest" href="site.webmanifest?v=1">
+<meta name="apple-mobile-web-app-title" content="Kur'ân Meali">
+<meta name="application-name" content="Kur'ân Meali">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Giray Akademi">
+<meta property="og:title" content="Kur'ân Meali · Giray Akademi">
+<meta property="og:description" content="Arapça metin, üç meal ve Celâleyn tefsiri.">
+<meta property="og:url" content="https://alpkiraym.github.io/meal/">
+<meta property="og:image" content="https://alpkiraym.github.io/meal/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kur'ân Meali · Giray Akademi">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@font-face{font-family:"AmiriGA";font-weight:400;font-style:normal;font-display:swap;src:url(data:font/woff;base64,/*AMIRI*/) format("woff")}
+:root{
+  --paper:#f7f3ea; --card:#fffdf8; --ink:#1f2a24; --muted:#6b7068; --line:#e3dccb;
+  --green:#1f5a45; --green-2:#2f7a5f; --green-soft:#e4efe8; --gold:#b08a3e; --gold-soft:#f4ead3;
+  --red:#a8432f; --red-soft:#f6e1db; --radius:14px;
+  --shadow:0 1px 2px rgba(40,30,10,.06),0 6px 20px rgba(40,30,10,.06);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ar:"AmiriGA",Amiri,"Traditional Arabic","Scheherazade New","Noto Naskh Arabic",serif;
+  --ar-size:1.75rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;padding-bottom:34px}
+a{color:var(--green)}
+button{font:inherit;color:inherit}
+.top{position:sticky;top:0;z-index:40;background:rgba(247,243,234,.96);backdrop-filter:saturate(1.4) blur(6px);-webkit-backdrop-filter:saturate(1.4) blur(6px);border-bottom:1px solid var(--line)}
+.top-in{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:8px 14px;padding-top:calc(8px + env(safe-area-inset-top))}
+.crumb{display:flex;align-items:center;gap:6px;min-width:0;flex:1 1 auto}
+.crumb .brand{min-width:0;display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:1.12rem;color:var(--green)}
+.crumb .bt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ga{display:grid;text-decoration:none;border-radius:8px}
+.ga .mark,.brand .pmark{width:30px;height:30px;border-radius:8px;background:var(--green);color:#f4c430;display:grid;place-items:center;flex:none}
+.ga:hover .mark{background:var(--green-2)}
+.csep{color:var(--line);font-size:1.3rem;line-height:1;margin:0 1px}
+.brand .pmark{background:var(--gold-soft);color:var(--green);border:1px solid #e6d6ae}
+.boy{display:flex;gap:4px;flex:none}
+.boy button{width:34px;height:32px;border-radius:9px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-family:var(--ar);font-size:1rem;color:var(--green);line-height:1}
+.boy button small{font-family:var(--sans);font-size:.7rem}
+main{max-width:860px;margin:0 auto;padding:14px 14px 24px}
+h1{font-family:var(--serif);color:var(--green);font-size:1.55rem;margin:6px 0 2px;line-height:1.2}
+.h1ar{font-family:var(--ar);color:var(--gold);font-size:1.5rem;direction:rtl;margin:0 0 10px}
+.sub{color:var(--muted);font-size:.92rem;margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.devam{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:0 0 14px;text-decoration:none;color:inherit;cursor:pointer;width:100%;text-align:left}
+.devam b{color:var(--green)}
+.devam span{flex:1}
+.devam i{font-style:normal;color:var(--green);font-weight:700}
+.ara{width:100%;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);padding:0 14px;font:inherit;margin:0 0 12px}
+.ara:focus{outline:2px solid var(--green-2);outline-offset:1px}
+.liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.sr{display:flex;align-items:center;gap:12px;padding:10px 12px;text-decoration:none;color:inherit}
+.sr:active{transform:scale(.99)}
+.no{width:36px;height:36px;flex:none;border-radius:10px;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-weight:700;font-size:.9rem;font-variant-numeric:tabular-nums}
+.sr .ad{flex:1;min-width:0}
+.sr .ad b{display:block;font-weight:600}
+.sr .ad small{color:var(--muted);font-size:.8rem}
+.sr .ar{font-family:var(--ar);font-size:1.35rem;color:var(--green);direction:rtl;flex:none}
+.bos{color:var(--muted);padding:18px 4px}
+.secim{display:flex;gap:8px;align-items:center;margin:0 0 10px}
+.secim select{height:42px;border-radius:11px;border:1px solid var(--line);background:var(--card);padding:0 10px;font:inherit;color:var(--ink);min-width:0}
+.secim .s1{flex:1 1 auto}
+.secim .s2{flex:0 0 122px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;align-items:center}
+.chips .lb{font-size:.8rem;color:var(--muted);margin-right:2px}
+.chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:5px 12px;font-size:.84rem;cursor:pointer}
+.chip.on{border-color:var(--green);background:var(--green-soft);color:var(--green);font-weight:600}
+.arb{padding:18px 16px 14px;text-align:center}
+.arm{font-family:var(--ar);font-size:var(--ar-size);line-height:2.15;direction:rtl;color:#1a3a2f;word-spacing:.08em}
+.ayno{font-family:var(--ar);color:var(--gold);white-space:nowrap}
+.etk{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:6px}
+.etk span{font-size:.75rem;color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.etk .sec{color:#6b4f17;background:var(--gold-soft);border-color:#e6d6ae}
+.ml{padding:12px 14px;margin-top:10px}
+.ml h3{margin:0 0 4px;font-size:.78rem;letter-spacing:.03em;text-transform:uppercase;color:var(--green);font-family:var(--sans)}
+.ml p{margin:0;font-size:1.02rem}
+details.cel{margin-top:10px}
+details.cel summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;gap:8px;font-weight:600;color:var(--green)}
+details.cel summary::-webkit-details-marker{display:none}
+details.cel summary::after{content:'＋';margin-left:auto;color:var(--muted);font-weight:400}
+details.cel[open] summary::after{content:'－'}
+details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
+.celm{font-family:var(--ar);direction:rtl;font-size:calc(var(--ar-size) * .72);line-height:2;padding:0 16px 14px;color:#2a2a24}
+.nav{display:flex;gap:10px;margin-top:14px}
+.nav button,.nav a{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--green);font-weight:600;cursor:pointer;text-decoration:none}
+.nav button:disabled{opacity:.4;cursor:default}
+.nav .oku{flex:0 0 auto;padding:0 14px;color:var(--muted);font-weight:500}
+.besm{font-family:var(--ar);font-size:calc(var(--ar-size) * .95);color:var(--green);text-align:center;direction:rtl;margin:4px 0 14px}
+.oa{padding:14px 14px 12px;margin:0 0 10px}
+.oa .arm{text-align:right}
+.oa .om{margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+.oa .om p{margin:0 0 6px;font-size:.97rem}
+.oa .om p b{color:var(--green);font-size:.72rem;letter-spacing:.03em;text-transform:uppercase;margin-right:6px}
+.oa .ac{display:inline-flex;margin-top:4px;font-size:.8rem;color:var(--green);text-decoration:none;font-weight:600;background:none;border:0;padding:0;cursor:pointer}
+.kunye{margin:22px 0 0;text-align:center;font-size:.75rem;color:var(--muted)}
+.kunye a{color:var(--muted)}
+.yuk{color:var(--muted);text-align:center;padding:40px 0}
+.sig{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:5px 12px calc(5px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);font-family:var(--sans);font-size:.7rem;letter-spacing:.02em;color:var(--muted)}
+.sig b{color:var(--green);font-weight:600}
+.sig i{font-style:normal;opacity:.5}
+@media (max-width:560px){
+  h1{font-size:1.35rem}
+  .crumb .brand{font-size:1rem}
+  .liste{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <nav class="crumb" aria-label="Gezinme">
+    <a class="ga" href="https://alpkiraym.github.io/" title="Giray Akademi ana sayfası" aria-label="Giray Akademi ana sayfası"><span class="mark"><svg viewBox="24 22 152 96" width="22" height="14" aria-hidden="true" fill="currentColor"><rect x="45" y="33" width="112" height="12"/><rect x="45" y="33" width="12" height="62"/><rect x="28" y="80" width="29" height="15"/><rect x="145" y="33" width="12" height="62"/><rect x="145" y="80" width="27" height="15"/><rect x="97" y="33" width="13" height="70"/><rect x="77" y="97" width="53" height="15"/></svg></span></a>
+    <span class="csep" aria-hidden="true">›</span>
+    <button class="brand" type="button" id="brand" title="Sûre listesi"><span class="pmark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3 5v13c4-.5 7 0 9 1.5 2-1.5 5-2 9-1.5V5c-4-.5-7 0-9 1.5z"/><path d="M12 6.5v13"/></svg></span><span class="bt">Kur'ân Meali</span></button>
+  </nav>
+  <div class="boy" aria-label="Arapça yazı boyu"><button type="button" id="kucult" aria-label="Arapça yazıyı küçült">ع<small>−</small></button><button type="button" id="buyut" aria-label="Arapça yazıyı büyüt">ع<small>+</small></button></div>
+</div></header>
+<main id="app"><p class="yuk">Yükleniyor…</p></main>
+<div class="sig"><span>© 2026 Her hakkı saklıdır</span><i>·</i><span>Designed by: <b>M.ALPKİRAY</b></span></div>
+<script>window.GA_APP = 'meal';</script>
+<!--ALTCUBUK-->
+<script>
+(function(){
+  /* Sûre adları (Türkçe, Arapça) ve âyet sayıları */
+  var S = /*SURELER*/;
+  var MEAL = [{k:'d', ad:'Diyanet İşleri', ks:'Diyanet'}, {k:'v', ad:'Diyanet Vakfı (TDV)', ks:'TDV'}, {k:'e', ad:'Elmalılı Hamdi Yazır', ks:'Elmalılı'}];
+  var BESMELE = 'بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ';
+  var app = document.getElementById('app'), cache = {};
+
+  function rd(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+  function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function arNo(n){return String(n).replace(/\d/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d]})}
+  function sade(s){return String(s).toLocaleLowerCase('tr').normalize('NFD').replace(/[̀-ͯ'’ʿ`\-\s]/g,'').replace(/ı/g,'i')}
+
+  /* Seçili mealler ve yazı boyu */
+  var secili = rd('ml_secim', ['d','v','e']);
+  var boy = rd('ml_boy', 1.75);
+  function boyUygula(){ boy=Math.max(1.25,Math.min(2.75,Math.round(boy*100)/100)); document.documentElement.style.setProperty('--ar-size', boy+'rem'); wr('ml_boy', boy); }
+  boyUygula();
+  document.getElementById('kucult').onclick=function(){ boy-=.125; boyUygula(); };
+  document.getElementById('buyut').onclick=function(){ boy+=.125; boyUygula(); };
+
+  function veri(s){
+    if(cache[s]) return Promise.resolve(cache[s]);
+    return fetch('veri/'+('00'+s).slice(-3)+'.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(o){ cache[s]=o; return o; });
+  }
+
+  /* Adres düzeni: #/ liste · #/2 sûre okuma · #/2/255 âyet */
+  function yol(){ var m=(location.hash||'').match(/^#\/(\d+)(?:\/(\d+))?/); if(!m) return {}; var s=+m[1]; if(s<1||s>114) return {}; var a=m[2]?+m[2]:0; if(a>S[s-1][2]) a=S[s-1][2]; return {s:s,a:a}; }
+  function git(h, degistir){ try{ if(degistir) history.replaceState(history.state,'',h); else history.pushState(null,'',h); }catch(e){ location.hash=h; return; } ciz(); }
+  window.mlBasa = function(){ if(location.hash && location.hash!=='#/') git('#/'); else scrollTo({top:0,behavior:'smooth'}); };
+  document.getElementById('brand').onclick = window.mlBasa;
+  addEventListener('popstate', ciz);
+  addEventListener('hashchange', ciz);
+
+  function kunye(){ return '<p class="kunye">Arapça metin, mealler ve Celâleyn: <a href="https://tanzil.net/trans/" target="_blank" rel="noopener">Tanzil.net</a></p>'; }
+  function yer(s,a){ wr('ml_yer',{s:s,a:a}); }
+
+  var son=null;
+  function ciz(e){
+    if(e && e.type && location.hash===son) return; /* aynı adres için ikinci olay */
+    son=location.hash;
+    var y=yol();
+    if(!y.s) return liste();
+    if(!y.a) return okuma(y.s);
+    return ayet(y.s, y.a);
+  }
+
+  /* ---- Sûre listesi ---- */
+  function liste(){
+    document.title="Kur'ân Meali · Giray Akademi";
+    var k=rd('ml_yer',null), dv='';
+    if(k&&S[k.s-1]) dv='<a class="card devam" href="#/'+k.s+'/'+k.a+'"><span>Kaldığınız yer: <b>'+esc(S[k.s-1][0])+' '+k.a+'</b></span><i>Devam et ›</i></a>';
+    app.innerHTML='<h1>Kur\'ân Meali</h1><p class="h1ar">القرآن الكريم</p><p class="sub">Sûre adını ya da numarasını yazın; doğrudan âyete gitmek için <b>2:255</b> gibi yazabilirsiniz.</p>'+dv+
+      '<input class="ara" id="ara" type="search" inputmode="search" placeholder="Sûre ara (Yâsîn, 36, 2:255)" autocomplete="off" aria-label="Sûre ara"><div class="liste" id="lst"></div>'+kunye();
+    var inp=document.getElementById('ara'), lst=document.getElementById('lst');
+    function doldur(){
+      var q=inp.value.trim(), m=q.match(/^(\d{1,3})\s*[:.\/ ]\s*(\d{1,3})$/);
+      if(m && +m[1]>=1 && +m[1]<=114){ var a=Math.min(+m[2]||1, S[+m[1]-1][2]); lst.innerHTML='<a class="card sr" href="#/'+(+m[1])+'/'+a+'"><span class="no">'+(+m[1])+'</span><span class="ad"><b>'+esc(S[+m[1]-1][0])+' '+a+'</b><small>Âyete git</small></span><span class="ar">'+S[+m[1]-1][1]+'</span></a>'; return; }
+      var qs=sade(q), h='';
+      S.forEach(function(x,i){ if(!qs || sade(x[0]).indexOf(qs)>=0 || String(i+1)===q) h+='<a class="card sr" href="#/'+(i+1)+'"><span class="no">'+(i+1)+'</span><span class="ad"><b>'+esc(x[0])+'</b><small>'+x[2]+' âyet</small></span><span class="ar">'+x[1]+'</span></a>'; });
+      lst.innerHTML=h||'<p class="bos">Bu adla bir sûre bulunamadı.</p>';
+    }
+    inp.oninput=doldur;
+    inp.onkeydown=function(e){ if(e.key==='Enter'){ var a=lst.querySelector('a'); if(a) a.click(); } };
+    doldur();
+  }
+
+  function secimHtml(s,a){
+    var h='<div class="secim"><select class="s1" id="ss" aria-label="Sûre">';
+    S.forEach(function(x,i){ h+='<option value="'+(i+1)+'"'+(i+1===s?' selected':'')+'>'+(i+1)+'. '+esc(x[0])+'</option>'; });
+    h+='</select>';
+    if(a){ h+='<select class="s2" id="sa" aria-label="Âyet">'; for(var i=1;i<=S[s-1][2];i++) h+='<option value="'+i+'"'+(i===a?' selected':'')+'>Âyet '+i+'</option>'; h+='</select>'; }
+    return h+'</div>';
+  }
+  function chipsHtml(){
+    return '<div class="chips" id="chips"><span class="lb">Mealler:</span>'+MEAL.map(function(m){ return '<button type="button" class="chip'+(secili.indexOf(m.k)>=0?' on':'')+'" data-m="'+m.k+'">'+esc(m.ks)+'</button>'; }).join('')+'</div>';
+  }
+  function chipsBagla(yeniden){
+    document.getElementById('chips').onclick=function(e){
+      var b=e.target.closest('.chip'); if(!b) return;
+      var k=b.dataset.m, i=secili.indexOf(k);
+      if(i>=0){ if(secili.length===1) return; secili.splice(i,1); } else { secili.push(k); secili=MEAL.map(function(m){return m.k}).filter(function(x){return secili.indexOf(x)>=0}); }
+      wr('ml_secim', secili); yeniden();
+    };
+  }
+
+  /* ---- Tek âyet ---- */
+  function ayet(s,a){
+    var x=S[s-1];
+    document.title=x[0]+' '+a+" · Kur'ân Meali";
+    app.innerHTML=secimHtml(s,a)+chipsHtml()+'<div id="ic"><p class="yuk">Yükleniyor…</p></div>';
+    document.getElementById('ss').onchange=function(){ git('#/'+this.value+'/1', true); };
+    document.getElementById('sa').onchange=function(){ git('#/'+s+'/'+this.value, true); };
+    chipsBagla(function(){ ayet(s,a); });
+    yer(s,a);
+    veri(s).then(function(o){
+      var i=a-1, h='';
+      if(a===1 && s!==1 && s!==9) h+='<p class="besm">'+BESMELE+'</p>';
+      h+='<div class="card arb"><div class="arm">'+esc(o.a[i])+' <span class="ayno">﴿'+arNo(a)+'﴾</span></div><div class="etk"><span>'+esc(x[0])+' · '+a+'</span>'+(o.s.indexOf(a)>=0?'<span class="sec">Secde âyeti</span>':'')+'</div></div>';
+      MEAL.forEach(function(m){ if(secili.indexOf(m.k)>=0) h+='<div class="card ml"><h3>'+esc(m.ad)+'</h3><p>'+esc(o[m.k][i])+'</p></div>'; });
+      h+='<details class="card cel"><summary>Celâleyn tefsiri <small>(Arapça)</small></summary><div class="celm">'+esc(o.c[i])+'</div></details>';
+      var onc = a>1 || s>1, snr = a<x[2] || s<114;
+      h+='<div class="nav"><button type="button" id="onc"'+(onc?'':' disabled')+'>‹ Önceki</button><a class="oku" href="#/'+s+'">Sûreyi oku</a><button type="button" id="snr"'+(snr?'':' disabled')+'>Sonraki ›</button></div>'+kunye();
+      document.getElementById('ic').innerHTML=h;
+      document.getElementById('onc').onclick=function(){ if(a>1) git('#/'+s+'/'+(a-1), true); else if(s>1) git('#/'+(s-1)+'/'+S[s-2][2], true); scrollTo(0,0); };
+      document.getElementById('snr').onclick=function(){ if(a<x[2]) git('#/'+s+'/'+(a+1), true); else if(s<114) git('#/'+(s+1)+'/1', true); scrollTo(0,0); };
+    }).catch(function(){ document.getElementById('ic').innerHTML='<p class="bos">Metin yüklenemedi. İnternet bağlantınızı kontrol edip yeniden deneyin.</p>'; });
+  }
+
+  /* ---- Sûre boyunca okuma ---- */
+  function okuma(s){
+    var x=S[s-1];
+    document.title=x[0]+" · Kur'ân Meali";
+    app.innerHTML='<h1>'+s+'. '+esc(x[0])+' Sûresi</h1><p class="h1ar">سورة '+x[1]+'</p>'+secimHtml(s,0)+chipsHtml()+'<div id="ic"><p class="yuk">Yükleniyor…</p></div>';
+    document.getElementById('ss').onchange=function(){ git('#/'+this.value, true); scrollTo(0,0); };
+    chipsBagla(function(){ var y=scrollY; okuma(s); setTimeout(function(){ scrollTo(0,y); },60); });
+    yer(s,1);
+    veri(s).then(function(o){
+      var h=(s!==1 && s!==9)?'<p class="besm">'+BESMELE+'</p>':'';
+      o.a.forEach(function(t,i){
+        h+='<div class="card oa" id="a'+(i+1)+'"><div class="arm">'+esc(t)+' <span class="ayno">﴿'+arNo(i+1)+'﴾</span></div><div class="om">';
+        MEAL.forEach(function(m){ if(secili.indexOf(m.k)>=0) h+='<p><b>'+esc(m.ks)+'</b>'+esc(o[m.k][i])+'</p>'; });
+        h+='<a class="ac" href="#/'+s+'/'+(i+1)+'">'+(i+1)+'. âyet · Celâleyn ve ayrıntı ›</a>'+(o.s.indexOf(i+1)>=0?' <span class="etk"><span class="sec">Secde âyeti</span></span>':'')+'</div></div>';
+      });
+      var nav='<div class="nav">'+(s>1?'<a href="#/'+(s-1)+'">‹ '+esc(S[s-2][0])+'</a>':'')+(s<114?'<a href="#/'+(s+1)+'">'+esc(S[s][0])+' ›</a>':'')+'</div>';
+      document.getElementById('ic').innerHTML=h+nav+kunye();
+    }).catch(function(){ document.getElementById('ic').innerHTML='<p class="bos">Metin yüklenemedi. İnternet bağlantınızı kontrol edip yeniden deneyin.</p>'; });
+  }
+
+  ciz();
+})();
+</script>
+</body>
+</html>
