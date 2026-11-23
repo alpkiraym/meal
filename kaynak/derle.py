@@ -155,7 +155,8 @@ SURE = [[a.split('|')[0], a.split('|')[1], n] for a, n in zip(ADLAR, sayi)]
 t = open(os.path.join(K, 'sablon.html'), encoding='utf-8').read()
 t = t.replace('/*AMIRI*/', base64.b64encode(open(os.path.join(K, 'amiri.woff'), 'rb').read()).decode())
 t = t.replace('/*SURELER*/', json.dumps(SURE, ensure_ascii=False, separators=(',', ':')))
+t = t.replace('<!--BILDIR-->', open(os.path.join(K, 'bildir.html'), encoding='utf-8').read().strip())
 t = t.replace('<!--ALTCUBUK-->', open(os.path.join(K, 'altcubuk.html'), encoding='utf-8').read().strip())
-assert '/*AMIRI*/' not in t and '/*SURELER*/' not in t and '<!--ALTCUBUK-->' not in t
+assert '/*AMIRI*/' not in t and '/*SURELER*/' not in t and '<!--ALTCUBUK-->' not in t and '<!--BILDIR-->' not in t
 open(os.path.join(KOK, 'index.html'), 'w', encoding='utf-8').write(t)
 print('index.html yazıldı:', len(t)//1024, 'KB')
