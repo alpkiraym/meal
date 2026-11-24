@@ -112,6 +112,12 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
 .kl{cursor:pointer;border-radius:6px;transition:color .12s}
 .kl:hover{color:var(--green-2)}
 .kl.on{color:#c0392b}
+.kanl .kl{text-decoration:underline dotted rgba(176,138,62,.55);text-decoration-thickness:1px;text-underline-offset:.45em}
+.kip{display:flex;gap:10px;align-items:center;background:var(--gold-soft);border:1px solid #e6d6ae;border-radius:12px;padding:9px 12px;margin:0 0 12px;font-size:.88rem;color:#5a4a22;line-height:1.4}
+.kip .el{flex:none;width:30px;height:30px;border-radius:50%;background:#fffdf8;display:grid;place-items:center;font:700 1rem/1 var(--ar);color:#c0392b;border:1px solid #e6d6ae}
+.kip button{margin-left:auto;flex:none;background:none;border:0;color:#8a7440;font-size:1.2rem;line-height:1;cursor:pointer;padding:2px 4px}
+.kanlb{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;background:var(--gold-soft);color:#7a6228;font-size:.68rem;font-weight:600;vertical-align:1px}
+.kbilgi{font-size:.85rem;color:var(--muted);margin:-4px 0 12px}
 .ipucu{position:absolute;z-index:45;max-width:min(260px,86vw);background:#fffdf8;color:#4a5560;border:1px solid #c9ccd0;border-radius:8px;padding:6px 12px;font:500 1rem/1.4 var(--sans);box-shadow:0 4px 14px rgba(0,0,0,.12);text-align:center;pointer-events:none}
 .ipucu::after{content:'';position:absolute;left:var(--ok,50%);bottom:-8px;margin-left:-8px;border:8px solid transparent;border-bottom:0;border-top-color:#c9ccd0}
 .ipucu.alt::after{bottom:auto;top:-8px;border-top:0;border-bottom:8px solid #c9ccd0}
@@ -231,6 +237,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     var k=e.target.closest('.kl');
     if(!k || k===ipK){ ipKapat(); return; }
     ipKapat(); ipK=k; k.classList.add('on');
+    if(!rd('ml_kip',0)){ wr('ml_kip',1); var kp=document.getElementById('kip'); if(kp) setTimeout(function(){ kp.remove(); },1800); }
     ip=document.createElement('div'); ip.className='ipucu'; ip.textContent=k.dataset.m; document.body.appendChild(ip);
     var r=k.getBoundingClientRect(), w=ip.offsetWidth, h=ip.offsetHeight, ort=r.left+r.width/2;
     var x=Math.max(8, Math.min(innerWidth-w-8, ort-w/2)), y=r.top-h-10, alt=false;
@@ -239,6 +246,9 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     ip.style.left=(x+scrollX)+'px'; ip.style.top=(y+scrollY)+'px';
   });
   addEventListener('hashchange', ipKapat); addEventListener('resize', ipKapat);
+  /* Kelime anlamı ipucu: kelimeye ilk dokunuşa kadar (ya da × ile kapatılana kadar) görünür */
+  var KELSURE=/*KELSURE*/;
+  function kipHtml(o){ if(!o.k || rd('ml_kip',0)) return ''; return '<div class="kip" id="kip"><span class="el">ع</span><span>Arapça metindeki <b>kelimelere dokunun</b>, Türkçe anlamı üstünde çıksın.</span><button type="button" aria-label="Kapat" onclick="this.parentNode.remove();try{localStorage.setItem(\'ml_kip\',\'1\')}catch(e){}">×</button></div>'; }
   function bld(s,a,o){ var i=a-1; return bldButton('a:'+s+'-'+a, S[s-1][0]+' '+a, o.a[i]+' | Diyanet: '+o.d[i]); }
   function yer(s,a){ wr('ml_yer',{s:s,a:a}); }
 
@@ -259,7 +269,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     var k=rd('ml_yer',null), dv='';
     if(k&&S[k.s-1]) dv='<a class="card devam" href="#/'+k.s+'/'+k.a+'"><span>Kaldığınız yer: <b>'+esc(S[k.s-1][0])+' '+k.a+'</b></span><i>Devam et ›</i></a>';
     var kd=ktDurum(), kts=kd.bul?('Seviye '+kd.lv+' · '+ktBilinen(kd)+' kelime biliniyor'):'Seviyenizi bulun, en kolaydan zora ilerleyin';
-    app.innerHTML='<h1>Kur\'ân Meali</h1><p class="h1ar">القرآن الكريم</p><p class="sub">Sûre adını ya da numarasını yazın; doğrudan âyete gitmek için <b>2:255</b> gibi yazabilirsiniz.</p>'+dv+
+    app.innerHTML='<h1>Kur\'ân Meali</h1><p class="h1ar">القرآن الكريم</p><p class="sub">Sûre adını ya da numarasını yazın; doğrudan âyete gitmek için <b>2:255</b> gibi yazabilirsiniz.</p><p class="kbilgi"><span class="kanlb">Kelime anlamı</span> etiketli sûrelerde Arapça kelimeye dokununca anlamı çıkar.</p>'+dv+
       '<a class="card kt-giris" href="#/test"><span class="ik">ع</span><span><b>Kelime testi</b><small>'+kts+'</small></span><i style="font-style:normal;color:var(--green);font-weight:700">›</i></a>'+
       '<input class="ara" id="ara" type="search" inputmode="search" placeholder="Sûre ara (Yâsîn, 36, 2:255)" autocomplete="off" aria-label="Sûre ara"><div class="liste" id="lst"></div>'+kunye();
     var inp=document.getElementById('ara'), lst=document.getElementById('lst');
@@ -267,7 +277,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
       var q=inp.value.trim(), m=q.match(/^(\d{1,3})\s*[:.\/ ]\s*(\d{1,3})$/);
       if(m && +m[1]>=1 && +m[1]<=114){ var a=Math.min(+m[2]||1, S[+m[1]-1][2]); lst.innerHTML='<a class="card sr" href="#/'+(+m[1])+'/'+a+'"><span class="no">'+(+m[1])+'</span><span class="ad"><b>'+esc(S[+m[1]-1][0])+' '+a+'</b><small>Âyete git</small></span><span class="ar">'+S[+m[1]-1][1]+'</span></a>'; return; }
       var qs=sade(q), h='';
-      S.forEach(function(x,i){ if(!qs || sade(x[0]).indexOf(qs)>=0 || String(i+1)===q) h+='<a class="card sr" href="#/'+(i+1)+'"><span class="no">'+(i+1)+'</span><span class="ad"><b>'+esc(x[0])+'</b><small>'+x[2]+' âyet</small></span><span class="ar">'+x[1]+'</span></a>'; });
+      S.forEach(function(x,i){ if(!qs || sade(x[0]).indexOf(qs)>=0 || String(i+1)===q) h+='<a class="card sr" href="#/'+(i+1)+'"><span class="no">'+(i+1)+'</span><span class="ad"><b>'+esc(x[0])+'</b><small>'+x[2]+' âyet'+(KELSURE.indexOf(i+1)>=0?'<span class="kanlb">Kelime anlamı</span>':'')+'</small></span><span class="ar">'+x[1]+'</span></a>'; });
       lst.innerHTML=h||'<p class="bos">Bu adla bir sûre bulunamadı.</p>';
     }
     inp.oninput=doldur;
@@ -305,6 +315,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     yer(s,a);
     veri(s).then(function(o){
       var i=a-1, h='';
+      h+=kipHtml(o);
       if(a===1 && s!==1 && s!==9) h+='<p class="besm">'+BESMELE+'</p>';
       h+='<div class="card arb"><div class="arm">'+arHtml(o,i)+' <span class="ayno">﴿'+arNo(a)+'﴾</span></div><div class="etk"><span>'+esc(x[0])+' · '+a+'</span>'+(o.s.indexOf(a)>=0?'<span class="sec">Secde âyeti</span>':'')+bld(s,a,o)+'</div></div>';
       MEAL.forEach(function(m){ if(secili.indexOf(m.k)>=0) h+='<div class="card ml"><h3>'+esc(m.ad)+'</h3><p>'+esc(o[m.k][i])+'</p></div>'; });
@@ -312,7 +323,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
       h+='<details class="card cel"><summary>Celâleyn tefsiri <small>(Arapça)</small></summary><div class="celm">'+esc(o.c[i])+'</div></details>';
       var onc = a>1 || s>1, snr = a<x[2] || s<114;
       h+='<div class="nav"><button type="button" id="onc"'+(onc?'':' disabled')+'>‹ Önceki</button><a class="oku" href="#/'+s+'">Sûreyi oku</a><button type="button" id="snr"'+(snr?'':' disabled')+'>Sonraki ›</button></div>'+kunye();
-      document.getElementById('ic').innerHTML=h;
+      var ic=document.getElementById('ic'); ic.innerHTML=h; ic.classList.toggle('kanl', !!o.k);
       document.getElementById('onc').onclick=function(){ if(a>1) git('#/'+s+'/'+(a-1), true); else if(s>1) git('#/'+(s-1)+'/'+S[s-2][2], true); scrollTo(0,0); };
       document.getElementById('snr').onclick=function(){ if(a<x[2]) git('#/'+s+'/'+(a+1), true); else if(s<114) git('#/'+(s+1)+'/1', true); scrollTo(0,0); };
     }).catch(function(){ document.getElementById('ic').innerHTML='<p class="bos">Metin yüklenemedi. İnternet bağlantınızı kontrol edip yeniden deneyin.</p>'; });
@@ -327,14 +338,14 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     chipsBagla(function(){ var y=scrollY; okuma(s); setTimeout(function(){ scrollTo(0,y); },60); });
     yer(s,1);
     veri(s).then(function(o){
-      var h=(s!==1 && s!==9)?'<p class="besm">'+BESMELE+'</p>':'';
+      var h=kipHtml(o)+((s!==1 && s!==9)?'<p class="besm">'+BESMELE+'</p>':'');
       o.a.forEach(function(t,i){
         h+='<div class="card oa" id="a'+(i+1)+'"><div class="arm">'+arHtml(o,i)+' <span class="ayno">﴿'+arNo(i+1)+'﴾</span></div><div class="om">';
         MEAL.forEach(function(m){ if(secili.indexOf(m.k)>=0) h+='<p><b>'+esc(m.ks)+'</b>'+esc(o[m.k][i])+'</p>'; });
         h+='<div class="alt"><a class="ac" href="#/'+s+'/'+(i+1)+'">'+(i+1)+'. âyet · Celâleyn ve ayrıntı ›</a>'+(o.s.indexOf(i+1)>=0?'<span class="etk"><span class="sec">Secde âyeti</span></span>':'')+bld(s,i+1,o)+'</div></div></div>';
       });
       var nav='<div class="nav">'+(s>1?'<a href="#/'+(s-1)+'">‹ '+esc(S[s-2][0])+'</a>':'')+(s<114?'<a href="#/'+(s+1)+'">'+esc(S[s][0])+' ›</a>':'')+'</div>';
-      document.getElementById('ic').innerHTML=h+nav+kunye();
+      var ic=document.getElementById('ic'); ic.innerHTML=h+nav+kunye(); ic.classList.toggle('kanl', !!o.k);
     }).catch(function(){ document.getElementById('ic').innerHTML='<p class="bos">Metin yüklenemedi. İnternet bağlantınızı kontrol edip yeniden deneyin.</p>'; });
   }
 
