@@ -332,3 +332,209 @@
 2|285|المصير|مبتدأ|3|isim|Muahhar mübtedadır; وإليك öne geçmiş haberdir.
 2|286|نفسا|مفعول به|2|isim|يكلف fiilinin mef'ûlüdür; mansûbdur.
 2|286|وسعها|مفعول به ثان|3|isim|İstisnâ müferrağdır: يكلف fiilinin ikinci mef'ûlü olur; mansûbdur.|مستثنى
+3|2|الله|مبتدأ|1|isim|Âyetin başındaki mübtedadır; merfûdur.
+3|3|الكتاب|مفعول به|1|isim|نزّل fiilinin mef'ûlüdür; mansûbdur.
+3|3|مصدقا|حال|3|isim|الكتاب'ın hâlini bildirir (doğrulayıcı olarak); mansûbdur.
+3|4|هدى|مفعول لأجله|3|isim|İndirmenin amacını bildirir (yol göstermek için); takdirî fetha ile mansûbdur.|حال
+3|4|عذاب|مبتدأ|3|isim|Muahhar mübtedadır; لهم öne geçmiş haberdir.
+3|5|شيء|فاعل|2|isim|يخفى fiilinin fâilidir; merfûdur.
+3|6|العزيز|خبر|3|isim|Hazfedilmiş هو mübtedasının haberidir; merfûdur.
+3|7|آيات|مبتدأ|3|isim|Muahhar mübtedadır; منه öne geçmiş haberdir.
+3|7|أم|خبر|2|isim|هنّ mübtedasının haberidir; merfûdur.
+3|7|ابتغاء#1|مفعول لأجله|3|isim|Uymalarının amacını bildirir (fitne aramak için); mansûbdur.
+3|8|رحمة|مفعول به|2|isim|هب fiilinin mef'ûlüdür; mansûbdur.
+3|9|جامع|خبر إنّ|2|isim|إنّ'nin haberidir; merfûdur.
+3|10|أموالهم|فاعل|2|isim|تغني fiilinin fâilidir; merfûdur.
+3|10|وقود|خبر|2|isim|هم mübtedasının haberidir; merfûdur.
+3|12|ستغلبون|فعل مضارع|1|fiil|Meçhul muzâri fiil; başındaki س gelecek zaman harfidir, vâv nâib-i fâildir.
+3|13|آية|اسم كان|3|isim|كان'ın sona kalmış ismidir; merfûdur.
+3|13|فئة#1|خبر|3|isim|Hazfedilmiş bir mübtedanın (biri) haberidir; merfûdur.
+3|13|رأي|مفعول مطلق|3|isim|يرونهم fiilinin mef'ûl-i mutlakıdır (gözle görmek); mansûbdur.
+3|14|حب|نائب فاعل|3|isim|Meçhul fiil زيّن'in nâib-i fâilidir; merfûdur.
+3|14|متاع|خبر|2|isim|ذلك mübtedasının haberidir; merfûdur.
+3|15|خالدين|حال|3|isim|الذين ism-i mevsûlünün hâlini bildirir; nasb alameti yâdır.
+3|17|الصابرين|نعت|3|isim|Önceki âyetteki الذين'in sıfatıdır; cer alameti yâdır.
+3|18|قائما|حال|3|isim|Hâldir (adaleti ayakta tutarak); mansûbdur.
+3|18|والملائكة|معطوف|2|isim|و ile lafza-i celâle atfedilmiştir; merfûdur.
+3|19|الدين|اسم إنّ|2|isim|إنّ'nin ismidir; mansûbdur.
+3|19|الإسلام|خبر إنّ|2|isim|إنّ'nin haberidir; merfûdur.
+3|19|بغيا|مفعول لأجله|3|isim|Ayrılığa düşmelerinin sebebini bildirir (ihtirastan); mansûbdur.
+3|20|وجهي|مفعول به|2|isim|أسلمت fiilinin mef'ûlüdür; takdirî fetha ile mansûbdur.
+3|20|البلاغ|مبتدأ|3|isim|Muahhar mübtedadır; عليك öne geçmiş haberdir.
+3|25|كل|نائب فاعل|3|isim|Meçhul fiil وفّيت'in nâib-i fâilidir; merfûdur.
+3|26|مالك|بدل|3|isim|اللهم lafzından bedeldir; mansûbdur.|منادى
+3|26|الخير|مبتدأ|3|isim|Muahhar mübtedadır; بيدك öne geçmiş haberdir.
+3|27|الليل#1|مفعول به|1|isim|تولج fiilinin mef'ûlüdür; mansûbdur.
+3|28|أولياء|مفعول به ثان|3|isim|يتخذ fiilinin ikinci mef'ûlüdür (birincisi الكافرين); gayr-i munsariftır.
+3|28|تقاة|مفعول مطلق|3|isim|Masdarın yerine geçen mef'ûl-i mutlaktır (bir sakınma ile); mansûbdur.
+3|28|نفسه|مفعول به|2|isim|يحذركم fiilinin ikinci mef'ûlüdür; mansûbdur.|مفعول به ثان
+3|30|محضرا|حال|3|isim|ما ism-i mevsûlünün hâlini bildirir (hazır edilmiş olarak); mansûbdur.
+3|30|أمدا|اسم إنّ|3|isim|أنّ'nin sona kalmış ismidir; mansûbdur.
+3|31|ذنوبكم|مفعول به|1|isim|يغفر fiilinin mef'ûlüdür; mansûbdur.
+3|33|آدم|مفعول به|1|isim|اصطفى fiilinin mef'ûlüdür; gayr-i munsariftır.
+3|34|ذرية|حال|3|isim|Seçilenlerin hâlini bildirir (birbirinden gelen bir nesil olarak); mansûbdur.
+3|35|امرأت|فاعل|2|isim|قالت fiilinin fâilidir; merfûdur.
+3|36|أنثى|حال|3|isim|ها zamirinin hâlini bildirir (kız olarak); takdirî fetha ile mansûbdur.
+3|36|مريم|مفعول به ثان|3|isim|سمّيتها fiilinin ikinci mef'ûlüdür; alem ve müennes olduğu için gayr-i munsariftır.
+3|37|نباتا|مفعول مطلق|3|isim|Masdarın yerine geçen mef'ûl-i mutlaktır; mansûbdur.
+3|37|رزقا|مفعول به|2|isim|وجد fiilinin mef'ûlüdür; mansûbdur.
+3|38|ذرية|مفعول به|2|isim|هب fiilinin mef'ûlüdür; mansûbdur.
+3|39|الملائكة|فاعل|2|isim|نادته fiilinin fâilidir; merfûdur.
+3|39|مصدقا|حال|3|isim|يحيى'nın hâlini bildirir; mansûbdur.
+3|39|وسيدا|معطوف|2|isim|و ile مصدقا kelimesine atfedilmiştir; mansûbdur.
+3|40|الكبر|فاعل|2|isim|بلغني fiilinin fâilidir; merfûdur.
+3|41|ثلاثة|ظرف|3|isim|تكلّم fiiline bağlı zaman zarfıdır; mansûbdur.
+3|41|رمزا|مستثنى|3|isim|إلا ile istisnâ edilmiştir; mansûbdur.
+3|41|كثيرا|مفعول مطلق|3|isim|Masdarın yerine geçen mef'ûl-i mutlaktır (çokça anmak); mansûbdur.
+3|44|أقلامهم|مفعول به|2|isim|يلقون fiilinin mef'ûlüdür; mansûbdur.
+3|45|اسمه|مبتدأ|2|isim|Mübtedadır; ه zamiri muzâfun ileyh, haberi المسيح.
+3|45|المسيح|خبر|2|isim|اسمه mübtedasının haberidir; merfûdur.
+3|45|وجيها|حال|3|isim|كلمة ile kastedilen Îsâ'nın hâlini bildirir; mansûbdur.
+3|46|وكهلا|حال|3|isim|في المهد'e atfedilmiş hâldir (yetişkin iken); mansûbdur.|معطوف
+3|47|بشر|فاعل|2|isim|يمسسني fiilinin fâilidir; merfûdur.
+3|49|طيرا|خبر كان|3|isim|يكون fiilinin haberidir; mansûbdur.
+3|52|الكفر|مفعول به|2|isim|أحسّ fiilinin mef'ûlüdür; mansûbdur.
+3|52|الحواريون|فاعل|2|isim|قال fiilinin fâilidir; ref alameti vâvdır.
+3|54|خير|خبر|2|isim|الله mübtedasının haberidir; merfûdur.
+3|56|عذابا|مفعول مطلق|3|isim|أعذّبهم fiilinin mef'ûl-i mutlakıdır; mansûbdur.
+3|57|أجورهم|مفعول به ثان|3|isim|يوفّيهم fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|59|مثل#1|اسم إنّ|2|isim|إنّ'nin ismidir; mansûbdur.
+3|61|أبناءنا|مفعول به|1|isim|ندع fiilinin mef'ûlüdür; mansûbdur.
+3|62|القصص|خبر إنّ|3|isim|إنّ'nin haberidir (başında te'kid lâmı ve هو fasıl zamiri var); merfûdur.
+3|64|سواء|نعت|2|isim|كلمة kelimesinin sıfatıdır; mecrûrdur.
+3|64|أربابا|مفعول به ثان|3|isim|يتخذ fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|65|التوراة|نائب فاعل|3|isim|Meçhul fiil أنزلت'in nâib-i fâilidir; merfûdur.
+3|67|يهوديا|خبر كان|2|isim|كان'ın haberidir; mansûbdur.
+3|67|حنيفا|خبر كان|2|isim|İkinci كان'ın haberidir; mansûbdur.
+3|68|أولى|اسم إنّ|3|isim|إنّ'nin ismidir; elif üzerinde takdirî fetha ile mansûbdur.
+3|69|طائفة|فاعل|2|isim|ودّت fiilinin fâilidir; merfûdur.
+3|71|الحق#1|مفعول به|1|isim|تلبسون fiilinin mef'ûlüdür; mansûbdur.
+3|72|وجه|ظرف|3|isim|آمنوا fiiline bağlı zaman zarfıdır (günün başında); mansûbdur.
+3|72|آخره|ظرف|3|isim|اكفروا fiiline bağlı zaman zarfıdır (günün sonunda); mansûbdur.
+3|75|قائما|خبر كان|3|isim|دام'ın (كان'ın kardeşi) haberidir; mansûbdur.
+3|77|ثمنا|مفعول به|1|isim|يشترون fiilinin mef'ûlüdür; mansûbdur.
+3|77|خلاق|اسم لا|2|isim|Cinsi nefyeden lâ'nın ismidir; fetha üzere mebnîdir.
+3|78|لفريقا|اسم إنّ|3|isim|إنّ'nin sona kalmış ismidir; başında te'kid lâmı vardır.
+3|78|ألسنتهم|مفعول به|2|isim|يلوون fiilinin mef'ûlüdür; mansûbdur.
+3|79|عبادا|خبر كان|2|isim|كونوا'nun haberidir; mansûbdur.
+3|79|ربانيين|خبر كان|3|isim|كونوا'nun haberidir; nasb alameti yâdır.
+3|80|أربابا|مفعول به ثان|3|isim|تتخذوا fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|81|رسول|فاعل|2|isim|جاءكم fiilinin fâilidir; merfûdur.
+3|83|أفغير|مفعول به|3|isim|يبغون fiilinin öne geçmiş mef'ûlüdür; mansûbdur.
+3|83|طوعا|حال|3|isim|Masdar olduğu hâlde hâl yerindedir (isteyerek).|مفعول مطلق
+3|85|دينا|تمييز|3|isim|غير kelimesindeki belirsizliği açıklayan temyizdir; mansûbdur.|حال
+3|86|قوما|مفعول به|2|isim|يهدي fiilinin mef'ûlüdür; mansûbdur.
+3|90|كفرا|تمييز|3|isim|ازدادوا fiilindeki belirsizliği açıklayan temyizdir (inkâr bakımından); mansûbdur.
+3|90|توبتهم|نائب فاعل|3|isim|Meçhul fiil تقبل'ın nâib-i fâilidir; merfûdur.
+3|91|ملء|نائب فاعل|3|isim|Meçhul fiil يقبل'ın nâib-i fâilidir; merfûdur.
+3|91|ذهبا|تمييز|3|isim|ملء kelimesindeki belirsizliği açıklayan temyizdir; mansûbdur.
+3|92|البر|مفعول به|2|isim|تنالوا fiilinin mef'ûlüdür; mansûbdur.
+3|93|كل|مبتدأ|2|isim|Mübtedadır; haberi كان حلا cümlesidir.
+3|93|حلا|خبر كان|2|isim|كان'ın haberidir; mansûbdur.
+3|95|حنيفا|حال|3|isim|إبراهيم'in hâlini bildirir; mansûbdur.
+3|96|أول|اسم إنّ|3|isim|إنّ'nin ismidir; mansûbdur.
+3|96|مباركا|حال|3|isim|Hâldir (mübarek olarak); mansûbdur.
+3|97|مقام|بدل|3|isim|آيات kelimesinden bedel-i iştimâldir; merfûdur.
+3|97|حج|مبتدأ|3|isim|Muahhar mübtedadır; ولله على الناس öne geçmiş haberdir.
+3|99|شهداء|خبر|2|isim|أنتم mübtedasının haberidir; merfûdur.
+3|100|فريقا|مفعول به|2|isim|تطيعوا fiilinin mef'ûlüdür; mansûbdur.
+3|102|حق|مفعول مطلق|3|isim|Masdarın yerine geçen mef'ûl-i mutlaktır (hakkıyla); mansûbdur.
+3|103|جميعا|حال|3|isim|اعتصموا'daki fâilin hâlini bildirir (hep birlikte); mansûbdur.
+3|103|أعداء|خبر كان|2|isim|كنتم'in haberidir; mansûbdur.
+3|103|إخوانا|خبر كان|3|isim|أصبح fiilinin (كان'ın kardeşi) haberidir; mansûbdur.
+3|104|أمة|اسم كان|3|isim|تكن fiilinin ismidir; merfûdur.|فاعل
+3|106|وجوه#1|فاعل|2|isim|تبيضّ fiilinin fâilidir; merfûdur.
+3|108|ظلما|مفعول به|2|isim|يريد fiilinin mef'ûlüdür; mansûbdur.
+3|110|خير|خبر كان|2|isim|كنتم'in haberidir; mansûbdur.
+3|110|خيرا|خبر كان|3|isim|كان'ın haberidir; mansûbdur.
+3|110|المؤمنون|مبتدأ|3|isim|Muahhar mübtedadır; منهم öne geçmiş haberdir.
+3|111|أذى|مفعول مطلق|3|isim|Masdarın yerine geçen mef'ûl-i mutlaktır; takdirî fetha ile mansûbdur.|مستثنى
+3|111|الأدبار|مفعول به ثان|3|isim|يولّوكم fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|112|الذلة|نائب فاعل|3|isim|Meçhul fiil ضربت'in nâib-i fâilidir; merfûdur.
+3|113|أمة|مبتدأ|3|isim|Muahhar mübtedadır; من أهل الكتاب öne geçmiş haberdir.
+3|113|آناء|ظرف|3|isim|يتلون fiiline bağlı zaman zarfıdır; mansûbdur.
+3|117|صر|مبتدأ|3|isim|Muahhar mübtedadır; فيها öne geçmiş haberdir.
+3|118|بطانة|مفعول به|2|isim|تتخذوا fiilinin mef'ûlüdür; mansûbdur.
+3|118|خبالا|مفعول به ثان|3|isim|يألونكم fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|118|البغضاء|فاعل|2|isim|بدت fiilinin fâilidir; merfûdur.
+3|119|الأنامل|مفعول به|2|isim|عضّوا fiilinin mef'ûlüdür; mansûbdur.
+3|120|حسنة|فاعل|2|isim|تمسسكم fiilinin fâilidir; merfûdur.
+3|120|كيدهم|فاعل|2|isim|يضركم fiilinin fâilidir; merfûdur.
+3|121|المؤمنين|مفعول به|2|isim|تبوّئ fiilinin birinci mef'ûlüdür; nasb alameti yâdır.
+3|121|مقاعد|مفعول به ثان|3|isim|تبوّئ fiilinin ikinci mef'ûlüdür; gayr-i munsariftır.
+3|122|طائفتان|فاعل|2|isim|همّت fiilinin fâilidir; tesniye olduğu için ref alameti eliftir.
+3|123|أذلة|خبر|2|isim|أنتم mübtedasının haberidir; merfûdur.
+3|125|مسومين|حال|3|isim|Meleklerin hâlini bildirir (nişanlı olarak); nasb alameti yâdır.|نعت
+3|126|النصر|مبتدأ|2|isim|Mübtedadır; haberi (istisnâ müferrağ ile) من عند الله.
+3|127|طرفا|مفعول به|2|isim|يقطع fiilinin mef'ûlüdür; mansûbdur.
+3|127|خائبين|حال|3|isim|ينقلبوا'daki fâilin hâlini bildirir (eli boş olarak); nasb alameti yâdır.
+3|130|أضعافا|حال|3|isim|الربا kelimesinin hâlini bildirir (kat kat); mansûbdur.
+3|133|عرضها|مبتدأ|3|isim|Mübtedadır; haberi السماوات. Cümle جنة'nin sıfatıdır.
+3|133|السماوات|خبر|3|isim|عرضها mübtedasının haberidir (genişliği göklerin genişliği kadardır); merfûdur.
+3|135|فاحشة|مفعول به|2|isim|فعلوا fiilinin mef'ûlüdür; mansûbdur.
+3|137|سنن|فاعل|2|isim|خلت fiilinin fâilidir; merfûdur.
+3|137|عاقبة|اسم كان|3|isim|كان'ın ismidir; merfûdur.
+3|138|بيان|خبر|2|isim|هذا mübtedasının haberidir; merfûdur.
+3|139|الأعلون|خبر|2|isim|أنتم mübtedasının haberidir; ref alameti vâvdır.
+3|140|قرح#1|فاعل|2|isim|يمسسكم fiilinin fâilidir; merfûdur.
+3|140|شهداء|مفعول به|2|isim|يتخذ fiilinin mef'ûlüdür; gayr-i munsariftır.
+3|143|الموت|مفعول به|1|isim|تمنّون fiilinin mef'ûlüdür; mansûbdur.
+3|144|رسول|خبر|3|isim|محمد mübtedasının haberidir (istisnâ müferrağ); merfûdur.|مستثنى
+3|144|الرسل|فاعل|2|isim|خلت fiilinin fâilidir; merfûdur.
+3|145|كتابا|مفعول مطلق|3|isim|Hazfedilmiş bir fiilin (كتب) mef'ûl-i mutlakıdır; mansûbdur.
+3|146|ربيون|فاعل|3|isim|قاتل fiilinin fâilidir; ref alameti vâvdır.
+3|147|قولهم|خبر كان|3|isim|كان'ın öne geçmiş haberidir; ismi أن قالوا (masdar-ı müevvel). Mansûbdur.
+3|148|ثواب|مفعول به ثان|3|isim|آتاهم fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|150|مولاكم|خبر|2|isim|الله mübtedasının haberidir; takdirî zamme ile merfûdur.
+3|151|الرعب|مفعول به|2|isim|نلقي fiilinin mef'ûlüdür; mansûbdur.
+3|151|سلطانا|مفعول به|2|isim|ينزّل fiilinin mef'ûlüdür; mansûbdur.
+3|152|وعده|مفعول به ثان|3|isim|صدقكم fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|153|غما|مفعول به ثان|3|isim|أثابكم fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|154|أمنة|مفعول به|3|isim|أنزل fiilinin mef'ûlüdür; mansûbdur.
+3|154|نعاسا|بدل|3|isim|أمنة kelimesinden bedeldir; mansûbdur.
+3|154|ظن|مفعول مطلق|3|isim|Türü açıklayan mef'ûl-i mutlaktır (cahiliye zannı gibi); mansûbdur.
+3|155|الجمعان|فاعل|2|isim|التقى fiilinin fâilidir; tesniye olduğu için ref alameti eliftir.
+3|156|غزى|خبر كان|3|isim|كانوا'nun haberidir; elif üzerinde takdirî fetha ile mansûbdur.
+3|156|حسرة|مفعول به ثان|3|isim|يجعل fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|157|لمغفرة|مبتدأ|3|isim|Başında te'kid lâmı bulunan mübtedadır; haberi خير.
+3|159|فظا|خبر كان|2|isim|كنت'in haberidir; mansûbdur.
+3|160|غالب|اسم لا|2|isim|Cinsi nefyeden lâ'nın ismidir; fetha üzere mebnîdir.
+3|162|جهنم|خبر|2|isim|مأواه mübtedasının haberidir; merfûdur.
+3|164|رسولا|مفعول به|1|isim|بعث fiilinin mef'ûlüdür; mansûbdur.
+3|165|مصيبة|فاعل|2|isim|أصابتكم fiilinin fâilidir; merfûdur.
+3|165|مثليها|مفعول به|3|isim|أصبتم fiilinin mef'ûlüdür; tesniye olduğu için nasb alameti yâdır.
+3|167|قتالا|مفعول به|2|isim|نعلم fiilinin mef'ûlüdür; mansûbdur.
+3|169|أمواتا|مفعول به ثان|3|isim|تحسبنّ fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|169|أحياء|خبر|3|isim|Hazfedilmiş هم mübtedasının haberidir; merfûdur.
+3|170|فرحين|حال|3|isim|يرزقون'daki zamirin hâlini bildirir (sevinçli olarak); nasb alameti yâdır.
+3|172|أجر|مبتدأ|3|isim|Muahhar mübtedadır; للذين أحسنوا öne geçmiş haberdir.
+3|173|الناس#1|فاعل|1|isim|قال fiilinin fâilidir; merfûdur.
+3|173|إيمانا|مفعول به ثان|3|isim|زادهم fiilinin ikinci mef'ûlüdür; mansûbdur.|تمييز
+3|173|حسبنا|مبتدأ|3|isim|Mübtedadır; haberi الله.
+3|173|الوكيل|فاعل|3|isim|Câmid fiil نعم'in fâilidir; merfûdur.
+3|174|سوء|فاعل|2|isim|يمسسهم fiilinin fâilidir; merfûdur.
+3|175|أولياءه|مفعول به|2|isim|يخوّف fiilinin mef'ûlüdür; mansûbdur.
+3|176|حظا|مفعول به|2|isim|يجعل fiilinin mef'ûlüdür; mansûbdur.
+3|178|إثما|تمييز|3|isim|يزدادوا fiilindeki belirsizliği açıklayan temyizdir; mansûbdur.
+3|179|الخبيث|مفعول به|2|isim|يميز fiilinin mef'ûlüdür; mansûbdur.
+3|180|خيرا|مفعول به ثان|3|isim|يحسبنّ fiilinin ikinci mef'ûlüdür; mansûbdur.
+3|180|ميراث|مبتدأ|3|isim|Muahhar mübtedadır; ولله öne geçmiş haberdir.
+3|181|قول|مفعول به|2|isim|سمع fiilinin mef'ûlüdür; mansûbdur.
+3|181|فقير|خبر إنّ|2|isim|إنّ'nin haberidir; merfûdur.
+3|185|ذائقة|خبر|2|isim|كل mübtedasının haberidir; merfûdur.
+3|185|أجوركم|مفعول به|3|isim|Meçhul fiil توفّون'un mef'ûlüdür; mansûbdur.
+3|185|متاع|خبر|3|isim|الحياة mübtedasının haberidir (istisnâ müferrağ); merfûdur.|مستثنى
+3|186|أذى|مفعول به|2|isim|تسمعنّ fiilinin mef'ûlüdür; takdirî fetha ile mansûbdur.
+3|187|ميثاق|مفعول به|1|isim|أخذ fiilinin mef'ûlüdür; mansûbdur.
+3|190|لآيات|اسم إنّ|3|isim|إنّ'nin sona kalmış ismidir; nasb alameti kesradır.
+3|191|قياما|حال|3|isim|يذكرون'daki fâilin hâlini bildirir (ayakta); mansûbdur.|مفعول مطلق
+3|191|باطلا|حال|3|isim|هذا'nın hâlini bildirir (boş yere); mansûbdur.
+3|193|مناديا|مفعول به|2|isim|سمعنا fiilinin mef'ûlüdür; mansûbdur.
+3|195|عمل|مفعول به|2|isim|أضيع fiilinin mef'ûlüdür; mansûbdur.
+3|195|ثوابا|مفعول مطلق|3|isim|Masdarın yerine geçen mef'ûl-i mutlaktır; mansûbdur.|حال
+3|196|تقلب|فاعل|2|isim|يغرّنّك fiilinin fâilidir; merfûdur.
+3|197|متاع|خبر|3|isim|Hazfedilmiş bir mübtedanın (bu dolaşma) haberidir; merfûdur.
+3|197|مأواهم|مبتدأ|2|isim|Mübtedadır; takdirî zamme ile merfû, haberi جهنم.
+3|198|نزلا|مفعول مطلق|3|isim|Hazfedilmiş bir fiilin mef'ûl-i mutlakıdır (konak olarak ağırlanırlar); mansûbdur.|حال
+3|198|خالدين|حال|3|isim|لهم'deki zamirin hâlini bildirir; nasb alameti yâdır.
+3|200|اصبروا|فعل أمر|1|fiil|Emir fiildir, nûnun hazfi üzere mebnîdir; vâv zamiri fâildir.
