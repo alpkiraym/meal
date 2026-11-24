@@ -77,6 +77,11 @@ h1{font-family:var(--serif);color:var(--green);font-size:1.55rem;margin:6px 0 2p
 .secim .s1{flex:1 1 auto}
 .secim .s2{flex:0 0 122px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;align-items:center}
+/* Meal seçim çubuğu kaydırınca üstte sabit kalır (üst başlığın hemen altında, tek satır, yana kayar) */
+.chips{position:sticky;top:var(--top-h,58px);z-index:30;background:rgba(247,243,234,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-14px;margin-right:-14px;padding:8px 14px;border-bottom:1px solid var(--line)}
+.chips::-webkit-scrollbar{display:none}
+.chips .chip,.chips .lb{flex:0 0 auto;white-space:nowrap}
+@media (max-width:480px){.chips .lb{display:none}.chips{gap:5px}.chips .chip{padding-left:11px;padding-right:11px}}
 .chips .lb{font-size:.8rem;color:var(--muted);margin-right:2px}
 .chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:5px 12px;font-size:.84rem;cursor:pointer}
 .chip.on{border-color:var(--green);background:var(--green-soft);color:var(--green);font-weight:600}
@@ -636,6 +641,8 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function sade(s){return String(s).toLocaleLowerCase('tr').normalize('NFD').replace(/[̀-ͯ'’ʿ`\-\s]/g,'').replace(/ı/g,'i')}
 
   /* Seçili mealler ve yazı boyu */
+  function topH(){ var t=document.querySelector('header.top'); if(t) document.documentElement.style.setProperty('--top-h', t.getBoundingClientRect().height+'px'); }
+  topH(); addEventListener('resize', topH);
   var secili = rd('ml_secim', ['d','v','e','c','bl']);
   if(!rd('ml_bel',0)){ if(secili.indexOf('bl')<0) secili.push('bl'); wr('ml_secim',secili); wr('ml_bel',1); }  /* Belâgat da ilk açılışta açık */
   if(!rd('ml_cel',0)){ if(secili.indexOf('c')<0) secili.push('c'); wr('ml_secim',secili); wr('ml_cel',1); }  /* Celâleyn meal gibi seçilir; ilk açılışta açık gelir */
