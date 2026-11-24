@@ -25,3 +25,32 @@
 2|27|1-3|الاستعارة المكنية|2|الاستعارة التصريحية;المجاز المرسل|Ahit, iki tarafı birbirine bağlayan sağlam bir ipe benzetilmiştir. İp söylenmemiş, ona ait olan "bozmak / çözmek" (نقض) fiiliyle ona işaret edilmiştir; bu yüzden istiâre-i mekniyyedir.
 2|33|18-22|الطباق|1|المقابلة;الجناس|"Açığa vurduğunuz" ile "gizlediğiniz" birbirinin zıddıdır. İki zıt anlamın bir arada getirilmesiyle Allah'ın açık ve gizli her şeyi bildiği vurgulanır.
 2|40|8-11|التعطف|3|المشاكلة;التكرار;الجناس|Aynı kök (و ف ي) önce kulların fiili olarak (أوفوا), sonra Allah'ın fiili olarak (أوف) tekrar edilmiştir. Bir kelimenin kökünün cümlenin iki yanında farklı biçimde dönmesine taattuf denir; bazıları buna müşâreke der.
+4|2|1-1|المجاز المرسل|2||Mallar ancak ergenliğe erip yetimlikten çıkınca teslim edilir. Teslim anında artık yetim olmadıkları hâlde, önceki hâllerine bakılarak "yetimler" denmiştir (geçmişteki hâle göre adlandırma).
+4|2|8-9|الاستعارة المكنية|2|المجاز المرسل|Mal, yenen bir yiyeceğe benzetilmiştir. Benzetilen yiyecek söylenmemiş, ona ait olan "yemek" fiili mala yüklenmiştir. Haksız yere el koymanın tamamen tüketmek gibi olduğunu hissettirir.
+4|2|5-6|الطباق|1||Haram mal anlamındaki الخبيث ile helal mal anlamındaki الطيب zıt anlamlı iki kelimedir; yan yana getirilmeleri farkı keskinleştirir.
+4|9|8-9|الإيجاز|3||Neyden korkacakları söylenmemiştir. Böylece okuyan, arkada kalan aciz çocukların başına gelebilecek her türlü sıkıntıyı kendisi düşünür; korku daha canlı hâle gelir.
+4|10|10-10|المجاز المرسل|2|الاستعارة التصريحية|Yenen şey ateş değil, yetimin malıdır. Bu mal sahibini ateşe götürdüğü için, sonucu olan "ateş" adıyla anılmıştır (sebep yerine müsebbebin söylenmesi).
+4|21|3-6|الكناية|2||Karı kocanın birbirine ulaşması (ifdâ), evlilikteki yakınlığı açıkça söylemeden ifade eden zarif bir kinayedir.
+4|23|26-27|الكناية|2||"Onlarla girdiniz" sözü, karı koca birlikteliğini açıkça adlandırmadan anlatan bir kinayedir.
+4|24|20-20|الاستعارة التصريحية|2||Zina, suyun dökülüp akmasını anlatan "sefh" kökünden bir kelimeyle anılmıştır. Benzetilen zina söylenmemiş, yalnızca kendisine benzetilen akıp gitme anılmıştır.
+4|24|26-26|الاستعارة التصريحية|2||Mehir, emeğin karşılığı olan "ücret" (ecr) kelimesiyle anılmıştır. Benzetilen mehir söylenmemiş, yalnızca kendisine benzetilen ücret açıkça zikredilmiştir.
+4|29|4-8|المجاز المرسل|2|الاستعارة المكنية|Burada "yemek", haksız yere almak anlamındadır. Mal önce alınır, sonra yenir; alma işi, ondan doğan sonuç olan "yeme" adıyla anılmıştır.
+4|33|8-9|المجاز المرسل|2||أيمان "sağ eller" demektir. Antlaşma yapılırken eller birbirine verildiği için, antlaşma onu yapan ellerle anılmıştır.
+4|34|25-27|الكناية|2||"Yataklarda onlardan uzak durun" sözü, karı koca birlikteliğinden uzak durmayı açıkça söylemeden ifade eden bir kinayedir.
+4|38|5-10|التكرار|2||Olumsuzluk edatı لا her iki öğede ayrı ayrı tekrarlanmıştır. Böylece hem Allah'a hem ahiret gününe inanmadıkları ayrı ayrı vurgulanır; yalnızca ikisine birlikte inanmadıkları anlamı çıkmaz.
+4|43|30-31|الكناية|2||الغائط asıl anlamıyla çukur, alçak yer demektir. İhtiyaç gidermek için oraya gidildiğinden, bu ihtiyaç kaba bir söz kullanmadan "çukur yerden gelmek" diye anlatılmıştır.
+4|43|26-29|الالتفات|2||Âyet muhataplara hitap ederken ("siz") burada birden üçüncü şahsa ("sizden biri ... gelirse") geçer. Söylenmesi utanılan bir durumu doğrudan muhataba yöneltmemek için hitap değiştirilmiştir.
+4|47|14-15|المجاز المرسل|2|التنكير|"Yüzler" denip yüzlerin sahipleri kastedilmiştir; insanın en şerefli uzvu olan yüz, bütün kişinin yerine kullanılmıştır (parça söylenip bütün kastedilmesi).
+4|47|15-15|التنكير|2|المجاز المرسل|وجوها kelimesinin nekre gelmesi, kimin kastedildiğini belirsiz bırakarak muhatapları doğrudan suçlamaz; tehdidin büyüklüğünü ve korkunçluğunu ise artırır.
+4|56|13-14|الاستعارة المكنية|2||Azap, tadılan bir şeye benzetilmiştir. Benzetilen yiyecek söylenmemiş, ona ait "tatmak" fiili azaba yüklenmiştir. Acının sürekli ve iliklere kadar hissedileceğini anlatır.
+4|64|16-18|الالتفات|1||"Senden" yerine "Peygamber" diye üçüncü şahısla söz edilmiştir. Bu geçiş Peygamber'in makamını yüceltir ve onun bağışlanma dilemesinin değerini vurgular.
+4|71|7-10|الطباق|1||ثبات (bölük bölük) ile جميعا (hep birlikte) birbirinin zıddıdır. Müminler düşmana ister ayrı birlikler hâlinde ister tek bir ordu olarak çıkmaya çağrılır.
+4|71|4-5|المجاز المرسل|2||Tedbir (hazer) kişinin kendini koruduğu araçlarla (silah vb.) anılmıştır. Korunma sebebi olan şey, ondan doğan tedbir adıyla zikredilmiştir.
+4|74|5-8|الاستعارة المكنية|3||Dünya hayatını ahiretle değişmek, alışverişe benzetilmiştir. Benzetilen ticaret açıkça söylenmemiş, ona ait "satmak" (şerâ) fiili kullanılmıştır.
+4|109|0-4|الالتفات|1||Önceki âyetlerde hainlerden üçüncü şahısla söz edilirken burada onları savunanlara doğrudan "siz" diye hitap edilir. Hitaba geçiş azarı daha keskin kılar.
+4|125|13-16|الاعتراض|3||Bu cümle, İbrâhim'in dinine uymayı anlatan sözün arasına girmiştir. İbrâhim'in Allah'ın dostu olduğunu bildirerek onun yoluna uymanın ne kadar yerinde olduğunu vurgular.
+4|138|0-0|الاستعارة التبعية|3|الاستعارة التصريحية|Müjde (beşâret) sevindirici haber içindir; burada ise elem verici azap haber verilir. Fiil üzerinden kurulan bu istiâre, münafıklarla alay etme (tehekküm) anlamı da taşır.
+4|141|6-6|المجاز المرسل|2||Müminlerin zaferi "fetih" (açılış) diye anılmıştır; zafer, sevince ve hayırlara kapı açtığı için ondan doğan sonuçla adlandırılmıştır. Kâfirlerin kazancına ise yalnızca "pay" denir.
+4|142|4-5|المشاكلة|3||Allah'ın, münafıkların aldatmasına verdiği karşılık, onların fiiliyle aynı kelimeyle (aldatan) anılmıştır. Cezanın, işlenen suçun adıyla söylenmesidir.
+4|160|0-0|التنكير|2||ظلم kelimesinin nekre gelmesi zulmün türünü belirsiz bırakır; her türlü haksızlığın dünyada ve ahirette cezayı gerektirebileceğini, ayrıca bu zulmün büyüklüğünü hissettirir.
+4|175|7-9|المجاز المرسل|2||Rahmet, rahmetin bulunduğu yer olan cennet anlamında kullanılmıştır (hâl söylenip mahal kastedilmesi).
