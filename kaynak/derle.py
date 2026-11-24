@@ -89,13 +89,20 @@ IR = []
 for sat in open(os.path.join(K, 'irab.txt'), encoding='utf-8'):
     sat = sat.rstrip('\n')
     if not sat or sat.startswith('#'): continue
-    s_, a_, n_, t_, lv_, tur_, ac_ = sat.split('|', 6)
-    s_, a_, n_ = int(s_), int(a_), int(n_)
+    p_ = sat.split('|')
+    s_, a_, n_, t_, lv_, tur_, ac_ = p_[:7]
+    h_ = [x for x in p_[7].split(',') if x] if len(p_) > 7 else []  # şık yapılmayacak terimler (ihtilaf)
+    s_, a_ = int(s_), int(a_)
     t = T['a'][s_][a_]
     if s_ not in (1, 9) and a_ == 1: t = ' '.join(t.split(' ')[4:])
     ws = [w for w in t.split(' ') if not isaret(w)]
+    if n_.isdigit(): n_ = int(n_)
+    else:  # kelimenin kendisi yazılmış (harekesiz); aynı kelime birden çoksa 'كلمة#2'
+        k_, _, sira_ = n_.partition('#'); bul_ = [i for i, w in enumerate(ws) if sade(w) == sade(k_)]
+        assert len(bul_) >= int(sira_ or 1), ('irab kelimesi bulunamadı', s_, a_, n_)
+        n_ = bul_[int(sira_ or 1) - 1]
     assert n_ < len(ws), ('irab kelime sırası', s_, a_, n_)
-    IR.append({'s': s_, 'a': a_, 'n': n_, 'w': ws[n_], 't': t_, 'lv': int(lv_), 'tur': tur_, 'x': ac_})
+    IR.append({'s': s_, 'a': a_, 'n': n_, 'w': ws[n_], 't': t_, 'lv': int(lv_), 'tur': tur_, 'x': ac_, **({'h': h_} if h_ else {})})
 json.dump(IR, open(os.path.join(KOK, 'veri', 'irab.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print("i'râb testi:", len(IR), 'soru')
 
