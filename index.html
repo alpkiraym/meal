@@ -382,6 +382,8 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
 .gab-bar i{display:block;height:5px;border-radius:3px;background:#2f7a5f}
 .gab-g{font-weight:700;color:#1f5a45}.gab-g.o{color:#9a7428}.gab-g.z{color:#a8432f}.gab-g.e{color:#b9b3a6;font-weight:400}
 .gab-kr.bos .nm b{color:#8b8f86}
+.gab-kr.gab-alt{padding-left:28px;border-top:1px dashed #f0eadb}
+.gab-kr.gab-alt .nm b{font-size:.84rem;font-weight:500}
 .gab-note{font-size:.78rem;color:#6b7068;margin:4px 2px 12px}
 .gab-mail{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;border:1px solid #e3dccb;border-radius:12px;background:#fffdf8;color:#1f5a45;font-weight:600;font-size:.9rem;text-decoration:none}
 .gab-toast{position:fixed;left:50%;bottom:calc(var(--gab-h,84px) + 14px);transform:translateX(-50%);z-index:59;background:#1f2a24;color:#fff;font:500 .85rem/1.35 system-ui,-apple-system,sans-serif;padding:8px 14px;border-radius:999px;max-width:88vw;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.2)}
@@ -445,7 +447,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   window.gaOzet = function(o){
     if(!o||APP==='ana')return;
     var all = rd('ga_ozet',{}), cur = all[APP]||{};
-    ['bitti','etiket','d','y','kart'].forEach(function(f){ if(o[f]!==undefined) cur[f]=o[f]; });
+    ['bitti','etiket','d','y','kart','alt'].forEach(function(f){ if(o[f]!==undefined) cur[f]=o[f]; });
     if(o.yer){ cur.yer = o.yer; cur.t = Date.now(); }
     all[APP] = cur; wr('ga_ozet', all);
     if(o.aktif){ var g = rd('ga_gunler',[]), b = gun(Date.now()); if(g[g.length-1]!==b){ g.push(b); wr('ga_gunler', g.slice(-120)); } }
@@ -572,11 +574,18 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
       var c=q===null?'e':(q>=75?'':(q>=50?'o':'z'));
       return '<button class="gab-kr" type="button" data-u="'+esc((o.yer&&o.yer.url)||p.url)+'"><span class="nm"><b>'+esc(p.ad)+'</b><small>'+esc(o.etiket||'')+'</small></span><span class="n">%'+b+'</span><span class="n gab-g '+c+'">'+(q===null?'—':'%'+q)+'</span><span class="gab-bar"><i style="width:'+b+'%"></i></span></button>';
     }).join('');
-    // Kur'ân Meali · kelime testi (ders listesinde değil; varsa Karnem'e ayrı satır olarak eklenir)
+    // Kur'ân Meali (ders listesinde değil): üst başlık + alt satırlar (Kelime testi, İ'râb testi)
     var ml=all.meal;
-    if(ml){ var_=true; var md=ml.d||0, my=ml.y||0; D+=md; Y+=my; K+=ml.kart||0;
-      var mb=Math.round((ml.bitti||0)*100), mq=md+my?Math.round(md/(md+my)*100):null, mc=mq===null?'e':(mq>=75?'':(mq>=50?'o':'z'));
-      rows+='<button class="gab-kr" type="button" data-u="'+esc((ml.yer&&ml.yer.url)||'/meal/#/test')+'"><span class="nm"><b>Kur\'ân Meali</b><small>'+esc(ml.etiket||'Kelime testi')+'</small></span><span class="n">%'+mb+'</span><span class="n gab-g '+mc+'">'+(mq===null?'—':'%'+mq)+'</span><span class="gab-bar"><i style="width:'+mb+'%"></i></span></button>'; }
+    function mlSatir(o, ad, sinif, u){
+      var md=o.d||0, my=o.y||0, mb=Math.round((o.bitti||0)*100), mq=md+my?Math.round(md/(md+my)*100):null, mc=mq===null?'e':(mq>=75?'':(mq>=50?'o':'z'));
+      return '<button class="gab-kr'+sinif+'" type="button" data-u="'+esc(u)+'"><span class="nm"><b>'+esc(ad)+'</b><small>'+esc(o.etiket||'')+'</small></span><span class="n">%'+mb+'</span><span class="n gab-g '+mc+'">'+(mq===null?'—':'%'+mq)+'</span><span class="gab-bar"><i style="width:'+mb+'%"></i></span></button>';
+    }
+    if(ml){ var_=true; D+=ml.d||0; Y+=ml.y||0; K+=ml.kart||0;
+      if(ml.alt && ml.alt.length){
+        rows+=mlSatir({d:ml.d,y:ml.y,bitti:ml.bitti,etiket:''}, 'Kur\'ân Meali', '', (ml.yer&&ml.yer.url)||'/meal/');
+        ml.alt.forEach(function(a){ rows+=mlSatir(a, a.ad, ' gab-alt', a.url||'/meal/'); });
+      } else rows+=mlSatir(ml, 'Kur\'ân Meali', '', (ml.yer&&ml.yer.url)||'/meal/#/test');
+    }
     var S=D+Y, P=S?Math.round(D/S*100):null, sr=seri();
     return '<div class="gab-st"><div><b>'+S+'</b><span>soru çözüldü</span></div><div><b>'+(P===null?'—':'%'+P)+'</b><span>doğru</span></div><div><b>'+K+'</b><span>kart biliniyor</span></div></div>'
       + (sr>1 ? '<div class="gab-streak">🔥 '+sr+' gündür aralıksız çalışıyorsunuz</div>' : (sr===1 ? '<div class="gab-streak">🔥 Bugün çalıştınız. Yarın da gelirseniz seri başlar.</div>' : ''))
@@ -751,7 +760,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   }
 
   /* ================= İ'RÂB TESTİ =================
-     Sorular veri/irab.json (kaynak/irab.txt): görevler el-Cedvel ve Derviş'le karşılaştırılarak yazıldı, açıklamalar bizim. Kayıt ml_ir: {n,d,y} */
+     Sorular veri/irab.json (kaynak/irab.txt): görevler el-Cedvel ve Derviş'le karşılaştırılarak yazıldı, açıklamalar bizim. Kayıt ml_ir: {n,d,y,b:{doğru çözülen soru anahtarları}} */
   var IR=null, IT=null;
   var TERIM={isim:['مبتدأ','خبر','فاعل','مفعول به','مفعول به ثان','مضاف إليه','نعت','بدل','معطوف','جار ومجرور','نائب فاعل','حال','تمييز'], fiil:['فعل ماض','فعل مضارع','فعل أمر','اسم فعل']};
   function karisT(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), x=a[i]; a[i]=a[j]; a[j]=x; } return a; }
@@ -797,7 +806,8 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function irCevap(i){
     var x=IT.sira[IT.i], ok=IT.sec[i]===x.t; IT.cevap=i;
     if(ok) IT.d++; else { IT.y++; if(!x.tekrar){ var k=Object.assign({},x,{tekrar:1}); IT.sira.splice(Math.min(IT.sira.length, IT.i+4),0,k); } }
-    var r=rd('ml_ir',null)||{n:0,d:0,y:0}; r.n++; if(ok) r.d++; else r.y++; wr('ml_ir',r);
+    var r=rd('ml_ir',null)||{n:0,d:0,y:0}; r.b=r.b||{}; r.n++; if(ok){ r.d++; r.b[x.s+'-'+x.a+'-'+x.n]=1; } else r.y++; wr('ml_ir',r);
+    var nb=Object.keys(r.b).length; mlOzet('ir', {ad:"İ'râb testi", etiket:nb+'/'+IR.length+' soru doğru çözüldü', d:r.d, y:r.y, bitti:nb/IR.length, url:'/meal/#/irab'});
     irCiz();
   }
 
@@ -807,7 +817,16 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   var KEL=null, KELK={};
   function kelYukle(){ if(KEL) return Promise.resolve(KEL); return fetch('veri/kelimeler.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(L){ KEL=L; L.forEach(function(x){ KELK[x.k]=x; }); return L; }); }
   function ktDurum(){ var d=rd('ml_kt',null); if(!d||!d.k) d={lv:1,bul:false,son:[],ust:[],k:{},n:0,d:0,y:0,kap:'hepsi'}; return d; }
-  function ktKaydet(d){ wr('ml_kt',d); try{ if(window.gaOzet) gaOzet({bitti: KEL?ktBilinen(d)/KEL.length:0, etiket:'Kelime testi · Seviye '+d.lv+' · '+ktBilinen(d)+' kelime', d:d.d, y:d.y, kart:ktBilinen(d), yer:{ad:'Kelime testi', url:'/meal/#/test'}, aktif:true}); }catch(e){} }
+  function ktKaydet(d){ wr('ml_kt',d); mlOzet('kt', {ad:'Kelime testi', etiket:'Seviye '+d.lv+' · '+ktBilinen(d)+' kelime biliniyor', d:d.d, y:d.y, kart:ktBilinen(d), bitti: KEL?ktBilinen(d)/KEL.length:0, url:'/meal/#/test'}); }
+  /* Karnem: Kur'ân Meali üst başlığı altında Kelime testi ve İ'râb testi (ml_oz: {kt, ir}) */
+  function mlOzet(k, o){
+    try{
+      var oz=rd('ml_oz',{}); oz[k]=o; wr('ml_oz',oz);
+      var A=['kt','ir'].filter(function(x){ return oz[x]; }).map(function(x){ return oz[x]; }), d=0, y=0, b=0;
+      A.forEach(function(a){ d+=a.d||0; y+=a.y||0; b+=a.bitti||0; });
+      if(window.gaOzet) gaOzet({bitti:b/A.length, etiket:'', d:d, y:y, kart:oz.kt?oz.kt.kart:0, alt:A, yer:{ad:o.ad, url:o.url}, aktif:true});
+    }catch(e){}
+  }
   function ktBilinen(d){ var n=0; for(var k in d.k) if(d.k[k].b>=2) n++; return n; }  /* üst üste 2 doğru = biliniyor */
   function oran(a){ if(!a.length) return null; var t=0; a.forEach(function(x){t+=x;}); return t/a.length; }
   function karis(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
