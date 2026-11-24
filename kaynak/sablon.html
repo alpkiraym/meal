@@ -209,9 +209,9 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   var MEAL = [{k:'d', ad:'Diyanet İşleri', ks:'Diyanet'}, {k:'v', ad:'Diyanet Vakfı (TDV)', ks:'TDV'}, {k:'e', ad:'Elmalılı Hamdi Yazır', ks:'Elmalılı'}, {k:'c', ad:'Celâleyn tefsiri (Arapça)', ks:'Celâleyn', ar:1}];
   /* Celâleyn'de âyet metni «…» içinde: kırmızı gösterilir (kapanmamış « satır sonuna kadar sayılır) */
   function celHtml(t){
-    var q=function(_,x){ return '<span class="cq">'+x+'</span>'; };
-    if(t.indexOf('«')<0 && t.indexOf('»')<0) return esc(t).replace(/\(([^()]*)\)/g, q);  /* birkaç âyette işaret () */
-    return esc(t).replace(/^([^«»]*)»/, q).replace(/«([^«»]*)(»|$)/g, q);
+    var q=function(m){ return '<span class="cq">'+m+'</span>'; };  /* işaretler de kalır, kırmızı olur */
+    if(t.indexOf('«')<0 && t.indexOf('»')<0) return esc(t).replace(/\([^()]*\)/g, q);  /* birkaç âyette işaret () */
+    return esc(t).replace(/^[^«»]*»/, q).replace(/«[^«»]*(»|$)/g, q);
   }
   var BESMELE = 'بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ';
   var app = document.getElementById('app'), cache = {};
