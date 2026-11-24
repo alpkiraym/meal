@@ -83,6 +83,22 @@ for i, (k, m) in enumerate(SOZ):
 json.dump(KEL, open(os.path.join(KOK, 'veri', 'kelimeler.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print('kelime testi:', N, 'kelime;', 'seviye başına', N // 10)
 
+
+# ---- İ'râb testi: kaynak/irab.txt → veri/irab.json ----
+IR = []
+for sat in open(os.path.join(K, 'irab.txt'), encoding='utf-8'):
+    sat = sat.rstrip('\n')
+    if not sat or sat.startswith('#'): continue
+    s_, a_, n_, t_, lv_, tur_, ac_ = sat.split('|', 6)
+    s_, a_, n_ = int(s_), int(a_), int(n_)
+    t = T['a'][s_][a_]
+    if s_ not in (1, 9) and a_ == 1: t = ' '.join(t.split(' ')[4:])
+    ws = [w for w in t.split(' ') if not isaret(w)]
+    assert n_ < len(ws), ('irab kelime sırası', s_, a_, n_)
+    IR.append({'s': s_, 'a': a_, 'n': n_, 'w': ws[n_], 't': t_, 'lv': int(lv_), 'tur': tur_, 'x': ac_})
+json.dump(IR, open(os.path.join(KOK, 'veri', 'irab.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+print("i'râb testi:", len(IR), 'soru')
+
 # ---- index.html ----
 import base64
 ADLAR = """Fâtiha|الفاتحة

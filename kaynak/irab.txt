@@ -1,0 +1,23 @@
+# İ'râb testi · sûre|âyet|kelime sırası (0'dan; vakf işaretleri sayılmaz)|doğru terim|seviye (1-3)|tür (isim/fiil)|kısa açıklama
+# İ'râb görevleri el-Cedvel ve Derviş'teki i'râbla karşılaştırılarak yazıldı; açıklamalar Claude'un kendi cümleleridir, eserlerin metni alınmadı.
+1|1|0|جار ومجرور|1|isim|Bâ harf-i cer, اسم ona bağlı mecrûr kelime; ikisi birlikte hazfedilmiş bir habere (ya da fiile) müteallıktır.
+1|1|1|مضاف إليه|2|isim|اسم kelimesine izâfe edilmiştir; cer alameti kesradır.
+1|1|2|نعت|2|isim|Lafza-i celâlin sıfatıdır; ona uyarak mecrûrdur.
+1|2|0|مبتدأ|1|isim|Cümlenin başında gelen, hakkında hüküm verilen isimdir; merfû, alameti zammedir.
+1|2|1|جار ومجرور|1|isim|Lâm harf-i cer, lafza-i celâl mecrûr; hazfedilmiş habere müteallıktır.
+1|2|2|نعت|2|isim|Lafza-i celâlin sıfatıdır (bedel olduğu da söylenir); ona uyarak mecrûrdur.
+1|2|3|مضاف إليه|2|isim|رب kelimesine izâfe edilmiştir; cemi müzekker sâlim olduğu için cer alameti yâdır.
+1|3|0|نعت|2|isim|Önceki âyetteki lafza-i celâlin sıfatıdır; mecrûrdur.
+1|4|0|نعت|2|isim|Lafza-i celâlin sıfatıdır (bedel de denir); mecrûrdur.
+1|4|1|مضاف إليه|2|isim|مالك kelimesine izâfe edilmiştir; mecrûrdur.
+1|5|0|مفعول به|1|isim|Munfasıl zamir, mebnîdir; fiilden önce getirilmiş (mukaddem) mef'ûl bihtir, mahallen mansûbdur.
+1|5|1|فعل مضارع|1|fiil|Muzâri fiil, merfûdur; fâili gizli نحن zamiridir.
+1|6|0|فعل أمر|1|fiil|Dua anlamında emir fiil, illet harfinin hazfi üzere mebnîdir; نا birinci mef'ûl bih, fâil gizli أنت zamiridir.
+1|6|1|مفعول به ثان|3|isim|اهدنا fiilinin ikinci mef'ûlüdür; mansûb, alameti fethadır.
+1|6|2|نعت|2|isim|الصراط kelimesinin sıfatıdır; ona uyarak mansûbdur.
+1|7|0|بدل|3|isim|Önceki âyetteki الصراط kelimesinden bedeldir; mansûbdur.
+1|7|1|مضاف إليه|3|isim|İsm-i mevsûldür, mebnîdir; صراط kelimesine izâfe edildiği için mahallen mecrûrdur.
+1|7|2|فعل ماض|1|fiil|Mâzi fiil, sükûn üzere mebnîdir; bitişik ت zamiri fâildir.
+1|7|5|مضاف إليه|2|isim|غير kelimesine izâfe edilmiştir; mecrûrdur.
+1|7|6|نائب فاعل|3|isim|Cer ve mecrûr, ism-i mef'ûl olan المغضوب kelimesinin nâib-i fâili yerindedir (mahallen merfû).
+1|7|8|معطوف|2|isim|و ile غير kelimesine atfedilmiştir; لا nefyi pekiştirir. Cemi müzekker sâlim olduğu için cer alameti yâdır.
