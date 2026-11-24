@@ -366,6 +366,11 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
 
   /* ================= İ'RÂB TESTİ =================
      Sorular veri/irab.json (kaynak/irab.txt): görevler el-Cedvel ve Derviş'le karşılaştırılarak yazıldı, açıklamalar bizim. Kayıt ml_ir: {n,d,y,b:{doğru çözülen soru anahtarları}} */
+  /* Cüz başları (sûre, âyet) — i'râb ve belâgat testlerinde kapsam cüz cüz */
+  var CUZB=[[1,1],[2,142],[2,253],[3,93],[4,24],[4,148],[5,82],[6,111],[7,88],[8,41],[9,93],[11,6],[12,53],[15,1],[17,1],[18,75],[21,1],[23,1],[25,21],[27,56],[29,46],[33,31],[36,28],[39,32],[41,47],[46,1],[51,31],[58,1],[67,1],[78,1]];
+  function cuzNo(s,a){ for(var i=CUZB.length-1;i>0;i--){ var b=CUZB[i]; if(s>b[0]||(s===b[0]&&a>=b[1])) return i+1; } return 1; }
+  function cuzlar(L){ var c=[]; L.forEach(function(x){ var n=cuzNo(x.s,x.a); if(c.indexOf(n)<0) c.push(n); }); return c.sort(function(p,q){ return p-q; }); }
+  function cuzSuz(L,k){ return k==='hepsi'?L:L.filter(function(x){ return 'c'+cuzNo(x.s,x.a)===k; }); }
   var IR=null, IT=null;
   var TERIM={isim:['مبتدأ','خبر','فاعل','مفعول به','مفعول به ثان','مضاف إليه','نعت','بدل','معطوف','جار ومجرور','نائب فاعل','حال','تمييز','اسم إنّ','خبر إنّ','اسم كان','خبر كان','اسم لا','مفعول لأجله','مفعول مطلق','ظرف','منادى','مستثنى','توكيد'], fiil:['فعل ماض','فعل مضارع','فعل أمر','اسم فعل']};
   function karisT(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), x=a[i]; a[i]=a[j]; a[j]=x; } return a; }
@@ -377,9 +382,9 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
       .catch(function(){ app.innerHTML='<p class="bos">Sorular yüklenemedi. İnternet bağlantınızı kontrol edip yeniden deneyin.</p>'; });
   }
   /* Kapsam (ml_ir.kap): 'hepsi' ya da sûre no. Bir tur 20 soru: önce hiç doğru çözülmemiş sorular, sonra seviyeye göre (kolaydan zora) */
-  function irKap(){ var r=rd('ml_ir',null)||{}; return r.kap||'hepsi'; }
-  function irHavuz(k){ return k==='hepsi'?IR:IR.filter(function(x){ return String(x.s)===k; }); }
-  function irKapHtml(){ var k=irKap(), S2=[]; IR.forEach(function(x){ if(S2.indexOf(x.s)<0) S2.push(x.s); }); if(S2.length<2) return ''; return '<div class="kt-kap"><span class="lb">Kapsam:</span>'+[['hepsi','Hepsi']].concat(S2.map(function(s){ return [String(s), S[s-1][0]]; })).map(function(a){ return '<button type="button" class="chip'+(k===a[0]?' on':'')+'" data-irk="'+a[0]+'">'+esc(a[1])+' <small style="opacity:.6">'+irHavuz(a[0]).length+'</small></button>'; }).join('')+'</div>'; }
+  function irKap(){ var r=rd('ml_ir',null)||{}, k=r.kap||'hepsi'; return (k==='hepsi'||cuzlar(IR).indexOf(+k.slice(1))>=0&&k[0]==='c')?k:'hepsi'; }
+  function irHavuz(k){ return cuzSuz(IR,k); }
+  function irKapHtml(){ var k=irKap(), C=cuzlar(IR); if(C.length<2) return ''; return '<div class="kt-kap"><span class="lb">Kapsam:</span>'+[['hepsi','Hepsi']].concat(C.map(function(n){ return ['c'+n, n+'. cüz']; })).map(function(a){ return '<button type="button" class="chip'+(k===a[0]?' on':'')+'" data-irk="'+a[0]+'">'+esc(a[1])+' <small style="opacity:.6">'+irHavuz(a[0]).length+'</small></button>'; }).join('')+'</div>'; }
   function irKapBagla(){ app.querySelectorAll('[data-irk]').forEach(function(b){ b.onclick=function(){ var r=rd('ml_ir',null)||{n:0,d:0,y:0}; r.kap=b.dataset.irk; wr('ml_ir',r); irCiz(); }; }); }
   function irBas(){
     var r=rd('ml_ir',null)||{}, B=r.b||{}, H=karisT(irHavuz(irKap()).slice());
@@ -437,8 +442,9 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
      Kayıt ml_bl: {n,d,y,b:{doğru çözülen soru anahtarları}} */
   var BL=null, BT=null;
   var BTERIM=['التشبيه البليغ','الاستعارة التصريحية','الاستعارة المكنية','الكناية','المجاز المرسل','المجاز العقلي','الالتفات','القصر','الاختصاص','التكرار','الإيجاز','الإطناب','التفسير بعد الإبهام','الطباق','المقابلة','الجناس','التقديم','التعريف','التنكير','الاستعارة التبعية','المشاكلة','التتميم','التشبيه التمثيلي','مراعاة النظير','الاعتراض','التعطف'];
-  function blSureler(){ var a=[]; BL.forEach(function(x){ if(a.indexOf(x.s)<0) a.push(x.s); }); return a.sort(function(p,q){ return p-q; }); }
-  function blHavuz(k){ return k==='hepsi'?BL:BL.filter(function(x){ return x.s===+k; }); }
+  function blSureler_(){ var a=[]; BL.forEach(function(x){ if(a.indexOf(x.s)<0) a.push(x.s); }); return a.sort(function(p,q){ return p-q; }); }
+  function blSureler(){ return blSureler_(); }
+  function blHavuz(k){ return cuzSuz(BL,k); }
   function blAnah(x){ return x.s+'-'+x.a+'-'+x.b+'-'+x.e; }
   function belagat(){
     document.title="Belâgat testi · Kur'ân Meali";
@@ -461,8 +467,8 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function blCiz(){
     var h='<h1>Belâgat testi</h1><p class="sub">Âyetteki <b style="color:#c0392b">kırmızı ifadede</b> hangi belâgat sanatı var? Sorular, el-Cedvel ve Derviş\'te belâgat notu bulunan yerlerden; şu an <b>'+blSureler().map(function(n){ return esc(S[n-1][0]); }).join(', ')+'</b> (' + BL.length + ' soru). Kolaydan zora gider.</p>';
     if(BT.mod==='giris'){
-      var k=rd('ml_bl',null), su=blSureler(); if(BT.kap!=='hepsi' && su.indexOf(+BT.kap)<0) BT.kap='hepsi';
-      h+='<div class="kt-kap"><span class="lb">Kapsam:</span>'+[{k:'hepsi',ad:'Hepsi ('+BL.length+')'}].concat(su.map(function(n){ return {k:String(n), ad:S[n-1][0]+' ('+blHavuz(n).length+')'}; })).map(function(o){ return '<button type="button" class="chip'+(BT.kap===o.k?' on':'')+'" data-blk="'+o.k+'">'+esc(o.ad)+'</button>'; }).join('')+'</div>';
+      var k=rd('ml_bl',null), su=cuzlar(BL); if(BT.kap!=='hepsi' && (BT.kap[0]!=='c' || su.indexOf(+BT.kap.slice(1))<0)) BT.kap='hepsi';
+      if(su.length>1) h+='<div class="kt-kap"><span class="lb">Kapsam:</span>'+[{k:'hepsi',ad:'Hepsi ('+BL.length+')'}].concat(su.map(function(n){ return {k:'c'+n, ad:n+'. cüz ('+blHavuz('c'+n).length+')'}; })).map(function(o){ return '<button type="button" class="chip'+(BT.kap===o.k?' on':'')+'" data-blk="'+o.k+'">'+esc(o.ad)+'</button>'; }).join('')+'</div>';
       h+='<div class="card kt-soru"><p style="margin:0 0 6px"><b>Nasıl çalışır?</b></p><p style="margin:0;color:var(--muted);font-size:.92rem">Önce التفات، القصر، التشبيه التمثيلي gibi temel sanatlar, sonra الاستعارة، المجاز المرسل، التنكير, en sonda المشاكلة، التتميم، التفسير بعد الإبهام gibi ince sanatlar gelir. Aynı ifadede birden çok sanat varsa öteki sanat şıklara konmaz. Yanlış cevaplanan soru birkaç soru sonra yeniden sorulur. Her cevaptan sonra kısa açıklama ve el-Cedvel ile Derviş bağlantıları çıkar.</p>'+(k&&k.n?'<p style="margin:8px 0 0;font-size:.88rem">Şimdiye kadar: <b>'+k.n+'</b> soru · <b>%'+Math.round(k.d/k.n*100)+'</b> doğru</p>':'')+'<div class="kt-btn"><button type="button" id="blBas">Başla</button></div></div>';
       app.innerHTML=h+kunye(); document.getElementById('blBas').onclick=blBas;
       app.querySelectorAll('[data-blk]').forEach(function(b){ b.onclick=function(){ BT.kap=b.dataset.blk; wr('ml_blk',BT.kap); blCiz(); }; }); return;
