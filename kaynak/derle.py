@@ -99,6 +99,21 @@ for sat in open(os.path.join(K, 'irab.txt'), encoding='utf-8'):
 json.dump(IR, open(os.path.join(KOK, 'veri', 'irab.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print("i'râb testi:", len(IR), 'soru')
 
+# ---- Belâgat testi: kaynak/belagat.txt → veri/belagat.json ----
+BL = []
+for sat in open(os.path.join(K, 'belagat.txt'), encoding='utf-8'):
+    sat = sat.rstrip('\n')
+    if not sat or sat.startswith('#'): continue
+    s_, a_, r_, t_, lv_, h_, ac_ = sat.split('|', 6)
+    s_, a_ = int(s_), int(a_); b_, e_ = [int(x) for x in r_.split('-')]
+    t = T['a'][s_][a_]
+    if s_ not in (1, 9) and a_ == 1: t = ' '.join(t.split(' ')[4:])
+    ws = [w for w in t.split(' ') if not isaret(w)]
+    assert 0 <= b_ <= e_ < len(ws), ('belâgat kelime aralığı', s_, a_, r_)
+    BL.append({'s': s_, 'a': a_, 'b': b_, 'e': e_, 'w': ' '.join(ws[b_:e_ + 1]), 't': t_, 'lv': int(lv_), 'h': [x for x in h_.split(';') if x], 'x': ac_})
+json.dump(BL, open(os.path.join(KOK, 'veri', 'belagat.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+print("belâgat testi:", len(BL), 'soru')
+
 # ---- index.html ----
 import base64
 ADLAR = """Fâtiha|الفاتحة

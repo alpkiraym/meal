@@ -160,6 +160,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
 .ir-sor .arw{font-family:var(--ar);font-size:1.5rem;color:#c0392b}
 .kt-sec.ir{grid-template-columns:1fr 1fr}
 .kt-sec.ir button{font-family:var(--ar);font-size:1.35rem;direction:rtl;line-height:1.5}
+.kt-sec.bl button{font-size:1.15rem}
 .ir-son .lk{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;align-items:center;font-size:.85rem}
 .ir-son .ac{margin:6px 0 0;line-height:1.5}
 .kt-kap{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
@@ -624,7 +625,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   }
 
   /* Adres düzeni: #/ liste · #/2 sûre okuma · #/2/255 âyet */
-  function yol(){ if(/^#\/test/.test(location.hash||'')) return {test:1}; if(/^#\/irab/.test(location.hash||'')) return {irab:1}; var m=(location.hash||'').match(/^#\/(\d+)(?:\/(\d+))?/); if(!m) return {}; var s=+m[1]; if(s<1||s>114) return {}; var a=m[2]?+m[2]:0; if(a>S[s-1][2]) a=S[s-1][2]; return {s:s,a:a}; }
+  function yol(){ if(/^#\/test/.test(location.hash||'')) return {test:1}; if(/^#\/irab/.test(location.hash||'')) return {irab:1}; if(/^#\/belagat/.test(location.hash||'')) return {bel:1}; var m=(location.hash||'').match(/^#\/(\d+)(?:\/(\d+))?/); if(!m) return {}; var s=+m[1]; if(s<1||s>114) return {}; var a=m[2]?+m[2]:0; if(a>S[s-1][2]) a=S[s-1][2]; return {s:s,a:a}; }
   function git(h, degistir){ try{ if(degistir) history.replaceState(history.state,'',h); else history.pushState(null,'',h); }catch(e){ location.hash=h; return; } ciz(); }
   window.mlBasa = function(){ if(location.hash && location.hash!=='#/') git('#/'); else scrollTo({top:0,behavior:'smooth'}); };
   document.getElementById('brand').onclick = window.mlBasa;
@@ -666,6 +667,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     var y=yol();
     if(y.test) return test();
     if(y.irab) return irab();
+    if(y.bel) return belagat();
     if(!y.s) return liste();
     if(!y.a) return okuma(y.s);
     return ayet(y.s, y.a);
@@ -676,11 +678,13 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     document.title="Kur'ân Meali · Giray Akademi";
     var k=rd('ml_yer',null), dv='';
     if(k&&S[k.s-1]) dv='<a class="card devam" href="#/'+k.s+'/'+k.a+'"><span>Kaldığınız yer: <b>'+esc(S[k.s-1][0])+' '+k.a+'</b></span><i>Devam et ›</i></a>';
+    var bld_=rd('ml_bl',null), bls=bld_&&bld_.n?(bld_.n+' soru çözüldü · %'+Math.round(bld_.d/bld_.n*100)+' doğru'):'İşaretli ifadedeki sanatı bulun · Fâtiha';
     var ird=rd('ml_ir',null), irs=ird&&ird.n?(ird.n+' soru çözüldü · %'+Math.round(ird.d/ird.n*100)+' doğru'):'Kırmızı kelimenin i\'râbını bulun · Fâtiha';
     var kd=ktDurum(), kts=kd.bul?('Seviye '+kd.lv+' · '+ktBilinen(kd)+' kelime biliniyor'):'Seviyenizi bulun, en kolaydan zora ilerleyin';
     app.innerHTML='<h1>Kur\'ân Meali</h1><p class="h1ar">القرآن الكريم</p><p class="sub">Sûre adını ya da numarasını yazın; doğrudan âyete gitmek için <b>2:255</b> gibi yazabilirsiniz.</p><p class="kbilgi"><span class="kanlb">Kelime anlamı</span> etiketli sûrelerde Arapça kelimeye dokununca anlamı çıkar.</p>'+dv+
       '<a class="card kt-giris" href="#/test"><span class="ik">ع</span><span><b>Kelime testi</b><small>'+kts+'</small></span><i style="font-style:normal;color:var(--green);font-weight:700">›</i></a>'+
       '<a class="card kt-giris" href="#/irab"><span class="ik">إ</span><span><b>İ\'râb testi</b><small>'+irs+'</small></span><i style="font-style:normal;color:var(--green);font-weight:700">›</i></a>'+
+      '<a class="card kt-giris" href="#/belagat"><span class="ik">ب</span><span><b>Belâgat testi</b><small>'+bls+'</small></span><i style="font-style:normal;color:var(--green);font-weight:700">›</i></a>'+
       '<input class="ara" id="ara" type="search" inputmode="search" placeholder="Sûre ara (Yâsîn, 36, 2:255)" autocomplete="off" aria-label="Sûre ara"><div class="liste" id="lst"></div>'+kunye();
     var inp=document.getElementById('ara'), lst=document.getElementById('lst');
     function doldur(){
@@ -818,11 +822,65 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function kelYukle(){ if(KEL) return Promise.resolve(KEL); return fetch('veri/kelimeler.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(L){ KEL=L; L.forEach(function(x){ KELK[x.k]=x; }); return L; }); }
   function ktDurum(){ var d=rd('ml_kt',null); if(!d||!d.k) d={lv:1,bul:false,son:[],ust:[],k:{},n:0,d:0,y:0,kap:'hepsi'}; return d; }
   function ktKaydet(d){ wr('ml_kt',d); mlOzet('kt', {ad:'Kelime testi', etiket:'Seviye '+d.lv+' · '+ktBilinen(d)+' kelime biliniyor', d:d.d, y:d.y, kart:ktBilinen(d), bitti: KEL?ktBilinen(d)/KEL.length:0, url:'/meal/#/test'}); }
-  /* Karnem: Kur'ân Meali üst başlığı altında Kelime testi ve İ'râb testi (ml_oz: {kt, ir}) */
+  /* ================= BELÂGAT TESTİ =================
+     Sorular veri/belagat.json (kaynak/belagat.txt): sanatlar el-Cedvel ve Derviş'in belâgat bölümleriyle karşılaştırıldı, açıklamalar bizim.
+     Soru: âyette işaretli ifade (b..e kelimeleri) hangi sanat? Şıklar BTERIM'den; aynı ifadedeki öteki sanat (h) şık olmaz.
+     Kayıt ml_bl: {n,d,y,b:{doğru çözülen soru anahtarları}} */
+  var BL=null, BT=null;
+  var BTERIM=['التشبيه البليغ','الاستعارة التصريحية','الاستعارة المكنية','الكناية','المجاز المرسل','المجاز العقلي','الالتفات','القصر','الاختصاص','التكرار','الإيجاز','الإطناب','التفسير بعد الإبهام','الطباق','المقابلة','الجناس'];
+  function blAnah(x){ return x.s+'-'+x.a+'-'+x.b+'-'+x.e; }
+  function belagat(){
+    document.title="Belâgat testi · Kur'ân Meali";
+    app.innerHTML='<p class="yuk">Yükleniyor…</p>';
+    var y=BL?Promise.resolve(BL):fetch('veri/belagat.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(L){ BL=L; return L; });
+    Promise.all([y, veri(1)]).then(function(v){ BT=BT||{mod:'giris'}; BT.o=v[1]; blCiz(); })
+      .catch(function(){ app.innerHTML='<p class="bos">Sorular yüklenemedi. İnternet bağlantınızı kontrol edip yeniden deneyin.</p>'; });
+  }
+  function blBas(){
+    var L=[1,2,3].map(function(lv){ return karisT(BL.filter(function(x){ return x.lv===lv; })); });
+    BT={mod:'soru', sira:[].concat.apply([],L), i:0, d:0, y:0, cevap:null, o:BT.o};
+    blSoru(); blCiz();
+  }
+  function blSoru(){ var x=BT.sira[BT.i]; var dis=BTERIM.filter(function(t){ return t!==x.t && x.h.indexOf(t)<0; }); BT.sec=karisT([x.t].concat(karisT(dis).slice(0,3))); BT.cevap=null; }
+  function blAyet(x){ var t=BT.o.a[x.a-1], n=0; return t.split(' ').map(function(w){ if(isaret(w)) return esc(w); var k=n++; var c=(k>=x.b&&k<=x.e)?' class="irk"':''; return '<span'+c+'>'+esc(w)+'</span>'; }).join(' ')+' <span class="ayno">﴿'+arNo(x.a)+'﴾</span>'; }
+  function blCiz(){
+    var h='<h1>Belâgat testi</h1><p class="sub">Âyetteki <b style="color:#c0392b">kırmızı ifadede</b> hangi belâgat sanatı var? Şu an <b>Fâtiha</b> (' + BL.length + ' soru); kolaydan zora gider.</p>';
+    if(BT.mod==='giris'){
+      var k=rd('ml_bl',null);
+      h+='<div class="card kt-soru"><p style="margin:0 0 6px"><b>Nasıl çalışır?</b></p><p style="margin:0;color:var(--muted);font-size:.92rem">Önce التفات ve القصر gibi temel sanatlar, sonra الاستعارة ve الاختصاص, en sonda التفسير بعد الإبهام ve الإيجاز gelir. Aynı ifadede birden çok sanat varsa öteki sanat şıklara konmaz. Yanlış cevaplanan soru birkaç soru sonra yeniden sorulur. Her cevaptan sonra kısa açıklama ve el-Cedvel ile Derviş bağlantıları çıkar.</p>'+(k&&k.n?'<p style="margin:8px 0 0;font-size:.88rem">Şimdiye kadar: <b>'+k.n+'</b> soru · <b>%'+Math.round(k.d/k.n*100)+'</b> doğru</p>':'')+'<div class="kt-btn"><button type="button" id="blBas">Başla</button></div></div>';
+      app.innerHTML=h+kunye(); document.getElementById('blBas').onclick=blBas; return;
+    }
+    if(BT.mod==='son'){
+      var top=BT.d+BT.y||1;
+      h+='<div class="card kt-soru" style="text-align:center"><p style="font-size:1.1rem;margin:0 0 4px"><b>Tur bitti</b></p><p style="margin:0;color:var(--muted)">'+BT.d+' doğru · '+BT.y+' yanlış · %'+Math.round(BT.d/top*100)+'</p><div class="kt-btn"><button type="button" id="blBas">Yeniden başla</button><button type="button" class="ik" onclick="location.hash=\'#/\'">Sûre listesi</button></div></div>';
+      app.innerHTML=h+kunye(); document.getElementById('blBas').onclick=blBas; return;
+    }
+    var x=BT.sira[BT.i];
+    h+='<div class="card kt-soru"><div class="kt-tip"><span>'+esc(S[x.s-1][0])+' '+x.a+'</span><span>Soru '+(BT.i+1)+'/'+BT.sira.length+' · '+['','temel','orta','zor'][x.lv]+'</span></div>';
+    h+='<div class="ir-ayt">'+blAyet(x)+'</div><p class="ir-sor"><span class="arw">'+esc(x.w)+'</span> ifadesinde hangi sanat var?</p>';
+    h+='<div class="kt-sec ir bl">'+BT.sec.map(function(t,i){ var c=''; if(BT.cevap!=null){ if(t===x.t) c='dg'; else if(i===BT.cevap) c='yn'; } return '<button type="button" class="'+c+'" data-i="'+i+'"'+(BT.cevap!=null?' disabled':'')+'>'+esc(t)+'</button>'; }).join('')+'</div>';
+    if(BT.cevap!=null){
+      var ok=BT.sec[BT.cevap]===x.t;
+      h+='<div class="kt-son ir-son">'+(ok?'<b style="color:#1f5a45">Doğru!</b> ':'<b style="color:#a8432f">Yanlış.</b> ')+'<span class="arw">'+esc(x.w)+'</span> : <b style="font-family:var(--ar);font-size:1.2rem">'+esc(x.t)+'</b><p class="ac">'+esc(x.x)+'</p><div class="lk"><a href="https://tafsir.app/aljadwal/'+x.s+'/'+x.a+'" target="_blank" rel="noopener">el-Cedvel ↗</a><a href="https://tafsir.app/iraab-aldarweesh/'+x.s+'/'+x.a+'" target="_blank" rel="noopener">Derviş ↗</a>'+bldButton('l:'+blAnah(x), "Belâgat testi · "+S[x.s-1][0]+' '+x.a, x.w+' = '+x.t)+'</div></div><div class="kt-btn"><button type="button" id="blSnr">'+(BT.i+1<BT.sira.length?'Sonraki ›':'Sonucu gör')+'</button></div>';
+    }
+    h+='</div>';
+    app.innerHTML=h+kunye();
+    app.querySelectorAll('.kt-sec.bl button').forEach(function(b){ b.onclick=function(){ if(BT.cevap==null) blCevap(+b.dataset.i); }; });
+    var sn=document.getElementById('blSnr'); if(sn) sn.onclick=function(){ BT.i++; if(BT.i>=BT.sira.length){ BT.mod='son'; } else blSoru(); blCiz(); scrollTo(0,0); };
+  }
+  function blCevap(i){
+    var x=BT.sira[BT.i], ok=BT.sec[i]===x.t; BT.cevap=i;
+    if(ok) BT.d++; else { BT.y++; if(!x.tekrar){ var k=Object.assign({},x,{tekrar:1}); BT.sira.splice(Math.min(BT.sira.length, BT.i+4),0,k); } }
+    var r=rd('ml_bl',null)||{n:0,d:0,y:0}; r.b=r.b||{}; r.n++; if(ok){ r.d++; r.b[blAnah(x)]=1; } else r.y++; wr('ml_bl',r);
+    var nb=Object.keys(r.b).length; mlOzet('bl', {ad:'Belâgat testi', etiket:nb+'/'+BL.length+' soru doğru çözüldü', d:r.d, y:r.y, bitti:nb/BL.length, url:'/meal/#/belagat'});
+    blCiz();
+  }
+
+  /* Karnem: Kur'ân Meali üst başlığı altında Kelime testi, İ'râb testi ve Belâgat testi (ml_oz: {kt, ir, bl}) */
   function mlOzet(k, o){
     try{
       var oz=rd('ml_oz',{}); oz[k]=o; wr('ml_oz',oz);
-      var A=['kt','ir'].filter(function(x){ return oz[x]; }).map(function(x){ return oz[x]; }), d=0, y=0, b=0;
+      var A=['kt','ir','bl'].filter(function(x){ return oz[x]; }).map(function(x){ return oz[x]; }), d=0, y=0, b=0;
       A.forEach(function(a){ d+=a.d||0; y+=a.y||0; b+=a.bitti||0; });
       if(window.gaOzet) gaOzet({bitti:b/A.length, etiket:'', d:d, y:y, kart:oz.kt?oz.kt.kart:0, alt:A, yer:{ad:o.ad, url:o.url}, aktif:true});
     }catch(e){}
