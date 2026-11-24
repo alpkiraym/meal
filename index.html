@@ -827,7 +827,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
      Soru: âyette işaretli ifade (b..e kelimeleri) hangi sanat? Şıklar BTERIM'den; aynı ifadedeki öteki sanat (h) şık olmaz.
      Kayıt ml_bl: {n,d,y,b:{doğru çözülen soru anahtarları}} */
   var BL=null, BT=null;
-  var BTERIM=['التشبيه البليغ','الاستعارة التصريحية','الاستعارة المكنية','الكناية','المجاز المرسل','المجاز العقلي','الالتفات','القصر','الاختصاص','التكرار','الإيجاز','الإطناب','التفسير بعد الإبهام','الطباق','المقابلة','الجناس','التقديم','التعريف','التنكير','الاستعارة التبعية','المشاكلة','التتميم','التشبيه التمثيلي','مراعاة النظير'];
+  var BTERIM=['التشبيه البليغ','الاستعارة التصريحية','الاستعارة المكنية','الكناية','المجاز المرسل','المجاز العقلي','الالتفات','القصر','الاختصاص','التكرار','الإيجاز','الإطناب','التفسير بعد الإبهام','الطباق','المقابلة','الجناس','التقديم','التعريف','التنكير','الاستعارة التبعية','المشاكلة','التتميم','التشبيه التمثيلي','مراعاة النظير','الاعتراض','التعطف'];
   function blSureler(){ var a=[]; BL.forEach(function(x){ if(a.indexOf(x.s)<0) a.push(x.s); }); return a.sort(function(p,q){ return p-q; }); }
   function blHavuz(k){ return k==='hepsi'?BL:BL.filter(function(x){ return x.s===+k; }); }
   function blAnah(x){ return x.s+'-'+x.a+'-'+x.b+'-'+x.e; }
