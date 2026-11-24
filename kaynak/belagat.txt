@@ -7,7 +7,7 @@
 1|2|1-1|الاختصاص|2|القصر|لله kelimesindeki lâm, bütün hamdin Allah'a ait olduğunu ve O'na mahsus olduğunu gösterir.
 1|3|0-1|التكرار|2||Besmelede geçen iki sıfat burada yeniden anılır. Rabbü'l-âlemîn'den sonra gelmeleri, terbiye ve mülkün rahmetle birlikte olduğunu hatırlatır ve rahmetin kulları da kuşattığını pekiştirir.
 1|7|0-3|التفسير بعد الإبهام|3|الاستعارة التصريحية|Önceki âyette "dosdoğru yol" denip kimin yolu olduğu söylenmemişti; burada o yolun nimet verilenlerin yolu olduğu açıklanır. Önce kapalı bırakıp sonra açmak, anlamı zihne daha sağlam yerleştirir.
-1|1|0-1|الإيجاز|3|الاستعارة المكنية;المجاز المرسل|بسم الله kısa bir ifadedir, ama "Allah'ın adıyla başlıyorum / O'nun yardımını dileyerek" gibi geniş bir anlamı az sözle verir (îcâz-ı kasr).
+1|1|0-1|الإيجاز|3|الاستعارة المكنية;المجاز المرسل|بسم الله ifadesinde cer ve mecrûrun bağlandığı fiil ("başlıyorum, okuyorum") hazfedilmiştir. Söylenmeyen fiil her işe uyduğu için geniş bir anlam az sözle verilir (îcâz-ı hazf).
 2|2|0-1|التعريف|3|التقديم;الإيجاز|الكتاب kelimesi lâm-ı tarifle marife gelmiştir; bununla, kitap denilince akla gelen eşsiz ve yüce kitabın bu olduğu, ona tazim gösterilerek bildirilir.
 2|2|2-4|التقديم|2|القصر;التعريف|ريب kelimesi câr-mecrûr olan فيه'den önce getirilmiştir. Böylece vurgu şüphenin kendisine yönelir ve bu kitapta şüpheye hiçbir yer olmadığı kesin bir dille söylenir.
 2|5|1-2|الاستعارة التبعية|3|الاستعارة المكنية;الاستعارة التصريحية;التنكير|Müminlerin hidayete sıkıca bağlı olmaları, bineğinin üstüne yerleşmiş binicinin hâline benzetilmiştir. Benzetme على harf-i cerri üzerinden kurulduğu için istiâre harfe tâbidir (tebeiyye).
