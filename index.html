@@ -654,7 +654,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   });
   addEventListener('hashchange', ipKapat); addEventListener('resize', ipKapat);
   /* Kelime anlamı ipucu: kelimeye ilk dokunuşa kadar (ya da × ile kapatılana kadar) görünür */
-  var KELSURE=[1, 18, 19, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114];
+  var KELSURE=[1, 2, 18, 19, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114];
   function kipHtml(o){ if(!o.k || rd('ml_kip',0)) return ''; return '<div class="kip" id="kip"><span class="el">ع</span><span>Arapça metindeki <b>kelimelere dokunun</b>, Türkçe anlamı üstünde çıksın.</span><button type="button" aria-label="Kapat" onclick="this.parentNode.remove();try{localStorage.setItem(\'ml_kip\',\'1\')}catch(e){}">×</button></div>'; }
   function bld(s,a,o){ var i=a-1; return bldButton('a:'+s+'-'+a, S[s-1][0]+' '+a, o.a[i]+' | Diyanet: '+o.d[i]); }
   function yer(s,a){ wr('ml_yer',{s:s,a:a}); }
@@ -832,7 +832,8 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function karis(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
   function harfler(k){ return k.replace(/^(ال|و|ف|ب|ل)/,'').replace(/[اويى]/g,''); }
   function benzerlik(a,b){ var x=harfler(a), y=harfler(b), n=0; for(var i=0;i<x.length;i++) if(y.indexOf(x[i])>=0) n++; return n/Math.max(x.length,y.length,1); }
-  var KAPSAM=[{k:'hepsi',ad:'Bütün Kur\'an'},{k:'1',ad:'Fâtiha'},{k:'c30',ad:'30. cüz'}];
+  /* Kapsam: kelime anlamı yazılmış sûreler kendiliğinden eklenir (30. cüz tek düğme) */
+  var KAPSAM=[{k:'hepsi',ad:'Bütün Kur\'an'}].concat(KELSURE.filter(function(n){ return n<78; }).map(function(n){ return {k:''+n, ad:S[n-1][0]}; }), [{k:'c30',ad:'30. cüz'}]);
   function havuz(d){ if(d.kap==='hepsi') return KEL; if(d.kap==='c30') return KEL.filter(function(x){ return x.s.some(function(n){ return n>=78; }); }); return KEL.filter(function(x){ return x.s.indexOf(+d.kap)>=0; }); }
 
   /* Soru seçimi: seviyedeki ve altındaki kelimeler; yanlışlar ve yeni kelimeler önce; başarı ≥%85 ise beşte bir üst seviyeden serpiştirilir */
