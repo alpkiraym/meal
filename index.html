@@ -914,11 +914,12 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function benzerlik(a,b){ var x=harfler(a), y=harfler(b), n=0; for(var i=0;i<x.length;i++) if(y.indexOf(x[i])>=0) n++; return n/Math.max(x.length,y.length,1); }
   /* Kapsam: kelime anlamı yazılmış sûreler kendiliğinden eklenir (30. cüz tek düğme) */
   var KAPSAM=[{k:'hepsi',ad:'Bütün Kur\'an'}].concat(KELSURE.filter(function(n){ return n<78; }).map(function(n){ return {k:''+n, ad:S[n-1][0]}; }), [{k:'c30',ad:'30. cüz'}]);
-  function havuz(d){ if(d.kap==='hepsi') return KEL; if(d.kap==='c30') return KEL.filter(function(x){ return x.s.some(function(n){ return n>=78; }); }); return KEL.filter(function(x){ return x.s.indexOf(+d.kap)>=0; }); }
+  /* Sûre/cüz kapsamında yalnızca nadir kelimeler (sık geçenler zaten biliniyor); nadiri olmayan sûrede (Fâtiha) hepsi */
+  function havuz(d){ if(d.kap==='hepsi') return KEL; var H=(d.kap==='c30')?KEL.filter(function(x){ return x.s.some(function(n){ return n>=78; }); }):KEL.filter(function(x){ return x.s.indexOf(+d.kap)>=0; }); var N=H.filter(function(x){ return x.n; }); return N.length>=8?N:H; }
 
   /* Soru seçimi: seviyedeki ve altındaki kelimeler; yanlışlar ve yeni kelimeler önce; başarı ≥%85 ise beşte bir üst seviyeden serpiştirilir */
   function kelimeSec(d, zorla){
-    var H=havuz(d), L=d.lv, kucuk=H.length<40;
+    var H=havuz(d), L=d.lv, kucuk=H.length<40||d.kap!=='hepsi';
     var ac=oran(d.son), ust=false, aday;
     if(zorla) aday=H.filter(function(x){ return x.lv===zorla; });
     else {
@@ -926,7 +927,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
       if(!ust) aday=kucuk?H:H.filter(function(x){ return x.lv<=L; });
     }
     if(!aday.length) aday=H;
-    var puan=aday.map(function(x){ var s=d.k[x.k]; var p; if(!s) p=3+(x.lv===L?2:0); else { p=s.b===0?6:(s.b===1?4:(s.b===2?2:0.6)); if(d.n-s.t<3) p=0.05; } return [x,p]; });
+    var puan=aday.map(function(x){ var s=d.k[x.k]; var p; if(!s) p=3+(x.lv===L?2:0)+(d.kap!=='hepsi'&&x.s.length===1?2:0); else { p=s.b===0?6:(s.b===1?4:(s.b===2?2:0.6)); if(d.n-s.t<3) p=0.05; } return [x,p]; });
     var top=0; puan.forEach(function(q){ top+=q[1]; }); var r=Math.random()*top;
     for(var i=0;i<puan.length;i++){ r-=puan[i][1]; if(r<=0) return {x:puan[i][0], ust:ust}; }
     return {x:puan[0][0], ust:ust};
@@ -936,6 +937,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function celdirici(x, tur){
     var ayni={}; ayni[x.m]=1; ayni[x.k]=1;
     var L=KEL.filter(function(y){ return y.k!==x.k && y.m!==x.m && Math.abs(y.lv-x.lv)<=2; });
+    if(x.n){ var H=havuz(ktDurum()).filter(function(y){ return y.n && y.k!==x.k && y.m!==x.m; }); if(H.length>=10) L=H; }  /* nadir kelimeye aynı sûrenin nadirleri çeldirici */
     if(tur==='benzer'||tur==='ayet') L=KEL.filter(function(y){ return y.k!==x.k && y.m!==x.m; }).sort(function(a,b){ return benzerlik(x.k,b.k)-benzerlik(x.k,a.k); }).slice(0,12);
     var sec=[]; karis(L.slice()).forEach(function(y){ var anahtar=(tur==='ar'||tur==='benzer')?y.m:y.k; if(sec.length<3 && !ayni[anahtar]){ ayni[anahtar]=1; sec.push(y); } });
     return sec;
@@ -950,7 +952,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   }
   function ktBaslik(d){
     var ac=oran(d.son), b=ktBilinen(d), H=havuz(d);
-    return '<h1>Kelime testi</h1><p class="sub">Kur\'an\'da en sık geçen '+KEL.length+' kelime, sıklığa göre 10 seviyede. Başarınız yükseldikçe sorular zorlaşır.</p>'+
+    return '<h1>Kelime testi</h1><p class="sub">'+(d.kap==='hepsi'?'Kur\'an\'ın temel kelimeleri ve nadir kelimeler, 10 seviyede. Başarınız yükseldikçe sorular zorlaşır.':'Bu kapsamda nadir geçen ve sûreye has '+H.length+' kelime soruluyor.')+'</p>'+
       '<div class="kt-ust"><div><b>'+d.lv+'<small style="font-size:.7rem;color:var(--muted)">/10</small></b><span>seviye</span></div><div><b>'+b+'</b><span>kelime biliniyor</span></div><div><b>'+(ac===null?'—':'%'+Math.round(ac*100))+'</b><span>son '+d.son.length+' cevap</span></div></div>'+
       '<div class="kt-bar"><i style="width:'+Math.round(b/KEL.length*100)+'%"></i></div>'+
       '<div class="kt-kap"><span class="lb">Kapsam:</span>'+KAPSAM.map(function(k){ return '<button type="button" class="chip'+(d.kap===k.k?' on':'')+'" data-kap="'+k.k+'">'+k.ad+'</button>'; }).join('')+'</div>';
@@ -974,7 +976,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
     h+='</div><div class="kt-sec">'+q.sec.map(function(y,i){ var ar=(q.tur==='tr'||q.tur==='ayet'); var cls=ar?'ar':''; if(KT.cevap!=null){ if(y.k===x.k) cls+=' dg'; else if(i===KT.cevap) cls+=' yn'; } return '<button type="button" class="'+cls+'" data-i="'+i+'"'+(KT.cevap!=null?' disabled':'')+'>'+esc(ar?y.w:y.m)+'</button>'; }).join('')+'</div>';
     if(KT.cevap!=null){
       var dogru=q.sec[KT.cevap].k===x.k;
-      h+='<div class="kt-son">'+(dogru?'<b style="color:#1f5a45">Doğru!</b> ':'<b style="color:#a8432f">Yanlış.</b> ')+'<span class="arw">'+esc(x.w)+'</span> = <b>'+esc(x.m)+'</b><br><small style="color:var(--muted)">Kur\'an\'da '+x.f+' kez geçer · <a href="#/'+x.ex[0]+'/'+x.ex[1]+'">'+esc(S[x.ex[0]-1][0])+' '+x.ex[1]+'\'de gör ›</a></small> '+bldButton('k:'+x.k, 'Kelime testi', x.w+' = '+x.m)+'</div>';
+      h+='<div class="kt-son">'+(dogru?'<b style="color:#1f5a45">Doğru!</b> ':'<b style="color:#a8432f">Yanlış.</b> ')+'<span class="arw">'+esc(x.w)+'</span> = <b>'+esc(x.m)+'</b><br><small style="color:var(--muted)">'+(x.f===1?'Kur\'an\'da yalnız burada geçer':'Kur\'an\'da '+x.f+' kez geçer')+' · <a href="#/'+x.ex[0]+'/'+x.ex[1]+'">'+esc(S[x.ex[0]-1][0])+' '+x.ex[1]+'\'de gör ›</a></small> '+bldButton('k:'+x.k, 'Kelime testi', x.w+' = '+x.m)+'</div>';
       h+='<div class="kt-btn"><button type="button" id="ktSnr">'+(KT.mod==='bul'&&KT.bulN>=9?'Sonucu gör':'Sonraki soru')+'</button></div>';
     }
     h+='</div>'+kunye();
@@ -986,7 +988,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function yeniSoru(){
     var d=ktDurum(), sec, tur;
     if(KT.mod==='bul'){ sec={x:null,ust:false}; var L=KEL.filter(function(x){ return x.lv===KT.bulLv && !(KT.goruldu||{})[x.k]; }); sec.x=L[Math.floor(Math.random()*L.length)]||KEL[0]; KT.goruldu=KT.goruldu||{}; KT.goruldu[sec.x.k]=1; tur='ar'; }
-    else { sec=kelimeSec(d); tur=turSec(Math.max(d.lv,sec.x.lv)); if(d.kap!=='hepsi' && tur==='ayet') tur='benzer'; }
+    else { sec=kelimeSec(d); tur=turSec(Math.max(d.lv,sec.x.lv)); if(d.kap!=='hepsi' && tur==='ayet' && !(sec.x.n && (d.kap==='c30'?sec.x.ex[0]>=78:sec.x.ex[0]===+d.kap))) tur='benzer'; }
     var x=sec.x, cel=celdirici(x, tur);
     var q={x:x, ust:sec.ust, tur:tur, sec:karis([x].concat(cel))};
     KT.cevap=null; KT.soru=q;

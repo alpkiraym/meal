@@ -78,10 +78,43 @@ for sat in open(os.path.join(K, 'sozluk.txt'), encoding='utf-8'):
 assert len({k for k, m in SOZ}) == len(SOZ), 'sözlükte tekrar var'
 SOZ.sort(key=lambda x: -say[x[0]])  # seviye sıklığa göre: en sık geçen = 1. seviye
 N = len(SOZ); KEL = []
-for i, (k, m) in enumerate(SOZ):
-    KEL.append({'k': k, 'w': bicim[k].most_common(1)[0][0], 'm': m, 'f': say[k], 'lv': min(10, i * 10 // N + 1), 'ex': ilk[k][:3], 's': sorted(sur[k])})
+for i, (k, m) in enumerate(SOZ):  # temel sözlük: 1-7. seviye
+    KEL.append({'k': k, 'w': bicim[k].most_common(1)[0][0], 'm': m, 'f': say[k], 'lv': min(7, i * 7 // N + 1), 'ex': ilk[k][:3], 's': sorted(sur[k])})
+# Nadir kelimeler (8-10. seviye): kelime anlamı yazılmış sûrelerden, Kur'an'da en çok 3 kez geçen biçimler.
+# Biçim, baştaki و/ف/ال ve sondaki zamir atılarak sayılır; anlam o âyetteki bağlamsal anlamdır.
+def hs(w): return HAR.sub('', w).replace('ٱ', 'ا')  # hemze yazımı korunur (إمرا ≠ أمرا)
+say2 = collections.Counter(); sur2 = collections.defaultdict(set)
+for s_ in range(1, 115):
+    for a_, t in T['a'][s_].items():
+        for w in t.split(' '):
+            if not isaret(w): say2[hs(w)] += 1; sur2[hs(w)].add(s_)
+def oz(k):
+    for p_ in ('وال', 'فال', 'بال', 'كال', 'لل', 'ال'):
+        if k.startswith(p_) and len(k) - len(p_) >= 3: return k[len(p_):]
+    if k[:1] in 'وف' and len(k) >= 4 and say2[k[1:]]: k = k[1:]  # و/ف ancak kalan kısım tek başına da geçiyorsa atılır (فريا kalır)
+    for e in ('كما', 'هما', 'هم', 'كم', 'ها', 'نا', 'ني', 'ه', 'ك'):
+        if k.endswith(e) and len(k) - len(e) >= 3: return k[:-len(e)]
+    return k
+osay = collections.Counter(); osur = collections.defaultdict(set)
+for k, c in say2.items():
+    osay[oz(k)] += c; osur[oz(k)] |= sur2[k]
+temel = {oz(k) for k, m in SOZ} | {k for k, m in SOZ} | {oz(hs(w)) for k, m in SOZ for w in bicim[k]}
+nad = {}
+for s_ in range(1, 115):
+    kd = os.path.join(K, 'kelime', '%03d.txt' % s_)
+    if not os.path.exists(kd): continue
+    o_ = json.load(open(os.path.join(KOK, 'veri', '%03d.json' % s_), encoding='utf-8'))
+    for a_, m_ in enumerate(o_['k']):
+        if not m_: continue
+        ws = [w for w in o_['a'][a_].split(' ') if not isaret(w)]
+        for n_, (w, m) in enumerate(zip(ws, m_)):
+            k = oz(hs(w)); m = m.strip()
+            if len(k) < 3 or osay[k] > 3 or k in temel or k in nad: continue
+            if not m or m[0] in '-(' or m[0].isupper() or m[0].isdigit(): continue  # özel isim, hurûf-ı mukattaa, edat
+            nad[k] = {'k': k, 'w': w, 'm': m, 'f': osay[k], 'lv': {1: 10, 2: 9}.get(osay[k], 8), 'ex': [s_, a_ + 1, n_], 's': sorted(osur[k]), 'n': 1}
+KEL += list(nad.values())
 json.dump(KEL, open(os.path.join(KOK, 'veri', 'kelimeler.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-print('kelime testi:', N, 'kelime;', 'seviye başına', N // 10)
+print('kelime testi:', N, 'temel +', len(nad), 'nadir kelime')
 
 
 # ---- İ'râb testi: kaynak/irab.txt → veri/irab.json ----
