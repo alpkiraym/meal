@@ -153,6 +153,13 @@ for sat in open(os.path.join(K, 'belagat.txt'), encoding='utf-8'):
     BL.append({'s': s_, 'a': a_, 'b': b_, 'e': e_, 'w': ' '.join(ws[b_:e_ + 1]), 't': t_, 'lv': int(lv_), 'h': [x for x in h_.split(';') if x], 'x': ac_})
 json.dump(BL, open(os.path.join(KOK, 'veri', 'belagat.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print("belâgat testi:", len(BL), 'soru')
+# Belâgat notları okuma ekranında da gösterilir: veri/NNN.json → 'bl': âyet başına [[başlangıç, bitiş, terim, açıklama], …] ya da 0
+blS = collections.defaultdict(dict)
+for x in BL: blS[x['s']].setdefault(x['a'], []).append([x['b'], x['e'], x['t'], x['x']])
+for s_, d_ in blS.items():
+    f_ = os.path.join(KOK, 'veri', '%03d.json' % s_); o_ = json.load(open(f_, encoding='utf-8'))
+    o_['bl'] = [d_.get(i + 1, 0) for i in range(len(o_['a']))]
+    json.dump(o_, open(f_, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 
 # ---- index.html ----
 import base64
