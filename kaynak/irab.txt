@@ -7,7 +7,7 @@
 1|2|1|جار ومجرور|1|isim|Lâm harf-i cer, lafza-i celâl mecrûr; hazfedilmiş habere müteallıktır.
 1|2|2|نعت|2|isim|Lafza-i celâlin sıfatıdır (bedel olduğu da söylenir); ona uyarak mecrûrdur.|بدل
 1|2|3|مضاف إليه|2|isim|رب kelimesine izâfe edilmiştir; cemi müzekker sâlim olduğu için cer alameti yâdır.
-1|3|0|نعت|2|isim|Önceki âyetteki lafza-i celâlin sıfatıdır; mecrûrdur.
+1|3|0|نعت|2|isim|Önceki âyetteki lafza-i celâlin sıfatıdır (bedel olduğu da söylenir); mecrûrdur.|بدل
 1|4|0|نعت|2|isim|Lafza-i celâlin sıfatıdır (bedel de denir); mecrûrdur.|بدل
 1|4|1|مضاف إليه|2|isim|مالك kelimesine izâfe edilmiştir; mecrûrdur.
 1|5|0|مفعول به|1|isim|Munfasıl zamir, mebnîdir; fiilden önce getirilmiş (mukaddem) mef'ûl bihtir, mahallen mansûbdur.
@@ -20,7 +20,7 @@
 1|7|2|فعل ماض|1|fiil|Mâzi fiil, sükûn üzere mebnîdir; bitişik ت zamiri fâildir.
 1|7|5|مضاف إليه|2|isim|غير kelimesine izâfe edilmiştir; mecrûrdur.
 1|7|6|نائب فاعل|3|isim|Cer ve mecrûr, ism-i mef'ûl olan المغضوب kelimesinin nâib-i fâili yerindedir (mahallen merfû).
-1|7|8|معطوف|2|isim|و ile المغضوب kelimesine atfedilmiştir; لا nefyi pekiştirmek için gelmiştir. Cemi müzekker sâlim olduğu için cer alameti yâdır.
+1|7|8|معطوف|2|isim|و ile غير kelimesine atfedilmiştir (المغضوب kelimesine atfedildiği de söylenir); لا zâiddir, غير'deki nefyi pekiştirir. Cemi müzekker sâlim olduğu için cer alameti yâdır.
 2|2|0|مبتدأ|1|isim|İşaret ismidir, mebnîdir; cümlenin başında hakkında hüküm verilen isim olarak mahallen merfûdur.
 2|2|3|اسم لا|2|isim|Cinsi nefyeden lâ'nın ismidir; fetha üzere mebnîdir, mahallen mansûbdur.
 2|3|4|مفعول به|1|isim|يقيمون fiilinin mef'ûlüdür; mansûb, alameti fethadır.
