@@ -688,7 +688,7 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   });
   addEventListener('hashchange', ipKapat); addEventListener('resize', ipKapat);
   /* Kelime anlamı ipucu: kelimeye ilk dokunuşa kadar (ya da × ile kapatılana kadar) görünür */
-  var KELSURE=[1, 2, 3, 4, 5, 6, 7, 18, 19, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114];
+  var KELSURE=[1, 2, 3, 4, 5, 6, 7, 8, 18, 19, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114];
   function kipHtml(o){ if(!o.k || rd('ml_kip',0)) return ''; return '<div class="kip" id="kip"><span class="el">ع</span><span>Arapça metindeki <b>kelimelere dokunun</b>, Türkçe anlamı üstünde çıksın.</span><button type="button" aria-label="Kapat" onclick="this.parentNode.remove();try{localStorage.setItem(\'ml_kip\',\'1\')}catch(e){}">×</button></div>'; }
   function bld(s,a,o){ var i=a-1; return bldButton('a:'+s+'-'+a, S[s-1][0]+' '+a, o.a[i]+' | Diyanet: '+o.d[i]); }
   function yer(s,a){ wr('ml_yer',{s:s,a:a}); }
