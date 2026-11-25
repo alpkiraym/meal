@@ -21,6 +21,15 @@
 1|7|5|مضاف إليه|2|isim|غير kelimesine izâfe edilmiştir; mecrûrdur.
 1|7|6|نائب فاعل|3|isim|Cer ve mecrûr, ism-i mef'ûl olan المغضوب kelimesinin nâib-i fâili yerindedir (mahallen merfû).
 1|7|8|معطوف|2|isim|و ile غير kelimesine atfedilmiştir (المغضوب kelimesine atfedildiği de söylenir); لا zâiddir, غير'deki nefyi pekiştirir. Cemi müzekker sâlim olduğu için cer alameti yâdır.
+1|1|0|بمحذوف خبر|5|muteallak|Cedvel'e göre hazfedilmiş bir habere bağlıdır; takdiri "başlangıcım Allah'ın adıyladır" (ابتدائي بسم الله) şeklindedir. Derviş, bâ yardım dileme anlamında alınırsa takdir edilen أبتدئ fiiline bağlanabileceğini de söyler; bu yüzden o görüş şıklarda yok.|بفعل محذوف
+1|1|0-3|ابتدائية لا محل لها|4|cumle|Besmele kendinden önce bir sözün bulunmadığı başlangıç cümlesidir; böyle cümlenin i'râbtan mahalli olmaz.|استئنافية لا محل لها
+1|2|1|بمحذوف خبر|4|muteallak|الحمد mübtedâsının hazfedilmiş haberine bağlıdır; takdir edilen haber ثابت ya da واجب'dir: "Hamd Allah'a aittir, O'na sabittir."
+1|5|0-1|استئنافية لا محل لها|5|cumle|Cedvel bu cümleyi istînâfiyye sayar: önceki âyetlerle i'râb bağı olmayan yeni bir söz başlatır, bu yüzden mahalli yoktur.|ابتدائية لا محل لها
+1|5|2-3|معطوفة لا محل لها|5|cumle|إياك نستعين cümlesi و ile إياك نعبد cümlesine atfedilmiştir. Atfedildiği cümlenin mahalli olmadığı için onun da mahalli yoktur.
+1|7|2-3|صلة الموصول لا محل لها|4|cumle|أنعمت عليهم cümlesi ism-i mevsûl الذين'in sılasıdır; sıla cümlesinin i'râbtan mahalli olmaz.
+1|7|3|بالفعل المذكور|4|muteallak|Cer ve mecrûr hemen önceki أنعمت fiiline bağlıdır: "kendilerine nimet verdiğin".
+1|7|4|بدل|6|isim|Cedvel'e göre الذين kelimesinden bedeldir ve ona uyarak mecrûrdur. عليهم'deki zamirden bedel olduğu ya da الذين'in sıfatı olduğu da söylenmiştir; Müberrid sıfat görüşüne, غير izâfetle de nekre kalır diyerek karşı çıkar.|نعت
+1|7|7|زائدة|5|la|Bu لا yeni bir hüküm getirmez; غير ile gelen nefyi pekiştirir ve iki grubun ayrı ayrı dışarıda bırakıldığını vurgular. Cedvel onu "nefyi pekiştirmek için zâid" diye i'râb eder.|نافية
 2|2|0|مبتدأ|1|isim|İşaret ismidir, mebnîdir; cümlenin başında hakkında hüküm verilen isim olarak mahallen merfûdur.
 2|2|3|اسم لا|2|isim|Cinsi nefyeden lâ'nın ismidir; fetha üzere mebnîdir, mahallen mansûbdur.
 2|3|4|مفعول به|1|isim|يقيمون fiilinin mef'ûlüdür; mansûb, alameti fethadır.

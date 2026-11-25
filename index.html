@@ -803,7 +803,26 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   function cuzlar(L){ var c=[]; L.forEach(function(x){ var n=cuzNo(x.s,x.a); if(c.indexOf(n)<0) c.push(n); }); return c.sort(function(p,q){ return p-q; }); }
   function cuzSuz(L,k){ return k==='hepsi'?L:L.filter(function(x){ return k[0]==='s'?'s'+x.s===k:'c'+cuzNo(x.s,x.a)===k; }); }
   var IR=null, IT=null;
-  var TERIM={isim:['مبتدأ','خبر','فاعل','مفعول به','مفعول به ثان','مضاف إليه','نعت','بدل','معطوف','جار ومجرور','نائب فاعل','حال','تمييز','اسم إنّ','خبر إنّ','اسم كان','خبر كان','اسم لا','مفعول لأجله','مفعول مطلق','ظرف','منادى','مستثنى','توكيد'], fiil:['فعل ماض','فعل مضارع','فعل أمر','اسم فعل']};
+  var TERIM={isim:['مبتدأ','خبر','فاعل','مفعول به','مفعول به ثان','مضاف إليه','نعت','بدل','معطوف','جار ومجرور','نائب فاعل','حال','تمييز','اسم إنّ','خبر إنّ','اسم كان','خبر كان','اسم لا','مفعول لأجله','مفعول مطلق','ظرف','منادى','مستثنى','توكيد'], fiil:['فعل ماض','فعل مضارع','فعل أمر','اسم فعل'],
+    cumle:['ابتدائية لا محل لها','استئنافية لا محل لها','صلة الموصول لا محل لها','معطوفة لا محل لها','جواب الشرط لا محل لها','اعتراضية لا محل لها','تفسيرية لا محل لها','جواب القسم لا محل لها','في محل رفع خبر','في محل نصب حال','في محل نصب مفعول به','في محل جر مضاف إليه','في محل رفع نعت','في محل نصب نعت','في محل جر نعت','في محل جزم جواب الشرط','في محل نصب خبر كان','في محل رفع خبر إنّ'],
+    muteallak:['بالفعل المذكور','بفعل محذوف','بمحذوف خبر','بمحذوف حال','بمحذوف نعت','بمحذوف صلة','باسم مذكور'],
+    vav:['عاطفة','حالية','استئنافية','واو المعية','واو القسم','اعتراضية','زائدة'],
+    ma:['موصولة','نافية','مصدرية','مصدرية ظرفية','زائدة','استفهامية','شرطية','تعجبية','كافة'],
+    fa:['عاطفة','رابطة لجواب الشرط','استئنافية','سببية','تعليلية','زائدة','الفصيحة'],
+    lam:['لام التعليل','لام الملك','لام الاختصاص','لام الأمر','لام الابتداء','اللام المزحلقة','واقعة في جواب القسم','لام الجحود','لام العاقبة','موطئة للقسم'],
+    la:['نافية','ناهية','نافية للجنس','زائدة','عاطفة','عاملة عمل ليس'],
+    in:['شرطية','نافية','مخففة من الثقيلة','مصدرية','تفسيرية','زائدة']};
+  /* Katman: lv 1-3 temel, lv 4-6 ileri. Soru türü (tur) şık havuzunu ve soru cümlesini belirler. */
+  var EDAT={vav:'و',ma:'ما',fa:'ف',lam:'ل',la:'لا',in:'إنْ / أنْ'};
+  var LVAD=['','temel','temel · orta','temel · zor','ileri','ileri · orta','ileri · zor'];
+  function irAnah(x){ return x.s+'-'+x.a+'-'+x.n+(x.m!=null?'-'+x.m:'')+(x.tur!=='isim'&&x.tur!=='fiil'?':'+x.tur:''); }
+  function irKat(){ var r=rd('ml_ir',null)||{}; return r.kat==='ileri'?'ileri':'temel'; }
+  function katSuz(L,kat){ return L.filter(function(x){ return kat==='ileri'?x.lv>=4:x.lv<4; }); }
+  function irSorTxt(x){ var w='<span class="arw">'+esc(x.w)+'</span>';
+    if(x.tur==='cumle') return 'İşaretli cümlenin i\'râbtan mahalli nedir?';
+    if(x.tur==='muteallak') return w+' neye müteallıktır?';
+    if(EDAT[x.tur]) return w+' ifadesindeki <span class="arw">'+EDAT[x.tur]+'</span> hangi türdendir?';
+    return w+' kelimesinin i\'râbı nedir?'; }
   function karisT(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), x=a[i]; a[i]=a[j]; a[j]=x; } return a; }
   function irab(){
     document.title="İ'râb testi · Kur'ân Meali";
@@ -814,48 +833,74 @@ details.cel summary small{font-weight:400;color:var(--muted);font-size:.8rem}
   }
   /* Kapsam (ml_ir.kap): 'hepsi' ya da sûre no. Bir tur 20 soru: önce hiç doğru çözülmemiş sorular, sonra seviyeye göre (kolaydan zora) */
   function irKap(){ var r=rd('ml_ir',null)||{}, k=r.kap||'hepsi'; return (k==='hepsi'||cuzlar(IR).indexOf(+k.slice(1))>=0&&k[0]==='c')?k:'hepsi'; }
-  function irHavuz(k){ return cuzSuz(IR,k); }
+  function irHavuz(k,kat){ return katSuz(cuzSuz(IR,k),kat||irKat()); }
   function irKapHtml(){ var k=irKap(), C=cuzlar(IR); if(C.length<2) return ''; return '<div class="kt-kap"><span class="lb">Kapsam:</span>'+[['hepsi','Hepsi']].concat(C.map(function(n){ return ['c'+n, n+'. cüz']; })).map(function(a){ return '<button type="button" class="chip'+(k===a[0]?' on':'')+'" data-irk="'+a[0]+'">'+esc(a[1])+' <small style="opacity:.6">'+irHavuz(a[0]).length+'</small></button>'; }).join('')+'</div>'; }
   function irKapBagla(){ app.querySelectorAll('[data-irk]').forEach(function(b){ b.onclick=function(){ var r=rd('ml_ir',null)||{n:0,d:0,y:0}; r.kap=b.dataset.irk; wr('ml_ir',r); irCiz(); }; }); }
+  function irBul(){
+    var H=karisT(irHavuz(irKap(),'temel').filter(function(x){ return x.lv>=2; })).slice(0,10);
+    if(H.length<10) H=karisT(katSuz(IR,'temel').filter(function(x){ return x.lv>=2; })).slice(0,10);
+    IT={mod:'soru', bul:1, sira:H.sort(function(a,b){ return a.lv-b.lv; }), i:0, d:0, y:0, cevap:null, v:IT.v||{}};
+    irGoster();
+  }
   function irBas(){
     var r=rd('ml_ir',null)||{}, B=r.b||{}, H=karisT(irHavuz(irKap()).slice());
-    H.sort(function(a,b){ var ka=B[a.s+'-'+a.a+'-'+a.n]?1:0, kb=B[b.s+'-'+b.a+'-'+b.n]?1:0; return ka-kb; });
+    H.sort(function(a,b){ var ka=B[irAnah(a)]?1:0, kb=B[irAnah(b)]?1:0; return ka-kb; });
     var sira=H.slice(0,20).sort(function(a,b){ return a.lv-b.lv; });
     IT={mod:'soru', sira:sira, i:0, d:0, y:0, cevap:null, v:IT.v||{}};
     irGoster();
   }
   function irGoster(){ var x=IT.sira[IT.i]; if(!IT.v[x.s]){ app.innerHTML='<p class="yuk">Yükleniyor…</p>'; veri(x.s).then(function(o){ IT.v[x.s]=o; irGoster(); }).catch(function(){ app.innerHTML='<p class="bos">Metin yüklenemedi.</p>'; }); return; } irSoru(); irCiz(); }
   function irSoru(){ var x=IT.sira[IT.i]; var dis=TERIM[x.tur].filter(function(t){ return t!==x.t && (x.h||[]).indexOf(t)<0; }); IT.sec=karisT([x.t].concat(karisT(dis).slice(0,3))); IT.cevap=null; }
-  function irAyet(x){ var t=IT.v[x.s].a[x.a-1], n=0; return t.split(' ').map(function(w){ if(isaret(w)) return esc(w); var c=(n++===x.n)?' class="irk"':''; return '<span'+c+'>'+esc(w)+'</span>'; }).join(' ')+' <span class="ayno">﴿'+arNo(x.a)+'﴾</span>'; }
+  function irAyet(x){ var t=IT.v[x.s].a[x.a-1], n=0; return t.split(' ').map(function(w){ if(isaret(w)) return esc(w); var j=n++, c=(j>=x.n&&j<=(x.m==null?x.n:x.m))?' class="irk"':''; return '<span'+c+'>'+esc(w)+'</span>'; }).join(' ')+' <span class="ayno">﴿'+arNo(x.a)+'﴾</span>'; }
   function irCiz(){
-    var h='<h1>İ\'râb testi</h1><p class="sub">Âyetteki <b style="color:#c0392b">kırmızı kelimenin</b> i\'râbını seçin. Her tur 20 soru; önce çözmediğiniz sorular gelir, kolaydan zora gider.</p>';
+    var h='<h1>İ\'râb testi</h1><p class="sub">Âyetteki <b style="color:#c0392b">kırmızı yerin</b> i\'râbını seçin. Temel ve ileri iki katman; her tur 20 soru, kolaydan zora.</p>';
     if(IT.mod==='giris'){
-      var k=rd('ml_ir',null);
-      h+=irKapHtml()+'<div class="card kt-soru"><p style="margin:0 0 6px"><b>Nasıl çalışır?</b></p><p style="margin:0;color:var(--muted);font-size:.92rem">Önce مبتدأ، فاعل، مفعول به gibi temel görevler, sonra نعت، مضاف إليه، معطوف, en sonda بدل ve نائب فاعل gelir. Yanlış cevaplanan soru birkaç soru sonra yeniden sorulur. Her cevaptan sonra kısa açıklama ve el-Cedvel ile Derviş bağlantıları çıkar.</p>'+(k&&k.n?'<p style="margin:8px 0 0;font-size:.88rem">Şimdiye kadar: <b>'+k.n+'</b> soru · <b>%'+Math.round(k.d/k.n*100)+'</b> doğru</p>':'')+'<div class="kt-btn"><button type="button" id="irBas">Başla</button></div></div>';
-      app.innerHTML=h+kunye(); document.getElementById('irBas').onclick=irBas; irKapBagla(); return;
+      var k=rd('ml_ir',null)||{};
+      if(!k.bul){
+        h+='<div class="card kt-soru"><p style="margin:0 0 6px"><b>Nereden başlayalım?</b></p><p style="margin:0;color:var(--muted);font-size:.92rem">Test iki katmanlıdır. <b>Temel</b>: مبتدأ، فاعل، مفعول به، نعت gibi kelime görevleri. <b>İleri</b>: cümlelerin i\'râbtan mahalli, müteallak, و، ما، ف، لام، لا türleri ve ihtilaflı görevler. 10 soruluk temel turda 8 ve üstü doğru yaparsanız ileri katmandan başlarsınız.</p><div class="kt-btn"><button type="button" id="irBul">Seviyemi belirle</button><button type="button" class="ik" id="irTml">Temelden başla</button></div></div>';
+        app.innerHTML=h+kunye();
+        document.getElementById('irBul').onclick=irBul;
+        document.getElementById('irTml').onclick=function(){ k.bul=true; k.kat='temel'; k.n=k.n||0; k.d=k.d||0; k.y=k.y||0; wr('ml_ir',k); irBas(); };
+        return;
+      }
+      h+=irKatHtml()+irKapHtml()+'<div class="card kt-soru"><p style="margin:0 0 6px"><b>Nasıl çalışır?</b></p><p style="margin:0;color:var(--muted);font-size:.92rem">Her tur 20 soru, önce çözmediğiniz sorular gelir. Bir katmanda son 20 cevabın %85\'i doğruysa ileri katmana geçersiniz; ileri katmanda %50\'nin altına düşerseniz temele dönersiniz. Katmanı yukarıdan kendiniz de seçebilirsiniz. Yanlış cevaplanan soru birkaç soru sonra yeniden sorulur.</p>'+(k.n?'<p style="margin:8px 0 0;font-size:.88rem">Şimdiye kadar: <b>'+k.n+'</b> soru · <b>%'+Math.round(k.d/k.n*100)+'</b> doğru</p>':'')+(irHavuz(irKap()).length?'<div class="kt-btn"><button type="button" id="irBas">Başla</button></div>':'<p style="margin:8px 0 0;font-size:.88rem">Bu kapsamda bu katmana ait soru henüz yok.</p>')+'</div>';
+      app.innerHTML=h+kunye(); var bb=document.getElementById('irBas'); if(bb) bb.onclick=irBas; irKapBagla(); irKatBagla(); return;
     }
     if(IT.mod==='son'){
-      var top=IT.d+IT.y;
-      h+='<div class="card kt-soru" style="text-align:center"><p style="font-size:1.1rem;margin:0 0 4px"><b>Tur bitti</b></p><p style="margin:0;color:var(--muted)">'+IT.d+' doğru · '+IT.y+' yanlış · %'+Math.round(IT.d/top*100)+'</p><div class="kt-btn"><button type="button" id="irBas">Yeniden başla</button><button type="button" class="ik" onclick="location.hash=\'#/\'">Sûre listesi</button></div></div>'+irKapHtml();
-      app.innerHTML=h+kunye(); document.getElementById('irBas').onclick=irBas; irKapBagla(); return;
+      var top=IT.d+IT.y, msj=irTurSonu();
+      h+=msj+'<div class="card kt-soru" style="text-align:center"><p style="font-size:1.1rem;margin:0 0 4px"><b>'+(IT.bulBitti?'Seviye belirlendi':'Tur bitti')+'</b></p><p style="margin:0;color:var(--muted)">'+IT.d+' doğru · '+IT.y+' yanlış · %'+Math.round(IT.d/top*100)+'</p><div class="kt-btn"><button type="button" id="irBas">'+(IT.bulBitti?'Başla':'Yeniden başla')+'</button><button type="button" class="ik" onclick="location.hash=\'#/\'">Sûre listesi</button></div></div>'+irKatHtml()+irKapHtml();
+      app.innerHTML=h+kunye(); document.getElementById('irBas').onclick=irBas; irKapBagla(); irKatBagla(); return;
     }
     var x=IT.sira[IT.i];
-    h+='<div class="card kt-soru"><div class="kt-tip"><span>'+esc(S[x.s-1][0])+' '+x.a+'</span><span>Soru '+(IT.i+1)+'/'+IT.sira.length+' · '+['','temel','orta','zor'][x.lv]+'</span></div>';
-    h+='<div class="ir-ayt">'+irAyet(x)+'</div><p class="ir-sor"><span class="arw">'+esc(x.w)+'</span> kelimesinin i\'râbı nedir?</p>';
+    h+='<div class="card kt-soru"><div class="kt-tip"><span>'+esc(S[x.s-1][0])+' '+x.a+'</span><span>Soru '+(IT.i+1)+'/'+IT.sira.length+' · '+(IT.bul?'Seviyemi belirle':LVAD[x.lv])+'</span></div>';
+    h+='<div class="ir-ayt">'+irAyet(x)+'</div><p class="ir-sor">'+irSorTxt(x)+'</p>';
     h+='<div class="kt-sec ir">'+IT.sec.map(function(t,i){ var c=''; if(IT.cevap!=null){ if(t===x.t) c='dg'; else if(i===IT.cevap) c='yn'; } return '<button type="button" class="'+c+'" data-i="'+i+'"'+(IT.cevap!=null?' disabled':'')+'>'+esc(t)+'</button>'; }).join('')+'</div>';
     if(IT.cevap!=null){
       var ok=IT.sec[IT.cevap]===x.t;
-      h+='<div class="kt-son ir-son">'+(ok?'<b style="color:#1f5a45">Doğru!</b> ':'<b style="color:#a8432f">Yanlış.</b> ')+'<span class="arw">'+esc(x.w)+'</span> : <b style="font-family:var(--ar);font-size:1.2rem">'+esc(x.t)+'</b><p class="ac">'+esc(x.x)+'</p><div class="lk"><a href="https://tafsir.app/aljadwal/'+x.s+'/'+x.a+'" target="_blank" rel="noopener">el-Cedvel ↗</a><a href="https://tafsir.app/iraab-aldarweesh/'+x.s+'/'+x.a+'" target="_blank" rel="noopener">Derviş ↗</a>'+bldButton('i:'+x.s+'-'+x.a+'-'+x.n, "İ'râb testi · "+S[x.s-1][0]+' '+x.a, x.w+' = '+x.t)+'</div></div><div class="kt-btn"><button type="button" id="irSnr">'+(IT.i+1<IT.sira.length?'Sonraki ›':'Sonucu gör')+'</button></div>';
+      h+='<div class="kt-son ir-son">'+(ok?'<b style="color:#1f5a45">Doğru!</b> ':'<b style="color:#a8432f">Yanlış.</b> ')+'<span class="arw">'+esc(x.w)+'</span> : <b style="font-family:var(--ar);font-size:1.2rem">'+esc(x.t)+'</b><p class="ac">'+esc(x.x)+'</p><div class="lk"><a href="https://tafsir.app/aljadwal/'+x.s+'/'+x.a+'" target="_blank" rel="noopener">el-Cedvel ↗</a><a href="https://tafsir.app/iraab-aldarweesh/'+x.s+'/'+x.a+'" target="_blank" rel="noopener">Derviş ↗</a>'+bldButton('i:'+irAnah(x), "İ'râb testi · "+S[x.s-1][0]+' '+x.a, x.w+' = '+x.t)+'</div></div><div class="kt-btn"><button type="button" id="irSnr">'+(IT.i+1<IT.sira.length?'Sonraki ›':'Sonucu gör')+'</button></div>';
     }
     h+='</div>';
     app.innerHTML=h;
     app.querySelectorAll('.kt-sec.ir button').forEach(function(b){ b.onclick=function(){ if(IT.cevap==null) irCevap(+b.dataset.i); }; });
     var sn=document.getElementById('irSnr'); if(sn) sn.onclick=function(){ IT.i++; if(IT.i>=IT.sira.length){ IT.mod='son'; irCiz(); } else irGoster(); scrollTo(0,0); };
   }
+  function irKatHtml(){ var kt=irKat(), k=irKap(); return '<div class="kt-kap"><span class="lb">Katman:</span>'+[['temel','Temel'],['ileri','İleri']].map(function(a){ return '<button type="button" class="chip'+(kt===a[0]?' on':'')+'" data-irt="'+a[0]+'">'+a[1]+' <small style="opacity:.6">'+irHavuz(k,a[0]).length+'</small></button>'; }).join('')+'</div>'; }
+  function irKatBagla(){ app.querySelectorAll('[data-irt]').forEach(function(b){ b.onclick=function(){ var r=rd('ml_ir',null)||{n:0,d:0,y:0}; r.kat=b.dataset.irt; r.bul=true; r.son=[]; wr('ml_ir',r); irCiz(); }; }); }
+  function irTurSonu(){
+    if(IT.sonMsj!=null) return IT.sonMsj;
+    var r=rd('ml_ir',null)||{n:0,d:0,y:0}, m='';
+    if(IT.bul){ r.bul=true; r.son=[]; IT.bulBitti=1;
+      if(IT.d>=8&&katSuz(IR,'ileri').length){ r.kat='ileri'; m='<div class="kt-msj ok">10 sorudan <b>'+IT.d+'</b> doğru. <b>İleri katmandan</b> başlıyorsunuz.</div>'; }
+      else { r.kat='temel'; m='<div class="kt-msj uy">10 sorudan <b>'+IT.d+'</b> doğru. <b>Temel katmandan</b> başlıyorsunuz; %85 başarıyla ileri katmana geçersiniz.</div>'; } }
+    else { var S2=r.son||[], o=S2.length?S2.reduce(function(a,b){ return a+b; },0)/S2.length:0;
+      if(r.kat!=='ileri'&&S2.length>=20&&o>=0.85&&katSuz(IR,'ileri').length){ r.kat='ileri'; r.son=[]; m='<div class="kt-msj ok">Tebrikler! <b>İleri katmana</b> geçtiniz.</div>'; }
+      else if(r.kat==='ileri'&&S2.length>=20&&o<0.5){ r.kat='temel'; r.son=[]; m='<div class="kt-msj uy">Biraz pekiştirelim: <b>temel katmana</b> döndünüz.</div>'; } }
+    wr('ml_ir',r); IT.sonMsj=m; return m;
+  }
   function irCevap(i){
     var x=IT.sira[IT.i], ok=IT.sec[i]===x.t; IT.cevap=i;
-    if(ok) IT.d++; else { IT.y++; if(!x.tekrar){ var k=Object.assign({},x,{tekrar:1}); IT.sira.splice(Math.min(IT.sira.length, IT.i+4),0,k); } }
-    var r=rd('ml_ir',null)||{n:0,d:0,y:0}; r.b=r.b||{}; r.n++; if(ok){ r.d++; r.b[x.s+'-'+x.a+'-'+x.n]=1; } else r.y++; wr('ml_ir',r);
+    if(ok) IT.d++; else { IT.y++; if(!x.tekrar&&!IT.bul){ var k=Object.assign({},x,{tekrar:1}); IT.sira.splice(Math.min(IT.sira.length, IT.i+4),0,k); } }
+    var r=rd('ml_ir',null)||{n:0,d:0,y:0}; r.b=r.b||{}; r.n++; if(ok){ r.d++; r.b[irAnah(x)]=1; } else r.y++; if(!IT.bul&&!x.tekrar){ r.son=(r.son||[]).concat([ok?1:0]).slice(-20); } wr('ml_ir',r);
     var nb=Object.keys(r.b).length; mlOzet('ir', {ad:"İ'râb testi", etiket:nb+'/'+IR.length+' soru doğru çözüldü', d:r.d, y:r.y, bitti:nb/IR.length, url:'/meal/#/irab'});
     irCiz();
   }

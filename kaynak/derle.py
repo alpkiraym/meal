@@ -119,23 +119,33 @@ print('kelime testi:', N, 'temel +', len(nad), 'nadir kelime')
 
 # ---- İ'râb testi: kaynak/irab.txt → veri/irab.json ----
 IR = []
+# Şık havuzları sablon.html'deki TERIM'den okunur; doğru terim ve h terimleri havuzda olmalı
+_tm = re.search(r'var TERIM=\{(.*?)\};', open(os.path.join(K, 'sablon.html'), encoding='utf-8').read(), re.S).group(1)
+IRTUR = {k: re.findall(r"'([^']+)'", v) for k, v in re.findall(r"(\w+):\[(.*?)\]", _tm, re.S)}
 for sat in open(os.path.join(K, 'irab.txt'), encoding='utf-8'):
     sat = sat.rstrip('\n')
     if not sat or sat.startswith('#'): continue
     p_ = sat.split('|')
     s_, a_, n_, t_, lv_, tur_, ac_ = p_[:7]
-    h_ = [x for x in p_[7].split(',') if x] if len(p_) > 7 else []  # şık yapılmayacak terimler (ihtilaf)
+    h_ = [x.strip() for x in re.split('[,;]', p_[7]) if x.strip()] if len(p_) > 7 else []  # şık yapılmayacak terimler (ihtilaf)
     s_, a_ = int(s_), int(a_)
     t = T['a'][s_][a_]
     if s_ not in (1, 9) and a_ == 1: t = ' '.join(t.split(' ')[4:])
     ws = [w for w in t.split(' ') if not isaret(w)]
-    if n_.isdigit(): n_ = int(n_)
+    m_ = None
+    if re.fullmatch(r'\d+-\d+', n_): n_, m_ = map(int, n_.split('-'))  # kelime aralığı (cümle soruları)
+    elif n_.isdigit(): n_ = int(n_)
     else:  # kelimenin kendisi yazılmış (harekesiz); aynı kelime birden çoksa 'كلمة#2'
         k_, _, sira_ = n_.partition('#'); bul_ = [i for i, w in enumerate(ws) if sade(w) == sade(k_)]
         assert len(bul_) >= int(sira_ or 1), ('irab kelimesi bulunamadı', s_, a_, n_)
         n_ = bul_[int(sira_ or 1) - 1]
-    assert n_ < len(ws), ('irab kelime sırası', s_, a_, n_)
-    IR.append({'s': s_, 'a': a_, 'n': n_, 'w': ws[n_], 't': t_, 'lv': int(lv_), 'tur': tur_, 'x': ac_, **({'h': h_} if h_ else {})})
+    assert n_ < len(ws) and (m_ is None or n_ <= m_ < len(ws)), ('irab kelime sırası', s_, a_, n_, m_)
+    assert tur_ in IRTUR, ('irab tür', s_, a_, tur_)
+    assert t_ in IRTUR[tur_], ('irab terimi havuzda yok', s_, a_, t_)
+    assert all(x in IRTUR[tur_] for x in h_), ('irab h terimi havuzda yok', s_, a_, h_)
+    assert 1 <= int(lv_) <= 6, ('irab seviye', s_, a_)
+    w_ = ' '.join(ws[n_:(m_ if m_ is not None else n_) + 1])
+    IR.append({'s': s_, 'a': a_, 'n': n_, 'w': w_, 't': t_, 'lv': int(lv_), 'tur': tur_, 'x': ac_, **({'m': m_} if m_ is not None else {}), **({'h': h_} if h_ else {})})
 json.dump(IR, open(os.path.join(KOK, 'veri', 'irab.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print("i'râb testi:", len(IR), 'soru')
 
